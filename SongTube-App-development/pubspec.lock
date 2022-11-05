@@ -58,7 +58,7 @@ packages:
       path: "."
       ref: master
       resolved-ref: ee091bc528e97995dc587971e6048913ee1bce6d
-      url: "git://github.com/SongTube/autolist.git"
+      url: "https://github.com/SongTube/autolist.git"
     source: git
     version: "0.1.0+2"
   avatar_glow:
@@ -327,13 +327,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_xlider:
-    dependency: "direct main"
-    description:
-      name: flutter_xlider
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.4.0"
   grouped_list:
     dependency: "direct main"
     description:
@@ -467,15 +460,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  newpipeextractor_dart:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: master
-      resolved-ref: d87ac1240d2281af7390c2173993b70965117222
-      url: "https://github.com/SongTube/newpipeextractor_dart"
-    source: git
-    version: "0.0.1"
   package_info:
     dependency: "direct main"
     description:

@@ -47,9 +47,7 @@ dependencies:
 
     # NewPipe Extractor
     newpipeextractor_dart:
-        git:
-            url: https://github.com/SongTube/newpipeextractor_dart
-            ref: master
+        path: ../NewPipeExtractor_Dart
 
     # Device Providers
     shared_preferences: ^2.0.6 
@@ -124,7 +122,10 @@ dependencies:
     sqflite: ^2.0.0+3
 
     # Misc
-    flutter_xlider: ^3.4.0
+    flutter_xlider:
+        git:
+            url: https://github.com/swaroopsuthar/flutter_xlider.git
+            ref: master
     flutter_material_color_picker: ^1.0.5
     flutter_keyboard_visibility: ^5.0.2
     flutter_staggered_grid_view: ^0.4.0
