@@ -1,0 +1,63 @@
+group 'com.artxdev.newpipeextractor_dart'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+    }
+}
+
+apply plugin: 'com.android.library'
+
+allprojects {
+    apply plugin: 'maven-publish'
+
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        // Comment this if you're building Release, this is for Android Studio indexing
+        // maven {
+        //     url 'http://download.flutter.io'
+        // }
+    }
+}
+
+android {
+
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 22
+        // Required when setting minSdkVersion to 20 or lower
+        multiDexEnabled true
+    }
+
+    compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+        // Sets Java compatibility to Java 8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dependencies {
+        // Comment this if you're building Release, this is for Android Studio indexing
+        //api "io.flutter:flutter_embedding_debug:1.0.0-d4453f601890ec682bbf8f5659b70f15cce1d67d"
+        coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+        implementation 'androidx.annotation:annotation:1.1.0'
+        implementation 'com.github.SkyTubeTeam.NewPipeExtractor:NewPipeExtractor:skytube-2022-11-04'
+        implementation 'org.jsoup:jsoup:1.13.1'
+        implementation 'org.mozilla:rhino:1.7.12'
+        implementation 'com.github.spotbugs:spotbugs-annotations:4.0.2'
+        implementation 'org.nibor.autolink:autolink:0.10.0'
+        implementation 'junit:junit:4.13.1'
+        implementation "com.squareup.okhttp3:okhttp:4.10.0"
+        implementation 'com.google.code.gson:gson:2.8.6'
+    }
+}
