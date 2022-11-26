@@ -187,7 +187,7 @@ class _HomePageAppBarState extends State<HomePageAppBar> with TickerProviderStat
 
   Future<dynamic> _getClipboardData() async {
     String data = (await Clipboard.getData("text/plain"))?.text ?? "";
-    if (Uri.tryParse(data)?.host?.isEmpty ?? true) {
+    if (Uri.tryParse(data)?.host.isEmpty ?? true) {
       return null;
     }
     _VideoId videoId = _VideoId(await YoutubeId.getIdFromStreamUrl(data.replaceAll(' ', '')));
