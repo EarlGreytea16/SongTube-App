@@ -54,7 +54,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.version.outputs.builddate }}
-          name: ${{ steps.version.outputs.builddate }}-RELEASE
+          name: ${{ steps.version.outputs.builddate }}
           prerelease: true
           body: "Auto Generated with Github Actions 🚀"
           files: SongTube-App-development/build/app/outputs/flutter-apk/app-release.apk
