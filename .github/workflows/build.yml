@@ -62,3 +62,4 @@ jobs:
           DEBUG: ${{ steps.version.outputs.builddate }}-DEBUG
           RELEASE: ${{ steps.version.outputs.builddate }}-RELEASE
           BUILDDATE: ${{ steps.version.outputs.steps.version.outputs.builddate }}
+          
