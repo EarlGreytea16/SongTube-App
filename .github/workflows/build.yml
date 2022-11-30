@@ -43,7 +43,6 @@ jobs:
           echo "builddate=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
         id: version
       - name: Publishing Release
-        run: echo $DEBUG - $RELEASE_NAME
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.version.outputs.builddate }}
