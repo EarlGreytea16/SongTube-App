@@ -50,7 +50,7 @@ jobs:
           prelease: true
           body: "Auto Generated with Github Actions 🚀"
           files: build/app/outputs/flutter-apk/app-debug.apk
-
+        - name: Publishing Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.version.outputs.builddate }}
