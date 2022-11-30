@@ -1,0 +1,64 @@
+name: Flutter CI
+run-name: ${{ github.actor }} is building songtube with GitHub Actions 🚀
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+       working-directory: SongTube-App-development
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.9'
+          channel: 'stable'
+      - name: Download Android keystore
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1.2
+        with:
+          fileName: key.jks
+          encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+      - name: Create key.properties
+        run: |
+          echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
+          echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Build debug APK
+        run: flutter build apk --debug
+        # build/app/outputs/flutter-apk/app-debug.apk.
+      - name: Build release APK
+        run: flutter build apk --release
+        # build/app/outputs/flutter-apk/app-release.apk.
+      - name: "Set current date as env variable"
+        run: |
+          echo "builddate=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+        id: version
+      - name: Publishing Release
+        run: echo $DEBUG - $RELEASE_NAME
+        uses: softprops/action-gh-release@v1
+          with:
+            tag_name: $BUILDDATE
+            name: $DEBUG
+            prelease: true
+            body: "Auto Generated with Github Actions 🚀"
+            files: build/app/outputs/flutter-apk/app-debug.apk
+        uses: softprops/action-gh-release@v1
+          with:
+            tag_name: $BUILDDATE
+            name: $RELEASE
+            prelease: true
+            body: "Auto Generated with Github Actions 🚀"
+            files: build/app/outputs/flutter-apk/app-release.apk
+        env:
+          DEBUG: ${{ steps.version.outputs.builddate }}-DEBUG
+          RELEASE: ${{ steps.version.outputs.builddate }}-RELEASE
+          BUILDDATE: ${{ steps.version.outputs.steps.version.outputs.builddate }}
