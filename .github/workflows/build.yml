@@ -45,7 +45,7 @@ jobs:
       - name: Publishing Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.version.outputs.builddate }}
+          tag_name: ${{ steps.version.outputs.builddate }}-DEBUG
           name: ${{ steps.version.outputs.builddate }}-DEBUG
           prerelease: true
           body: "Auto Generated with Github Actions 🚀"
