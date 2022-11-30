@@ -46,15 +46,15 @@ jobs:
         run: echo $DEBUG - $RELEASE_NAME
         uses: softprops/action-gh-release@v1
           with:
-            tag_name: ${{ BUILDDATE }}
-            name: ${{ DEBUG }}
+            tag_name: ${{ env.BUILDDATE }}
+            name: ${{ env.DEBUG }}
             prelease: true
             body: "Auto Generated with Github Actions 🚀"
             files: build/app/outputs/flutter-apk/app-debug.apk
         uses: softprops/action-gh-release@v1
           with:
-            tag_name: ${{ BUILDDATE }}
-            name: ${{ RELEASE }}
+            tag_name: ${{ env.BUILDDATE }}
+            name: ${{ env.RELEASE }}
             prelease: true
             body: "Auto Generated with Github Actions 🚀"
             files: build/app/outputs/flutter-apk/app-release.apk
