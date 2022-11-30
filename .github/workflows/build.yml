@@ -47,17 +47,17 @@ jobs:
         with:
           tag_name: ${{ steps.version.outputs.builddate }}
           name: ${{ steps.version.outputs.builddate }}-DEBUG
-          prelease: true
+          prerelease: true
           body: "Auto Generated with Github Actions 🚀"
-          files: build/app/outputs/flutter-apk/app-debug.apk
+          files: SongTube-App-development/build/app/outputs/flutter-apk/app-debug.apk
       - name: Publishing Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.version.outputs.builddate }}
           name: ${{ steps.version.outputs.builddate }}-RELEASE
-          prelease: true
+          prerelease: true
           body: "Auto Generated with Github Actions 🚀"
-          files: build/app/outputs/flutter-apk/app-release.apk
+          files: SongTube-App-development/build/app/outputs/flutter-apk/app-release.apk
         env:
           DEBUG: ${{ steps.version.outputs.builddate }}-DEBUG
           RELEASE: ${{ steps.version.outputs.builddate }}-RELEASE
