@@ -19,7 +19,7 @@ import 'package:songtube/internal/models/tagsControllers.dart';
 import 'package:songtube/internal/models/videoFile.dart';
 
 // Packages
-import 'package:ext_storage/ext_storage.dart';
+import 'package:external_path/external_path.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter_audio_query/flutter_audio_query.dart';
 import 'package:path/path.dart';
@@ -300,7 +300,8 @@ class MediaProvider extends ChangeNotifier {
       storagePermission = false;
       return;
     }
-    String extPath = await ExtStorage.getExternalStorageDirectory();
+    // https://developer.android.com/training/data-storage/app-specific#external-select-location
+    String extPath = (await ExternalPath.getExternalStorageDirectories())[0];
     Directory(extPath).list(recursive: true).map((file) => file.path)
       .where((item) =>
         // Scan for these Video files with these
@@ -384,13 +385,13 @@ class MediaProvider extends ChangeNotifier {
     );
     // Only add Artwork if song is in AAC Format
     File croppedImage = new File(
-      (await getExternalStorageDirectory()).path +
+      (await ExternalPath.getExternalStorageDirectories())[0] +
       "/${RandomString.getRandomString(5)}"
     );
     if (isURL(tags.artworkController)) {
       http.Response response;
       File artwork = new File(
-        (await getExternalStorageDirectory()).path +
+        (await ExternalPath.getExternalStorageDirectories())[0] +
         "/${RandomString.getRandomString(5)}"
       );
       try {

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:songtube/internal/legacyPreferences.dart';
 
 // Packages
-import 'package:ext_storage/ext_storage.dart';
+import 'package:external_path/external_path.dart';
 import 'package:package_info/package_info.dart';
 
 class ConfigurationProvider extends ChangeNotifier {
@@ -23,12 +23,12 @@ class ConfigurationProvider extends ChangeNotifier {
   void initProvider() {
     loadSavedData();
     if (_audioDownloadPath.isEmpty)
-      ExtStorage.getExternalStorageDirectory().then((value) {
-        _audioDownloadPath = value + "/SongTube";
+      ExternalPath.getExternalStorageDirectories().then((value) {
+        _audioDownloadPath = value[0] + "/SongTube";
       });
     if (_videoDownloadPath.isEmpty)
-      ExtStorage.getExternalStorageDirectory().then((value) {
-        _videoDownloadPath = value + "/SongTube";
+      ExternalPath.getExternalStorageDirectories().then((value) {
+        _videoDownloadPath = value[0] + "/SongTube";
       });
     PackageInfo.fromPlatform().then((value) {
       appName = value.appName;

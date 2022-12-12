@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:apk_installer/apk_installer.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:dio/dio.dart';
-import 'package:ext_storage/ext_storage.dart';
+import 'package:external_path/external_path.dart';
 import 'package:flutter/material.dart';
 import 'package:newpipeextractor_dart/utils/httpClient.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -240,8 +240,8 @@ class _AppUpdateDownloadSheetState extends State<AppUpdateDownloadSheet> {
     var permissionStatus = await Permission.storage.request();
     if (permissionStatus == PermissionStatus.granted) {
       Dio dio = Dio();
-      downloadFile = File((await ExtStorage
-        .getExternalStoragePublicDirectory(ExtStorage.DIRECTORY_DOWNLOADS))
+      downloadFile = File((await ExternalPath
+        .getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_DOWNLOADS))
         + "/update.apk");
       dio.download(
         widget.downloadUrl, downloadFile.path,
