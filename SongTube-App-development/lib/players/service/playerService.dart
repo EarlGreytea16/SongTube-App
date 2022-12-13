@@ -38,6 +38,7 @@ MediaControl stopControl = MediaControl(
 );
 
 // NOTE: Your entrypoint MUST be a top-level function.
+@pragma('vm:entry-point')
 void songtubePlayer() async {
   AudioServiceBackground.run(() => SongTubePlayerService());
 }
