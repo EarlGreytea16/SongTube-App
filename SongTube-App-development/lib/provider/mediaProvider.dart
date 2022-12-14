@@ -385,13 +385,13 @@ class MediaProvider extends ChangeNotifier {
     );
     // Only add Artwork if song is in AAC Format
     File croppedImage = new File(
-      (await ExternalPath.getExternalStorageDirectories())[0] +
+      (await getExternalStorageDirectory()).path +
       "/${RandomString.getRandomString(5)}"
     );
     if (isURL(tags.artworkController)) {
       http.Response response;
       File artwork = new File(
-        (await ExternalPath.getExternalStorageDirectories())[0] +
+        (await getExternalStorageDirectory()).path +
         "/${RandomString.getRandomString(5)}"
       );
       try {
