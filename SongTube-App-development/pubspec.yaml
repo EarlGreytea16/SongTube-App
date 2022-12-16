@@ -88,7 +88,6 @@ dependencies:
     image_fade: ^0.2.1
     animations: ^2.0.0
     loading_indicator: ^2.1.1
-    floating_dots: ^0.2.2
 
     # Tools
     flutter_share: ^2.0.0

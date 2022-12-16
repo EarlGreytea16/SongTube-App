@@ -1,5 +1,4 @@
 // Flutter
-import 'package:floating_dots/floating_dots.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_html/shims/dart_ui_real.dart';
