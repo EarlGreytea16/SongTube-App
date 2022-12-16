@@ -102,8 +102,14 @@ dependencies:
     url_launcher: ^6.0.6
     transparent_image: ^2.0.0
     grouped_list: ^4.0.0
-    volume: ^1.0.1
-    flutter_screen: ^0.0.2
+    volume:
+        git:
+            url: https://github.com/mackhan007/Volume_Flutter
+            ref: macky
+    flutter_screen:
+        git:
+            url: https://github.com/rozar-ruan/flutter_screen
+            ref: screen_dev_0.6
     flutter_pip:
         git:
             url: https://github.com/Artx-II/flutter_pip
@@ -130,7 +136,10 @@ dependencies:
     flutter_staggered_grid_view: ^0.4.0
     palette_generator: ^0.3.0
     flutter_markdown: ^0.6.2
-    md2_tab_indicator: ^1.0.2
+    md2_tab_indicator:
+        git:
+            url: https://github.com/abdelrahmanelmarakby/md2_tab_indicator
+            ref: patch-1
 
 dependency_overrides:
   platform: ^3.1.0
