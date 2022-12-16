@@ -210,11 +210,9 @@ packages:
   flutter_ffmpeg:
     dependency: "direct main"
     description:
-      path: "."
-      ref: master
-      resolved-ref: ca13e45180a8c3e32fd728a625c64b156e275797
-      url: "https://github.com/SongTube/flutter-ffmpeg"
-    source: git
+      name: flutter_ffmpeg
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.3.1"
   flutter_glow:
     dependency: "direct main"

@@ -95,10 +95,7 @@ dependencies:
         git: https://github.com/SongTube/audio_tagger
 
     share: ^2.0.4
-    flutter_ffmpeg:
-        git:
-            url: https://github.com/SongTube/flutter-ffmpeg
-            ref: master
+    flutter_ffmpeg: ^0.3.1
     url_launcher: ^6.0.6
     transparent_image: ^2.0.0
     grouped_list: ^4.0.0
