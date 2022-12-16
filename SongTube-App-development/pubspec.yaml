@@ -108,8 +108,8 @@ dependencies:
             ref: macky
     flutter_screen:
         git:
-            url: https://github.com/rozar-ruan/flutter_screen
-            ref: screen_dev_0.6
+            url: https://github.com/SongTube/flutter_screen
+            ref: master
     flutter_pip:
         git:
             url: https://github.com/Artx-II/flutter_pip

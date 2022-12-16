@@ -319,10 +319,12 @@ packages:
   flutter_screen:
     dependency: "direct main"
     description:
-      name: flutter_screen
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.2"
+      path: "."
+      ref: master
+      resolved-ref: f86b39eae883b888e5c23dd3e9d498fd9783d64e
+      url: "https://github.com/SongTube/flutter_screen"
+    source: git
+    version: "0.0.6"
   flutter_share:
     dependency: "direct main"
     description:
@@ -480,10 +482,12 @@ packages:
   md2_tab_indicator:
     dependency: "direct main"
     description:
-      name: md2_tab_indicator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
+      path: "."
+      ref: patch-1
+      resolved-ref: "6ed7a3436d4ad1e52c2c1a23516d5028cb248488"
+      url: "https://github.com/abdelrahmanelmarakby/md2_tab_indicator"
+    source: git
+    version: "2.0.0"
   meta:
     dependency: transitive
     description:
@@ -886,9 +890,11 @@ packages:
   volume:
     dependency: "direct main"
     description:
-      name: volume
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: macky
+      resolved-ref: "084238cea9e10c0d67555942739bc6711e39ce0b"
+      url: "https://github.com/mackhan007/Volume_Flutter"
+    source: git
     version: "1.0.1"
   webview_flutter:
     dependency: transitive
