@@ -139,7 +139,7 @@ class PlayerArtwork extends StatelessWidget {
             image: image == null
               ? AssetImage('assets/images/artworkPlaceholder_big.png')
               : FileImage(image),
-            fadeDuration: Duration(milliseconds: 400),
+            duration: Duration(milliseconds: 400),
             height: double.infinity,
             width: double.infinity,
             fit: BoxFit.cover,

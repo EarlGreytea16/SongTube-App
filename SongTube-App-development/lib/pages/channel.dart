@@ -225,7 +225,7 @@ class _YoutubeChannelPageState extends State<YoutubeChannelPage> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
                                     child: ImageFade(
-                                      fadeDuration: Duration(milliseconds: 300),
+                                      duration: Duration(milliseconds: 300),
                                       placeholder: Image.memory(kTransparentImage),
                                       image: isURL(avatar)
                                         ? NetworkImage(avatar)
