@@ -15,7 +15,7 @@ class JoinTelegramSheet extends StatelessWidget {
         right: 24, left: 24, bottom: 12
       ),
       addBottomPadding: true,
-      leading: Icon(MdiIcons.telegram, color: Colors.blue),
+      leading: Icon(Icons.telegram, color: Colors.blue),
       title: Languages.of(context).labelJoinTelegramChannel,
       content: Text(
         Languages.of(context).labelJoinTelegramJustification,
