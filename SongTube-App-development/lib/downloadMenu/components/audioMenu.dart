@@ -197,7 +197,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: ImageFade(
-                              fadeDuration: Duration(milliseconds: 300),
+                              duration: Duration(milliseconds: 300),
                               placeholder: Container(color: Theme.of(context).cardColor),
                               image: isURL(tags.artworkController)
                                 ? NetworkImage(tags.artworkController)
@@ -1083,7 +1083,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: ImageFade(
-                      fadeDuration: Duration(milliseconds: 300),
+                      duration: Duration(milliseconds: 300),
                       placeholder: Container(color: Theme.of(context).cardColor),
                       image: isURL(segment.tags.artworkController)
                         ? NetworkImage(segment.tags.artworkController)
