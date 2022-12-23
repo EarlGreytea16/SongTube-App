@@ -1,4 +1,5 @@
 // Dart
+import 'dart:async';
 import 'dart:io';
 import 'package:audio_tagger/audio_tagger.dart';
 import 'package:audio_tagger/audio_tags.dart';
