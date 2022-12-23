@@ -38,7 +38,7 @@ dependencies:
             url: https://github.com/SongTube/video_player
             ref: master
 
-    just_audio: ^0.9.12
+    just_audio: ^0.9.30
     audio_service:
         git:
             url: https://github.com/SongTube/audio_service-1
@@ -50,44 +50,44 @@ dependencies:
         path: ../NewPipeExtractor_Dart
 
     # Device Providers
-    shared_preferences: ^2.0.6 
-    provider: ^6.0.0
-    device_info: ^2.0.2
-    path_provider: ^2.0.2
+    shared_preferences: ^2.0.15 
+    provider: ^6.0.5
+    device_info: ^2.0.3
+    path_provider: ^2.0.11
     package_info: ^2.0.2
     external_path: ^1.0.3
-    permission_handler: ^8.3.0 
-    file_picker: ^3.0.2
-    path: ^1.7.0
+    permission_handler: ^10.2.0 
+    file_picker: ^5.2.4
+    path: ^1.8.2
 
     # Text
     intl: ^0.17.0
     string_validator: ^0.3.0
-    google_fonts: ^2.2.0
+    google_fonts: ^3.0.1
 
     # HTTP
-    dio: ^4.0.0
-    http: ^0.13.3
-    flutter_inappwebview: ^5.3.2
+    dio: ^4.0.6
+    http: ^0.13.5
+    flutter_inappwebview: ^5.7.2+3
     flutter_html:
         git:
             url: https://github.com/SongTube/flutter_html
 
     # Icons
-    material_design_icons_flutter: ^4.0.5955
-    eva_icons_flutter: ^3.0.0
+    material_design_icons_flutter: ^6.0.7096
+    eva_icons_flutter: ^3.1.0
 
     # Animations
     shimmer: ^2.0.0
-    avatar_glow: ^2.0.1
+    avatar_glow: ^2.0.2
     flutter_glow: ^0.2.0
     autolist:
         git:
             url: https://github.com/SongTube/autolist
             ref: master
-    image_fade: ^0.2.1
-    animations: ^2.0.0
-    loading_indicator: ^2.1.1
+    image_fade: ^0.6.2
+    animations: ^2.0.7
+    loading_indicator: ^3.1.0
 
     # Tools
     flutter_share: ^2.0.0
@@ -95,10 +95,10 @@ dependencies:
         git: https://github.com/SongTube/audio_tagger
 
     share: ^2.0.4
-    flutter_ffmpeg: ^0.3.1
-    url_launcher: ^6.0.6
+    flutter_ffmpeg: ^0.4.2
+    url_launcher: ^6.1.7
     transparent_image: ^2.0.0
-    grouped_list: ^4.0.0
+    grouped_list: ^5.1.2
     volume:
         git:
             url: https://github.com/mackhan007/Volume_Flutter
@@ -121,18 +121,18 @@ dependencies:
             ref: main
 
     # Database
-    sqflite: ^2.0.0+3
+    sqflite: ^2.2.2
 
     # Misc
     flutter_xlider:
         git:
             url: https://github.com/swaroopsuthar/flutter_xlider.git
             ref: master
-    flutter_material_color_picker: ^1.0.5
-    flutter_keyboard_visibility: ^5.0.2
-    flutter_staggered_grid_view: ^0.4.0
-    palette_generator: ^0.3.0
-    flutter_markdown: ^0.6.2
+    flutter_material_color_picker: ^1.1.0+2
+    flutter_keyboard_visibility: ^5.4.0
+    flutter_staggered_grid_view: ^0.6.2
+    palette_generator: ^0.3.3+2
+    flutter_markdown: ^0.6.13
     md2_tab_indicator:
         git:
             url: https://github.com/abdelrahmanelmarakby/md2_tab_indicator
