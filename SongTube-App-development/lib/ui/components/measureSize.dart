@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-typedef void OnWidgetSizeChange(Size size);
+typedef void OnWidgetSizeChange(Size? size);
 
 class MeasureSize extends StatefulWidget {
   final Widget child;
   final OnWidgetSizeChange onChange;
 
   const MeasureSize({
-    Key key,
-    @required this.onChange,
-    @required this.child,
+    Key? key,
+    required this.onChange,
+    required this.child,
   }) : super(key: key);
 
   @override

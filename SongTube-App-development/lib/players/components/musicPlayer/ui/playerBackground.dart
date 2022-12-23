@@ -16,13 +16,13 @@ class PlayerBackground extends StatefulWidget {
   final bool enableBlur;
   final double blurIntensity;
   final Widget child;
-  final Color backdropColor;
+  final Color? backdropColor;
   final double backdropOpacity;
   PlayerBackground({
-    @required this.backgroundImage,
+    required this.backgroundImage,
     this.enableBlur = true,
     this.blurIntensity = 22.0,
-    @required this.child,
+    required this.child,
     this.backdropColor = Colors.black,
     this.backdropOpacity = 0.4
   });
@@ -33,7 +33,7 @@ class PlayerBackground extends StatefulWidget {
 
 class _PlayerBackgroundState extends State<PlayerBackground> with TickerProviderStateMixin {
 
-  AnimationController animationController;
+  late AnimationController animationController;
 
   @override
   void initState() {
@@ -59,9 +59,9 @@ class _PlayerBackgroundState extends State<PlayerBackground> with TickerProvider
         AnimatedSwitcher(
           duration: Duration(milliseconds: 400),
           child: widget.enableBlur ? ImageFade(
-            image: widget.backgroundImage.path.isEmpty
+            image: (widget.backgroundImage.path.isEmpty
               ? MemoryImage(kTransparentImage)
-              : FileImage(widget.backgroundImage),
+              : FileImage(widget.backgroundImage)) as ImageProvider<Object>?,
             height: double.infinity,
             width: double.infinity,
             fit: BoxFit.cover,
@@ -76,7 +76,7 @@ class _PlayerBackgroundState extends State<PlayerBackground> with TickerProvider
               duration: Duration(seconds: 1),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              color: widget.backdropColor.withOpacity(mediaProvider.showLyrics ? 0.8 : widget.backdropOpacity),
+              color: widget.backdropColor!.withOpacity(mediaProvider.showLyrics ? 0.8 : widget.backdropOpacity),
               child: BackdropFilter(
                 filter: ImageFilter.blur(
                   tileMode: TileMode.mirror,

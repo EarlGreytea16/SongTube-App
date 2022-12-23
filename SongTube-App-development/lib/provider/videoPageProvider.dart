@@ -20,7 +20,7 @@ import 'package:songtube/ui/components/fancyScaffold.dart';
 class VideoPageProvider extends ChangeNotifier {
 
   // Slidable panel controller
-  FloatingWidgetController fwController;
+  FloatingWidgetController? fwController;
 
   // Video Player Key
   GlobalKey<StreamManifestPlayerState> playerKey =
@@ -32,18 +32,18 @@ class VideoPageProvider extends ChangeNotifier {
 
   // Current infoItem & YoutubeVideo
   dynamic _infoItem;
-  YoutubeVideo currentVideo;
-  YoutubePlaylist currentPlaylist;
-  TagsControllers currentTags;
-  YoutubeChannel currentChannel;
-  List<StreamInfoItem> currentRelatedVideos;
-  List<YoutubeComment> currentComments;
-  bool isPlaylist;
+  YoutubeVideo? currentVideo;
+  YoutubePlaylist? currentPlaylist;
+  TagsControllers? currentTags;
+  YoutubeChannel? currentChannel;
+  List<StreamInfoItem?>? currentRelatedVideos;
+  List<YoutubeComment>? currentComments;
+  late bool isPlaylist;
   dynamic get infoItem => _infoItem;
   set infoItem(dynamic infoItem) {
     if (_infoItem != null) {
-      if (fwController.isAttached)
-        fwController.open();
+      if (fwController!.isAttached)
+        fwController!.open();
     }
     if (currentPlaylist == null) {
       if (infoItem is StreamInfoItem) {
@@ -62,10 +62,10 @@ class VideoPageProvider extends ChangeNotifier {
       _infoItem.getVideo.then((value) { 
         currentVideo = value;
         currentTags = TagsControllers();
-        currentTags.updateTextControllers(value);
-        saveToHistory(currentVideo.toStreamInfoItem());
+        currentTags!.updateTextControllers(value);
+        saveToHistory(currentVideo!.toStreamInfoItem());
         notifyListeners();
-        CommentsExtractor.getComments(currentVideo.videoInfo.url).then((comments) {
+        CommentsExtractor.getComments(currentVideo!.videoInfo.url!).then((comments) {
           currentComments = comments;
           notifyListeners();
         });
@@ -90,19 +90,19 @@ class VideoPageProvider extends ChangeNotifier {
     await _infoItem.getVideo.then((value) { 
       currentVideo = value;
       currentTags = TagsControllers();
-      currentTags.updateTextControllers(value);
-      saveToHistory(currentVideo.toStreamInfoItem());
+      currentTags!.updateTextControllers(value);
+      saveToHistory(currentVideo!.toStreamInfoItem());
       notifyListeners();
     });
-    CommentsExtractor.getComments(currentVideo.videoInfo.url).then((comments) {
+    CommentsExtractor.getComments(currentVideo!.videoInfo.url!).then((comments) {
       currentComments = comments;
       notifyListeners();
     });
     _infoItem.getChannel.then((value) async {
       currentChannel = value;
       notifyListeners();
-      currentChannel.avatarUrl = await
-        AvatarHandler.getAvatarUrl(currentChannel.name, currentChannel.url);
+      currentChannel!.avatarUrl = await
+        AvatarHandler.getAvatarUrl(currentChannel!.name, currentChannel!.url);
       notifyListeners();
     });
     VideoExtractor.getRelatedStreams(_infoItem.url).then((value) async {
@@ -142,22 +142,22 @@ class VideoPageProvider extends ChangeNotifier {
     }
     notifyListeners();
     if (playlist is PlaylistInfoItem) {
-      await currentPlaylist.getStreams();
-      currentRelatedVideos = currentPlaylist.streams;
+      await currentPlaylist!.getStreams();
+      currentRelatedVideos = currentPlaylist!.streams;
     } else {
       currentRelatedVideos = (playlist as StreamPlaylist).streams;
     }
-    _infoItem = currentRelatedVideos[0];
+    _infoItem = currentRelatedVideos![0];
     notifyListeners();
     await _infoItem.getVideo.then((value) { 
       currentVideo = value;
       currentTags = TagsControllers();
-      currentTags.updateTextControllers(value);
+      currentTags!.updateTextControllers(value);
       // TODO: Save Playlist to History
       notifyListeners();
       
     });
-    CommentsExtractor.getComments(currentVideo.videoInfo.url).then((comments) {
+    CommentsExtractor.getComments(currentVideo!.videoInfo.url!).then((comments) {
       currentComments = comments;
       notifyListeners();
     });
@@ -184,13 +184,13 @@ class VideoPageProvider extends ChangeNotifier {
   }
 
   Future<void> saveToHistory(StreamInfoItem video) async {
-    if (globalPrefs.getBool('enableWatchHistory') ?? true) {
-      String json = globalPrefs.getString('newWatchHistory');
+    if (globalPrefs!.getBool('enableWatchHistory') ?? true) {
+      String? json = globalPrefs!.getString('newWatchHistory');
       if (json == null) {
         List<StreamInfoItem> videos = [video];
         List<Map<dynamic, dynamic>> map =
         videos.map((e) => e.toMap()).toList();
-        globalPrefs.setString('newWatchHistory', jsonEncode(map));
+        globalPrefs!.setString('newWatchHistory', jsonEncode(map));
       } else {
         List<StreamInfoItem> history = [];
         var map = jsonDecode(json);
@@ -206,7 +206,7 @@ class VideoPageProvider extends ChangeNotifier {
           history.insert(0, video);
         }
         map = history.map((e) => e.toMap()).toList();
-        globalPrefs.setString('newWatchHistory', jsonEncode(map));
+        globalPrefs!.setString('newWatchHistory', jsonEncode(map));
       }
     }
   }

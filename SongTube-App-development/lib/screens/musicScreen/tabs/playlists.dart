@@ -10,7 +10,7 @@ import 'package:songtube/ui/dialogs/alertDialog.dart';
 
 class MusicScreenPlaylistTab extends StatefulWidget {
   const MusicScreenPlaylistTab({
-    Key key }) : super(key: key);
+    Key? key }) : super(key: key);
 
   @override
   _MusicScreenPlaylistTabState createState() => _MusicScreenPlaylistTabState();
@@ -35,11 +35,11 @@ class _MusicScreenPlaylistTabState extends State<MusicScreenPlaylistTab> {
               LocalPlaylist playlist = playlists[index];
               return FutureBuilder(
                 future: FFmpegExtractor.getAudioArtwork(
-                  audioFile: playlist.songs.isNotEmpty
-                    ? playlist.songs[0].id
+                  audioFile: playlist.songs!.isNotEmpty
+                    ? playlist.songs![0].id
                     : null,
-                  audioId: playlist.songs.isNotEmpty
-                    ? playlist.songs[0].extras['albumId']
+                  audioId: playlist.songs!.isNotEmpty
+                    ? playlist.songs![0].extras!['albumId']
                     : null,
                   forceExtraction: true
                 ),
@@ -50,7 +50,7 @@ class _MusicScreenPlaylistTabState extends State<MusicScreenPlaylistTab> {
                     lowResThumbnail: future.hasData ? future.data.path : null,
                     songs: playlist.songs,
                     onDeletePlaylist: () async {
-                      final result = await showDialog<bool>(context: context, builder: (context) {
+                      final result = await (showDialog<bool>(context: context, builder: (context) {
                         return CustomAlert(
                           leadingIcon: Icon(Icons.warning_rounded, color: Theme.of(context).accentColor),
                           title: playlist.name,
@@ -60,17 +60,17 @@ class _MusicScreenPlaylistTabState extends State<MusicScreenPlaylistTab> {
                               onPressed: () {
                                 Navigator.pop(context, false);
                               },
-                              child: Text(Languages.of(context).labelCancel)
+                              child: Text(Languages.of(context)!.labelCancel)
                             ),
                             TextButton(
                               onPressed: () {
                                 Navigator.pop(context, true);
                               },
-                              child: Text(Languages.of(context).labelRemove)
+                              child: Text(Languages.of(context)!.labelRemove)
                             ),
                           ]
                         );
-                      });
+                      }) as FutureOr<bool>);
                       if (result) {
                         prefs.deleteLocalPlaylist(playlist.id);
                       }

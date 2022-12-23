@@ -6,8 +6,8 @@ import 'package:songtube/screens/musicScreen/components/music_type_expandable.da
 import 'package:songtube/screens/musicScreen/components/songsList.dart';
 
 class MusicScreenGenreTab extends StatefulWidget {
-  final List<MediaItem> songs;
-  final String searchQuery;
+  final List<MediaItem>? songs;
+  final String? searchQuery;
   MusicScreenGenreTab({
     this.songs,
     this.searchQuery
@@ -21,14 +21,14 @@ class _MusicScreenGenreTabState extends State<MusicScreenGenreTab> {
   List<MediaItemGenre> _genres = [];
 
   // Current Genre
-  MediaItemGenre currentGenre;
+  MediaItemGenre? currentGenre;
 
   // Genres GridView Key
   final genresGridKey = const PageStorageKey<String>('songsGenreList');
 
   @override
   void initState() {
-    widget.songs.forEach((song) => songCreateOrAssignToGenre(song));
+    widget.songs!.forEach((song) => songCreateOrAssignToGenre(song));
     super.initState();
   }
 
@@ -47,7 +47,7 @@ class _MusicScreenGenreTabState extends State<MusicScreenGenreTab> {
     int indexToGenre = _genres.indexWhere((genre) {
       return genre.genreName == (song?.genre ?? "unknown");
     });
-    _genres[indexToGenre].mediaItems.add(song);
+    _genres[indexToGenre].mediaItems!.add(song);
   }
 
   Widget build(BuildContext context) {
@@ -71,9 +71,9 @@ class _MusicScreenGenreTabState extends State<MusicScreenGenreTab> {
 
   bool getSearchQueryMatch(MediaItemGenre genre) {
     if (widget.searchQuery != "") {
-      if (genre.genreName.toLowerCase().contains(widget.searchQuery.toLowerCase())) {
+      if (genre.genreName!.toLowerCase().contains(widget.searchQuery!.toLowerCase())) {
         return true;
-      } else if (genre.genreName.toLowerCase().contains(widget.searchQuery.toLowerCase())) {
+      } else if (genre.genreName!.toLowerCase().contains(widget.searchQuery!.toLowerCase())) {
         return true;
       } else {
         return false;

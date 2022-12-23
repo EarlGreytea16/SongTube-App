@@ -20,7 +20,7 @@ class WatchHistoryPage extends StatelessWidget {
             fontFamily: 'Product Sans',
             fontWeight: FontWeight.w600,
             fontSize: 24,
-            color: Theme.of(context).textTheme.bodyText1.color
+            color: Theme.of(context).textTheme.bodyText1!.color
           ),
         ),
         elevation: 0,
@@ -37,7 +37,7 @@ class WatchHistoryPage extends StatelessWidget {
           Divider(
             height: 1,
             thickness: 1,
-            color: Colors.grey[600].withOpacity(0.1),
+            color: Colors.grey[600]!.withOpacity(0.1),
             indent: 12,
             endIndent: 12
           ),

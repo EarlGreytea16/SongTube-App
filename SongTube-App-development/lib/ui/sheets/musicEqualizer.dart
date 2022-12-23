@@ -8,9 +8,9 @@ import 'package:songtube/internal/languages.dart';
 class MusicEqualizerSheet extends StatefulWidget {
   
   const MusicEqualizerSheet({
-    @required this.equalizerMap,
-    @required this.loudnessMap,
-    Key key }) : super(key: key);
+    required this.equalizerMap,
+    required this.loudnessMap,
+    Key? key }) : super(key: key);
   final dynamic equalizerMap;
   final dynamic loudnessMap;
 
@@ -20,8 +20,8 @@ class MusicEqualizerSheet extends StatefulWidget {
 
 class _MusicEqualizerSheetState extends State<MusicEqualizerSheet> {
 
-  _EqualizationData equalizer;
-  _LoudnessEqualizationData loudnessEqualization;
+  late _EqualizationData equalizer;
+  late _LoudnessEqualizationData loudnessEqualization;
 
   @override
   void initState() {
@@ -83,7 +83,7 @@ class _MusicEqualizerSheetState extends State<MusicEqualizerSheet> {
                       Text(
                         'Equalizer',
                         style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1.color,
+                          color: Theme.of(context).textTheme.bodyText1!.color,
                           fontSize: 22,
                           fontFamily: 'Product Sans',
                           fontWeight: FontWeight.w600
@@ -115,7 +115,7 @@ class _MusicEqualizerSheetState extends State<MusicEqualizerSheet> {
         CheckboxListTile(
           title: Text('Loudness Equalization Gain',
             style: TextStyle(
-              color: Theme.of(context).textTheme.bodyText1.color,
+              color: Theme.of(context).textTheme.bodyText1!.color,
               fontFamily: 'Product Sans',
               fontWeight: FontWeight.w600
             )),
@@ -130,7 +130,7 @@ class _MusicEqualizerSheetState extends State<MusicEqualizerSheet> {
           child: Slider(
             min: -1,
             max: 1,
-            value: loudnessEqualization.gain,
+            value: loudnessEqualization.gain!,
             onChanged: (gain) {
               setState(() => loudnessEqualization.gain = gain);
               sendLoudnessGain();
@@ -147,7 +147,7 @@ class _MusicEqualizerSheetState extends State<MusicEqualizerSheet> {
         CheckboxListTile(
           title: Text('Equalizer',
             style: TextStyle(
-              color: Theme.of(context).textTheme.bodyText1.color,
+              color: Theme.of(context).textTheme.bodyText1!.color,
               fontFamily: 'Product Sans',
               fontWeight: FontWeight.w600
             )),
@@ -177,9 +177,9 @@ class _MusicEqualizerSheetState extends State<MusicEqualizerSheet> {
           child: SliderTheme(
             data: sliderTheme(),
             child: Slider(
-              min: band.minFreq,
-              max: band.maxFreq,
-              value: band.gain,
+              min: band.minFreq!,
+              max: band.maxFreq!,
+              value: band.gain!,
               onChanged: (value) {
                 setState(() => equalizer.bands[bandIndex].gain = value);
                 sendEqualizer();
@@ -187,7 +187,7 @@ class _MusicEqualizerSheetState extends State<MusicEqualizerSheet> {
             ),
           ),
         ),
-        Text('${band.centerFrequency.round()}Hz'),
+        Text('${band.centerFrequency!.round()}Hz'),
       ],
     );
   }
@@ -197,23 +197,23 @@ class _MusicEqualizerSheetState extends State<MusicEqualizerSheet> {
 class _LoudnessEqualizationData {
 
   _LoudnessEqualizationData({
-    @required this.enabled,
-    @required this.gain
+    required this.enabled,
+    required this.gain
   });
 
-  bool enabled;
-  double gain;
+  bool? enabled;
+  double? gain;
 
   static _LoudnessEqualizationData fromMap(Map<String, dynamic> map) {
     return _LoudnessEqualizationData(
       enabled: map['enabled'] == 'true' ? true : false,
-      gain: map['gain'] as double
+      gain: map['gain'] as double?
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'enabled': enabled ? 'true' : false,
+      'enabled': enabled! ? 'true' : false,
       'gain': gain
     };
   }
@@ -223,11 +223,11 @@ class _LoudnessEqualizationData {
 class _EqualizationData {
 
   _EqualizationData({
-    @required this.enabled,
-    @required this.bands
+    required this.enabled,
+    required this.bands
   });
 
-  bool enabled;
+  bool? enabled;
   List<_EqualizationBand> bands;
   
 
@@ -245,7 +245,7 @@ class _EqualizationData {
 
   Map<String, dynamic> toMap() {
     return {
-      'enabled': enabled ? 'true' : 'false',
+      'enabled': enabled! ? 'true' : 'false',
       'bands': List.generate(bands.length, (index) {
         final band = bands[index];
         return {
@@ -263,16 +263,16 @@ class _EqualizationData {
 class _EqualizationBand {
 
   _EqualizationBand({
-    @required this.centerFrequency,
-    @required this.minFreq,
-    @required this.maxFreq,
-    @required this.gain,
+    required this.centerFrequency,
+    required this.minFreq,
+    required this.maxFreq,
+    required this.gain,
   });
 
-  final double centerFrequency;
-  final double minFreq;
-  final double maxFreq;
-  double gain;
+  final double? centerFrequency;
+  final double? minFreq;
+  final double? maxFreq;
+  double? gain;
   
   static _EqualizationBand fromMap(Map<String, dynamic> map) {
     return _EqualizationBand(

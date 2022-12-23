@@ -48,125 +48,125 @@ class LegacyPreferences {
   Future<void> initPreferences() async {
     AndroidDeviceInfo deviceInfo = await DeviceInfoPlugin().androidInfo;
     sdkInt = deviceInfo.version.sdkInt;
-    if (sdkInt >= 28) {
+    if (sdkInt! >= 28) {
       isSystemThemeAvailable = true;
     } else {isSystemThemeAvailable = false;}
   }
 
-  int sdkInt;
+  int? sdkInt;
 
-  bool isSystemThemeAvailable;
+  bool? isSystemThemeAvailable;
 
   Color getAccentColor() {
-    return Color(globalPrefs.getInt(accentKey) ?? Colors.redAccent.value);
+    return Color(globalPrefs!.getInt(accentKey) ?? Colors.redAccent.value);
   }
 
   void saveAccentColor(Color color) {
-    globalPrefs.setInt(accentKey, color.value);
+    globalPrefs!.setInt(accentKey, color.value);
   }
 
   bool getSystemThemeEnabled() {
-    return globalPrefs.getBool(systemThemeKey) ?? true;
+    return globalPrefs!.getBool(systemThemeKey) ?? true;
   }
 
   void saveSystemThemeEnabled(bool value) {
-    globalPrefs.setBool(systemThemeKey, value);
+    globalPrefs!.setBool(systemThemeKey, value);
   }
 
   bool getDarkThemeEnabled() {
-    return globalPrefs.getBool(darkThemeKey) ?? false;
+    return globalPrefs!.getBool(darkThemeKey) ?? false;
   }
 
   void saveDarkThemeEnabled(bool value){
-    globalPrefs.setBool(darkThemeKey, value);
+    globalPrefs!.setBool(darkThemeKey, value);
   }
 
   bool getBlackThemeEnabled() {
-    return globalPrefs.getBool(blackThemeKey) ?? false;
+    return globalPrefs!.getBool(blackThemeKey) ?? false;
   }
 
   void saveBlackThemeEnabled(bool value) {
-    globalPrefs.setBool(blackThemeKey, value);
+    globalPrefs!.setBool(blackThemeKey, value);
   }
 
   bool getEnableFFmpegActionTypeion() {
-    return globalPrefs.getBool(enableFFmpegActionTypeion) ?? true;
+    return globalPrefs!.getBool(enableFFmpegActionTypeion) ?? true;
   }
 
   void saveEnableFFmpegActionTypeion(bool value) {
-    globalPrefs.setBool(enableFFmpegActionTypeion, value);
+    globalPrefs!.setBool(enableFFmpegActionTypeion, value);
   }
 
   bool getEnableVideoConvertion() {
-    return globalPrefs.getBool(enableVideoConvertion) ?? false;
+    return globalPrefs!.getBool(enableVideoConvertion) ?? false;
   }
 
   void saveEnableVideoConvertion(bool value) {
-    globalPrefs.setBool(enableVideoConvertion, value);
+    globalPrefs!.setBool(enableVideoConvertion, value);
   }
 
   void saveFFmpegActionTypeingFormat(String format) {
-    globalPrefs.setString(ffmpegActionTypeingFormat, format);
+    globalPrefs!.setString(ffmpegActionTypeingFormat, format);
   }
 
   String getFFmpegActionTypeingFormat() {
-    return globalPrefs.getString(ffmpegActionTypeingFormat) ?? "AAC";
+    return globalPrefs!.getString(ffmpegActionTypeingFormat) ?? "AAC";
   }
 
-  String getAudioDownloadPath() {
-    return globalPrefs.getString(audioDownloadPath);
+  String? getAudioDownloadPath() {
+    return globalPrefs!.getString(audioDownloadPath);
   }
 
-  String getVideoDownloadPath() {
-    return globalPrefs.getString(videoDownloadPath);
+  String? getVideoDownloadPath() {
+    return globalPrefs!.getString(videoDownloadPath);
   }
 
   void saveAudioDownloadPath(String path) {
-    globalPrefs.setString(audioDownloadPath, path ?? '');
+    globalPrefs!.setString(audioDownloadPath, path ?? '');
   }
 
   void saveVideoDownloadPath(String path) {
-    globalPrefs.setString(videoDownloadPath, path ?? '');
+    globalPrefs!.setString(videoDownloadPath, path ?? '');
   }
 
   bool getUseYoutubeWebview() {
-    return globalPrefs.getBool(useYoutubeWebview) ?? false;
+    return globalPrefs!.getBool(useYoutubeWebview) ?? false;
   }
 
   void saveUseYoutubeWebview(bool value) {
-    globalPrefs.setBool(useYoutubeWebview, value);
+    globalPrefs!.setBool(useYoutubeWebview, value);
   }
 
   bool showIntroductionPages() {
-    return globalPrefs.getBool(showIntroduction) ?? true;
+    return globalPrefs!.getBool(showIntroduction) ?? true;
   }
 
   void saveShowIntroductionPages(bool value) {
-    globalPrefs.setBool(showIntroduction, value);
+    globalPrefs!.setBool(showIntroduction, value);
   }
 
   bool getEnableAlbumFolder() {
-    return globalPrefs.getBool(albumFolder) ?? false;
+    return globalPrefs!.getBool(albumFolder) ?? false;
   }
 
   void saveEnableAlbumFolder(bool value) {
-    globalPrefs.setBool(albumFolder, value);
+    globalPrefs!.setBool(albumFolder, value);
   }
 
   // Search History
   String getSearchHistory() {
-    return globalPrefs.getString(searchHistory) ?? "[]";
+    return globalPrefs!.getString(searchHistory) ?? "[]";
   }
   void saveSearchHistory(String history) {
-    globalPrefs.setString(searchHistory, history);
+    globalPrefs!.setString(searchHistory, history);
   }
 
   // Navigate ChannelLogo Cache
   String getChannelLogos() {
-    return globalPrefs.getString(channelLogo) ?? "{}";
+    return globalPrefs!.getString(channelLogo) ?? "{}";
   }
   void saveChannelLogos(String json) {
-    globalPrefs.setString(channelLogo, json);
+    globalPrefs!.setString(channelLogo, json);
   }
 
   //
@@ -174,38 +174,38 @@ class LegacyPreferences {
   //
 
   bool getExpandedArtwork() {
-    return globalPrefs.getBool(expandedArtwork) ?? true;
+    return globalPrefs!.getBool(expandedArtwork) ?? true;
   }
   void saveExpandedArtwork(bool value) {
-    globalPrefs.setBool(expandedArtwork, value);
+    globalPrefs!.setBool(expandedArtwork, value);
   }
   bool getBlurBackground() {
-    return globalPrefs.getBool(blurBackground) ?? true;
+    return globalPrefs!.getBool(blurBackground) ?? true;
   }
   void saveBlurBackground(bool value) {
-    globalPrefs.setBool(blurBackground, value);
+    globalPrefs!.setBool(blurBackground, value);
   }
 
   // Disclaimer Status
   bool getDisclaimerStatus() {
-    return globalPrefs.getBool(disclaimerKey) ?? false;
+    return globalPrefs!.getBool(disclaimerKey) ?? false;
   }
   void saveDisclaimerStatus(bool value) {
-    globalPrefs.setBool(disclaimerKey, value);
+    globalPrefs!.setBool(disclaimerKey, value);
   }
 
   // Fix Downloads on Android 11 Status
   bool getShowDownloadFixDialog() {
-    return globalPrefs.getBool(fixStatus) ?? true;
+    return globalPrefs!.getBool(fixStatus) ?? true;
   }
   void saveShowDownloadFixDialog(bool value) {
-    globalPrefs.setBool(fixStatus, value);
+    globalPrefs!.setBool(fixStatus, value);
   }
 
   // Set/Get cached device songs
   Future<List<MediaItem>> getCachedSongs() async {
     final songs = <MediaItem>[];
-    final cached = globalPrefs.getString('cachedSongs') ?? '';
+    final cached = globalPrefs!.getString('cachedSongs') ?? '';
     if (cached.isNotEmpty) {
       final map = jsonDecode(cached);
       for (final song in map) {
@@ -237,7 +237,7 @@ class LegacyPreferences {
       }
     });
     if (songs.isEmpty) {
-      globalPrefs.setString('cachedSongs', '');
+      globalPrefs!.setString('cachedSongs', '');
     } else {
       final map = List.generate(songs.length, (index) {
         final song = songs[index];
@@ -247,15 +247,15 @@ class LegacyPreferences {
           'title': song.title,
           'artist': song.artist,
           'genre': song.genre,
-          'duration': song.duration != null ? song.duration.inSeconds.toString() : null,
+          'duration': song.duration != null ? song.duration!.inSeconds.toString() : null,
           'artUri': song.artUri.toString(),
           'extras': {
-            'downloadType': song.extras['downloadType'],
-            'artwork': song.extras['artwork']
+            'downloadType': song.extras!['downloadType'],
+            'artwork': song.extras!['artwork']
           }
         };
       });
-      globalPrefs.setString('cachedSongs', jsonEncode(map));
+      globalPrefs!.setString('cachedSongs', jsonEncode(map));
     }
   }
 

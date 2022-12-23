@@ -23,14 +23,14 @@ enum ArtworkExtractMethod {
 class FFmpegExtractor {
 
   static Future<File> getAudioArtwork({
-    String audioFile,
-    String audioId,
+    String? audioFile,
+    String? audioId,
     ArtworkExtractMethod extractionMethod =
       ArtworkExtractMethod.Automatic,
     bool forceExtraction = false
   }) async {
     assert(audioFile != "");
-    String artworkDir = (await getExternalStorageDirectory()).path + "/Artworks/";
+    String artworkDir = (await getExternalStorageDirectory())!.path + "/Artworks/";
     if (!await Directory(artworkDir).exists())
       await Directory(artworkDir).create();
     File artwork = File("$artworkDir${audioFile != null ? audioFile.split("/").last.replaceAll("/", "_") : "default"}.jpg");
@@ -54,7 +54,7 @@ class FFmpegExtractor {
     if (extractionMethod == ArtworkExtractMethod.Automatic) {
       // On Automatic, AudioTagger Method has priority
       // (Because Artwork quality will be better)
-      Uint8List bytes = await AudioTagger.extractArtwork(audioFile);
+      Uint8List? bytes = await AudioTagger.extractArtwork(audioFile);
       if (bytes != null && bytes.isNotEmpty) {
         artwork.writeAsBytes(bytes);
       } else {
@@ -62,7 +62,7 @@ class FFmpegExtractor {
           Size size = Size(800,800);
           bytes = await FlutterAudioQuery().getArtwork(
             type: ResourceType.SONG,
-            id: audioId, size: size
+            id: audioId!, size: size
           );
         } catch (_) {}
         if (bytes != null && bytes.isNotEmpty) {
@@ -81,12 +81,12 @@ class FFmpegExtractor {
     } else if (extractionMethod == ArtworkExtractMethod.AudioQuery) {
       // On AudioQuery, Artwork will only be Extracted using AudioQuery package
       // and if it fails, it will return default Artwork from Assets
-      Uint8List bytes;
+      Uint8List? bytes;
       try {
         Size size = Size(800,800);
         bytes =  await FlutterAudioQuery().getArtwork(
           type: ResourceType.SONG,
-          id: audioId, size: size
+          id: audioId!, size: size
         );
       } catch (_) {}
       if (bytes != null && bytes.isNotEmpty) {
@@ -102,7 +102,7 @@ class FFmpegExtractor {
         ));
       }
     } else if (extractionMethod == ArtworkExtractMethod.AudioTaggers) {
-      Uint8List bytes = await AudioTagger.extractArtwork(audioFile);
+      Uint8List? bytes = await AudioTagger.extractArtwork(audioFile);
       if (bytes != null && bytes.isNotEmpty) {
         artwork.writeAsBytes(bytes);
       } else {
@@ -110,7 +110,7 @@ class FFmpegExtractor {
           Size size = Size(800,800);
           bytes = await FlutterAudioQuery().getArtwork(
             type: ResourceType.SONG,
-            id: audioId, size: size
+            id: audioId!, size: size
           );
         } catch (_) {}
         if (bytes != null && bytes.isNotEmpty) {
@@ -131,7 +131,7 @@ class FFmpegExtractor {
   }
 
   /// Gets video thumbnail of any Video Format on a [File]
-  static Future<File> getVideoThumbnail(File videoFile) async {
+  static Future<File?> getVideoThumbnail(File videoFile) async {
     assert(videoFile.path != "" || videoFile != null);
     String videoTitle = videoFile.path.substring(videoFile.path.lastIndexOf('/')).substring(1)
       .replaceAll(".webm", '')
@@ -166,29 +166,29 @@ class FFmpegExtractor {
   static Future<int> getVideoDuration(File video) async {
     assert(video.path != "" || video != null);
     var json = await FlutterFFprobe().getMediaInformation(video.path);
-    return double.parse(json.getMediaProperties()['duration']).round();
+    return double.parse(json.getMediaProperties()!['duration']).round();
   }
 
   /// Get Audio Date
   static Future<String> getAudioDate(String audioPath) async {
     var json = await FlutterFFprobe().getMediaInformation(audioPath);
-    return "${json.getMediaProperties()["tags"]["date"]}";
+    return "${json.getMediaProperties()!["tags"]["date"]}";
   }
 
   /// Get Audio Disc
   static Future<String> getAudioDisc(String audioPath) async {
     var json = await FlutterFFprobe().getMediaInformation(audioPath);
-    return "${json.getMediaProperties()["tags"]["disc"]}";
+    return "${json.getMediaProperties()!["tags"]["disc"]}";
   }
 
   /// Get Audio Track
   static Future<String> getAudioTrack(String audioPath) async {
     var json = await FlutterFFprobe().getMediaInformation(audioPath);
-    return "${json.getMediaProperties()["tags"]["track"]}";
+    return "${json.getMediaProperties()!["tags"]["track"]}";
   }
 
   /// Get Audio Genre
-  static Future<String> getAudioGenre(String audioPath) async {
+  static Future<String?> getAudioGenre(String audioPath) async {
     var json = await FlutterFFprobe().getMediaInformation(audioPath);
     var mediaProperties = json.getMediaProperties();
     if (

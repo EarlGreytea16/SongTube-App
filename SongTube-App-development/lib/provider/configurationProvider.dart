@@ -14,7 +14,7 @@ class ConfigurationProvider extends ChangeNotifier {
 
   LegacyPreferences preferences;
   ConfigurationProvider({
-    @required this.preferences
+    required this.preferences
   }){
     preferences = this.preferences;
     initProvider();
@@ -22,11 +22,11 @@ class ConfigurationProvider extends ChangeNotifier {
 
   void initProvider() {
     loadSavedData();
-    if (_audioDownloadPath.isEmpty)
+    if (_audioDownloadPath!.isEmpty)
       ExternalPath.getExternalStorageDirectories().then((value) {
         _audioDownloadPath = value[0] + "/SongTube";
       });
-    if (_videoDownloadPath.isEmpty)
+    if (_videoDownloadPath!.isEmpty)
       ExternalPath.getExternalStorageDirectories().then((value) {
         _videoDownloadPath = value[0] + "/SongTube";
       });
@@ -41,15 +41,15 @@ class ConfigurationProvider extends ChangeNotifier {
   }
 
   // App Introduction
-  bool showIntroduction;
+  bool? showIntroduction;
 
   // Platform Info
-  String appName;
-  String packageName;
-  String appVersion;
-  String buildNumber;
+  String? appName;
+  String? packageName;
+  String? appVersion;
+  String? buildNumber;
 
-  Color _accentColor;
+  late Color _accentColor;
   bool _systemThemeAvailable = false;
   bool _systemThemeEnabled = false;
   bool _darkThemeEnabled = false;
@@ -59,13 +59,13 @@ class ConfigurationProvider extends ChangeNotifier {
   // Converting audio format
   String _ffmpegActionTypeFormat = "AAC";
   // Download paths
-  String _audioDownloadPath;
-  String _videoDownloadPath;
-  bool _enableAlbumFolder;
+  String? _audioDownloadPath;
+  String? _videoDownloadPath;
+  late bool _enableAlbumFolder;
   // Use Youtube Webview
   bool _useYoutubeWebview = false;
   // Search History
-  List<String> _searchHistory;
+  List<String>? _searchHistory;
   Color get accentColor => _accentColor;
   bool get systemThemeAvailable => _systemThemeAvailable;
   bool get systemThemeEnabled => _systemThemeEnabled;
@@ -76,18 +76,18 @@ class ConfigurationProvider extends ChangeNotifier {
   // Converting audio format
   String get ffmpegActionTypeFormat => _ffmpegActionTypeFormat;
   // Download paths
-  String get audioDownloadPath => _audioDownloadPath;
-  String get videoDownloadPath => _videoDownloadPath;
+  String? get audioDownloadPath => _audioDownloadPath;
+  String? get videoDownloadPath => _videoDownloadPath;
   // Album Folder
   bool get enableAlbumFolder => _enableAlbumFolder;
   // Use Youtube Webview
   bool get useYoutubeWebview => _useYoutubeWebview;
 
   // Disclaimer Status
-  bool _disclaimerAccepted;
+  late bool _disclaimerAccepted;
 
   // Fix Downloads Dialog Status
-  bool _showDownloadFixDialog;
+  late bool _showDownloadFixDialog;
 
   set systemThemeAvailable(bool value){
     _systemThemeAvailable = value;
@@ -135,7 +135,7 @@ class ConfigurationProvider extends ChangeNotifier {
   }
 
   void loadSavedData() {
-    systemThemeAvailable = preferences.isSystemThemeAvailable;
+    systemThemeAvailable = preferences.isSystemThemeAvailable!;
     accentColor = preferences.getAccentColor();
     darkThemeEnabled = preferences.getDarkThemeEnabled();
     blackThemeEnabled = preferences.getBlackThemeEnabled();
@@ -160,12 +160,12 @@ class ConfigurationProvider extends ChangeNotifier {
   }
 
   // Download paths
-  set audioDownloadPath(String path) {
+  set audioDownloadPath(String? path) {
     _audioDownloadPath = path ?? '';
     preferences.saveAudioDownloadPath(path?? '');
     notifyListeners();
   }
-  set videoDownloadPath(String path) {
+  set videoDownloadPath(String? path) {
     _videoDownloadPath = path ?? '';
     preferences.saveVideoDownloadPath(path ?? '');
     notifyListeners();
@@ -179,18 +179,18 @@ class ConfigurationProvider extends ChangeNotifier {
   }
 
   // Search History
-  List<String> getSearchHistory() => _searchHistory;
+  List<String>? getSearchHistory() => _searchHistory;
   void addStringtoSearchHistory(String searchQuery) {
-    if (_searchHistory.contains(searchQuery)) {
-      _searchHistory.removeWhere((element) => element == searchQuery);
-      _searchHistory.insert(0, searchQuery);
+    if (_searchHistory!.contains(searchQuery)) {
+      _searchHistory!.removeWhere((element) => element == searchQuery);
+      _searchHistory!.insert(0, searchQuery);
     } else {
-      _searchHistory.insert(0, searchQuery);
+      _searchHistory!.insert(0, searchQuery);
     }
     preferences.saveSearchHistory(jsonEncode(_searchHistory));
   }
   void removeStringfromSearchHistory(int index) {
-    _searchHistory.removeAt(index);
+    _searchHistory!.removeAt(index);
     preferences.saveSearchHistory(jsonEncode(_searchHistory));
     notifyListeners();
   }
@@ -199,8 +199,8 @@ class ConfigurationProvider extends ChangeNotifier {
   // Settings for the MusicPlayer are found bellow this
   //
 
-  bool _useBlurBackground;
-  bool _useExpandedArtwork;
+  late bool _useBlurBackground;
+  late bool _useExpandedArtwork;
 
   bool get useBlurBackground => _useBlurBackground;
   set useBlurBackground(bool value) {

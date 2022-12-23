@@ -6,8 +6,8 @@ import 'package:songtube/screens/musicScreen/components/music_type_expandable.da
 import 'package:songtube/screens/musicScreen/components/songsList.dart';
 
 class MusicScreenArtistTab extends StatefulWidget {
-  final List<MediaItem> songs;
-  final String searchQuery;
+  final List<MediaItem>? songs;
+  final String? searchQuery;
   MusicScreenArtistTab({
     this.songs,
     this.searchQuery
@@ -22,14 +22,14 @@ class _MusicScreenArtistTabState extends State<MusicScreenArtistTab> {
   List<MediaItemArtist> _artists = [];
 
   // Current Artist
-  MediaItemArtist currentArtist;
+  MediaItemArtist? currentArtist;
 
   // Artists GridView Key
   final artistsGridKey = const PageStorageKey<String>('songsArtistList');
 
   @override
   void initState() {
-    widget.songs.forEach((song) => songCreateOrAssignToArtist(song));
+    widget.songs!.forEach((song) => songCreateOrAssignToArtist(song));
     super.initState();
   }
 
@@ -46,7 +46,7 @@ class _MusicScreenArtistTabState extends State<MusicScreenArtistTab> {
     }
     // Add song to Artist
     int indexToArtist = _artists.indexWhere((artist) => artist.artistName == (song?.artist ?? "unknown"));
-    _artists[indexToArtist].mediaItems.add(song);
+    _artists[indexToArtist].mediaItems!.add(song);
   }
 
   Widget build(BuildContext context) {
@@ -70,9 +70,9 @@ class _MusicScreenArtistTabState extends State<MusicScreenArtistTab> {
 
   bool getSearchQueryMatch(MediaItemArtist artist) {
     if (widget.searchQuery != "") {
-      if (artist.artistName.toLowerCase().contains(widget.searchQuery.toLowerCase())) {
+      if (artist.artistName!.toLowerCase().contains(widget.searchQuery!.toLowerCase())) {
         return true;
-      } else if (artist.artistName.toLowerCase().contains(widget.searchQuery.toLowerCase())) {
+      } else if (artist.artistName!.toLowerCase().contains(widget.searchQuery!.toLowerCase())) {
         return true;
       } else {
         return false;

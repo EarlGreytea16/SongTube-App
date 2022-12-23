@@ -25,7 +25,7 @@ import 'package:songtube/ui/internal/snackbar.dart';
 class TagsEditorPage extends StatefulWidget {
   final MediaItem song;
   TagsEditorPage({
-    @required this.song
+    required this.song
   });
 
   @override
@@ -34,8 +34,8 @@ class TagsEditorPage extends StatefulWidget {
 
 class _TagsEditorPageState extends State<TagsEditorPage> {
 
-  TagsControllers tagsControllers;
-  String originalArtwork;
+  late TagsControllers tagsControllers;
+  String? originalArtwork;
 
   @override
   void initState() {
@@ -69,7 +69,7 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
                 AppBar(
                   backgroundColor: Colors.transparent,
                   title: Text(
-                    Languages.of(context).labelTagsEditor.replaceAll("\n", " "),
+                    Languages.of(context)!.labelTagsEditor.replaceAll("\n", " "),
                     style: TextStyle(
                       fontFamily: 'Product Sans',
                       fontWeight: FontWeight.w600,
@@ -87,8 +87,8 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
                     GestureDetector(
                       onTap: () async {
                         File image = File((await FilePicker.platform
-                          .pickFiles(type: FileType.image))
-                          .paths[0]);
+                          .pickFiles(type: FileType.image))!
+                          .paths[0]!);
                         if (image == null) return;
                         tagsControllers.artworkController = image.path;
                         setState(() {});
@@ -133,14 +133,14 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
         alignment: Alignment.center,
         children: [
           Image.file(
-            File(widget.song.extras["artwork"]),
+            File(widget.song.extras!["artwork"]),
             fit: BoxFit.cover,
           ),
           if (tagsControllers.artworkController != null)
           FadeInImage(
-            image: isURL(tagsControllers.artworkController)
-              ? NetworkImage(tagsControllers.artworkController)
-              : FileImage(File(tagsControllers.artworkController)),
+            image: (isURL(tagsControllers.artworkController!)
+              ? NetworkImage(tagsControllers.artworkController!)
+              : FileImage(File(tagsControllers.artworkController!))) as ImageProvider<Object>,
             placeholder: MemoryImage(kTransparentImage),
             fit: BoxFit.cover,
           ),
@@ -157,7 +157,7 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
         TextFieldTile(
           textController: tagsControllers.titleController,
           inputType: TextInputType.text,
-          labelText: Languages.of(context).labelEditorTitle,
+          labelText: Languages.of(context)!.labelEditorTitle,
           icon: EvaIcons.textOutline,
         ),
         SizedBox(height: 16),
@@ -165,7 +165,7 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
         TextFieldTile(
           textController: tagsControllers.albumController,
           inputType: TextInputType.text,
-          labelText: Languages.of(context).labelEditorAlbum,
+          labelText: Languages.of(context)!.labelEditorAlbum,
           icon: EvaIcons.bookOpenOutline,
         ),
         SizedBox(height: 16),
@@ -173,7 +173,7 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
         TextFieldTile(
           textController: tagsControllers.artistController,
           inputType: TextInputType.text,
-          labelText: Languages.of(context).labelEditorArtist,
+          labelText: Languages.of(context)!.labelEditorArtist,
           icon: EvaIcons.personOutline,
         ),
         SizedBox(height: 16),
@@ -181,7 +181,7 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
         TextFieldTile(
           textController: tagsControllers.genreController,
           inputType: TextInputType.text,
-          labelText: Languages.of(context).labelEditorGenre,
+          labelText: Languages.of(context)!.labelEditorGenre,
           icon: EvaIcons.bookOutline,
         ),
         SizedBox(height: 16),
@@ -189,7 +189,7 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
         TextFieldTile(
           textController: tagsControllers.dateController,
           inputType: TextInputType.datetime,
-          labelText: Languages.of(context).labelEditorDate,
+          labelText: Languages.of(context)!.labelEditorDate,
           icon: EvaIcons.calendarOutline,
         ),
         SizedBox(height: 16),
@@ -197,7 +197,7 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
         TextFieldTile(
           textController: tagsControllers.discController,
           inputType: TextInputType.number,
-          labelText: Languages.of(context).labelEditorDisc,
+          labelText: Languages.of(context)!.labelEditorDisc,
           icon: EvaIcons.playCircleOutline
         ),
         SizedBox(height: 16),
@@ -205,7 +205,7 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
         TextFieldTile(
           textController: tagsControllers.trackController,
           inputType: TextInputType.number,
-          labelText: Languages.of(context).labelEditorTrack,
+          labelText: Languages.of(context)!.labelEditorTrack,
           icon: EvaIcons.musicOutline,
         ),
         Divider(color: Colors.transparent),
@@ -273,7 +273,7 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
               Navigator.pop(context);
               AppSnack.showSnackBar(
                 icon: Icons.warning,
-                title: Languages.of(context).labelAudioFormatNotCompatible,
+                title: Languages.of(context)!.labelAudioFormatNotCompatible,
                 duration: Duration(seconds: 2),
                 context: context,
               );
@@ -288,27 +288,27 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
   }
 
   void loadTagsControllers() async {
-    AudioTags tags = await AudioTagger.extractAllTags(widget.song.id);
-    tagsControllers.titleController.text = tags.title;
-    tagsControllers.albumController.text = tags.album;
-    tagsControllers.artistController.text = tags.artist;
-    tagsControllers.genreController.text = tags.genre == null
+    AudioTags tags = await (AudioTagger.extractAllTags(widget.song.id) as FutureOr<AudioTags>);
+    tagsControllers.titleController!.text = tags.title;
+    tagsControllers.albumController!.text = tags.album;
+    tagsControllers.artistController!.text = tags.artist;
+    tagsControllers.genreController!.text = tags.genre == null
       ? "Any" : tags.genre;
-    tagsControllers.dateController.text = tags.year;
-    tagsControllers.discController.text = tags.disc;
-    tagsControllers.trackController.text = tags.track;
+    tagsControllers.dateController!.text = tags.year;
+    tagsControllers.discController!.text = tags.disc;
+    tagsControllers.trackController!.text = tags.track;
     setState(() {});
-    tagsControllers.artworkController = widget.song.extras['artwork'];
+    tagsControllers.artworkController = widget.song.extras!['artwork'];
     originalArtwork = this.tagsControllers.artworkController;
     setState(() {});
   }
 
   void manualWriteTags() async {
-    MusicBrainzRecord record = await Navigator.push(context,
+    MusicBrainzRecord? record = await Navigator.push(context,
       BlurPageRoute(builder: (context) => 
         TagsResultsPage(
-          title: tagsControllers.titleController.text,
-          artist: tagsControllers.artistController.text),
+          title: tagsControllers.titleController!.text,
+          artist: tagsControllers.artistController!.text),
         blurStrength: Provider.of<PreferencesProvider>
           (context, listen: false).enableBlurUI ? 20 : 0));
     if (record == null) return;
@@ -316,7 +316,7 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
       context: context,
       builder: (_) => LoadingDialog()
     );
-    String lastArtwork = tagsControllers.artworkController;
+    String? lastArtwork = tagsControllers.artworkController;
     tagsControllers = await MusicBrainzAPI.getSongTags(record, artworkLink: record.artwork);
     if (tagsControllers.artworkController == null)
       tagsControllers.artworkController = lastArtwork;

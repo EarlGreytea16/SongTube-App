@@ -10,10 +10,10 @@ import 'package:html/dom.dart' as dom;
 import 'package:url_launcher/url_launcher.dart';
 
 class MoreDetailsSheet extends StatefulWidget {
-  final YoutubeVideo video;
+  final YoutubeVideo? video;
   final List<StreamSegment> segments;
-  final Function(int) onSegmentTap;
-  final Function onDispose;
+  final Function(int)? onSegmentTap;
+  final Function? onDispose;
   MoreDetailsSheet({
     this.video,
     this.segments = const [],
@@ -29,7 +29,7 @@ class _MoreDetailsSheetState extends State<MoreDetailsSheet> {
   
   @override
   void dispose() {
-    widget.onDispose();
+    widget.onDispose!();
     super.dispose();
   }
 
@@ -69,8 +69,8 @@ class _MoreDetailsSheetState extends State<MoreDetailsSheet> {
               ),
               child: TabBar(
                 labelColor: Theme.of(context).accentColor,
-                unselectedLabelColor: Theme.of(context).textTheme.bodyText1
-                  .color.withOpacity(0.4),
+                unselectedLabelColor: Theme.of(context).textTheme.bodyText1!
+                  .color!.withOpacity(0.4),
                 indicator: MD2Indicator(
                   indicatorSize: MD2IndicatorSize.tiny,
                   indicatorHeight: 4,
@@ -127,34 +127,34 @@ class _MoreDetailsSheetState extends State<MoreDetailsSheet> {
         Divider(
           height: 1,
           thickness: 1,
-          color: Colors.grey[600].withOpacity(0.1),
+          color: Colors.grey[600]!.withOpacity(0.1),
         ),
         Expanded(
           child: ListView(
             physics: BouncingScrollPhysics(),
             children: [
               Html(
-                data: widget.video.videoInfo.description,
+                data: widget.video!.videoInfo.description,
                 style: {
                   "html": Style(
                     padding: const EdgeInsets.all(12),
-                    color: Theme.of(context).textTheme.bodyText1.color,
+                    color: Theme.of(context).textTheme.bodyText1!.color,
                     whiteSpace: WhiteSpace.PRE,
                   ),
                 },
                 customRender: {
                   'a': (context, child) {
-                    String text = context.tree.element.text;
-                    Duration duration;
+                    String text = context.tree.element!.text;
+                    Duration? duration;
                     try {
                       duration = parseDuration(text);
                     } catch (_) {}
                     return GestureDetector(
                       onTap: () {
                         if (duration != null) {
-                          widget.onSegmentTap(duration.inSeconds);
+                          widget.onSegmentTap!(duration.inSeconds);
                         } else {
-                          launch(context.tree.element.attributes['href']);
+                          launch(context.tree.element!.attributes['href']!);
                         }
                       },
                       child: Container(
@@ -219,7 +219,7 @@ class _MoreDetailsSheetState extends State<MoreDetailsSheet> {
         Divider(
           height: 1,
           thickness: 1,
-          color: Colors.grey[600].withOpacity(0.1),
+          color: Colors.grey[600]!.withOpacity(0.1),
           indent: 12,
           endIndent: 12
         ),
@@ -233,7 +233,7 @@ class _MoreDetailsSheetState extends State<MoreDetailsSheet> {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 16),
                 child: GestureDetector(
-                  onTap: () => widget.onSegmentTap(segment.startTimeSeconds),
+                  onTap: () => widget.onSegmentTap!(segment.startTimeSeconds),
                   child: Container(
                     color: Colors.transparent,
                     child: Row(
@@ -249,7 +249,7 @@ class _MoreDetailsSheetState extends State<MoreDetailsSheet> {
                               borderRadius: BorderRadius.circular(10),
                               child: FadeInImage(
                                 placeholder: MemoryImage(kTransparentImage),
-                                image: NetworkImage(segment.previewUrl),
+                                image: NetworkImage(segment.previewUrl!),
                                 fadeInDuration: Duration(milliseconds: 300),
                                 fit: BoxFit.cover,
                               ),
@@ -263,9 +263,9 @@ class _MoreDetailsSheetState extends State<MoreDetailsSheet> {
                             children: [
                               const SizedBox(height: 8),
                               Text(
-                                segment.title,
+                                segment.title!,
                                 style: TextStyle(
-                                  color: Theme.of(context).textTheme.bodyText1.color
+                                  color: Theme.of(context).textTheme.bodyText1!.color!
                                     .withOpacity(0.8),
                                   fontFamily: 'Product Sans',
                                   fontSize: 18,

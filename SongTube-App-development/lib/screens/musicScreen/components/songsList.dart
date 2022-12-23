@@ -24,22 +24,22 @@ import 'package:songtube/ui/sheets/localPlaylistSheet.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class SongsListView extends StatelessWidget {
-  final List<MediaItem> songs;
+  final List<MediaItem>? songs;
   final bool hasDownloadType;
   final String searchQuery;
   final bool shrinkWrap;
   final bool tintNowPlaying;
   final bool addBottomPadding;
-  final ScrollController scrollController;
+  final ScrollController? scrollController;
   SongsListView({
-    @required this.songs,
+    required this.songs,
     this.hasDownloadType = false,
     this.searchQuery = "",
     this.shrinkWrap = false,
     this.tintNowPlaying = true,
     this.addBottomPadding = true,
     this.scrollController,
-    Key key
+    Key? key
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -49,10 +49,10 @@ class SongsListView extends StatelessWidget {
       controller: scrollController,
       shrinkWrap: shrinkWrap,
       physics: shrinkWrap ? NeverScrollableScrollPhysics() : AlwaysScrollableScrollPhysics(),
-      itemCount: songs.length,
+      itemCount: songs!.length,
       padding: addBottomPadding ? EdgeInsets.only(bottom: kToolbarHeight*2) : null,
       itemBuilder: (context, index) {
-        MediaItem song = songs[index];
+        MediaItem song = songs![index];
         bool selected = AudioService.currentMediaItem == song;
         if (searchQuery == "" || getSearchQueryMatch(song)) {
           return ListTile(
@@ -64,20 +64,20 @@ class SongsListView extends StatelessWidget {
               overflow: TextOverflow.fade,
               softWrap: false,
               style: TextStyle(
-                color: Theme.of(context).textTheme.bodyText1.color,
+                color: Theme.of(context).textTheme.bodyText1!.color,
                 fontWeight: FontWeight.w600,
                 fontFamily: 'Product Sans',
                 fontSize: 14,
               ),
             ),
             subtitle: Text(
-              song.artist,
+              song.artist!,
               maxLines: 1,
               overflow: TextOverflow.fade,
               softWrap: false,
               style: TextStyle(
                 fontSize: 11,
-                color: Theme.of(context).textTheme.bodyText1.color.withOpacity(0.6)
+                color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.6)
               ),
             ),
             leading: Row(
@@ -93,7 +93,7 @@ class SongsListView extends StatelessWidget {
                     color: Colors.black12.withOpacity(0.04),
                   ),
                   child: Icon(
-                    song.extras["downloadType"] == "Audio"
+                    song.extras!["downloadType"] == "Audio"
                       ? EvaIcons.musicOutline
                       : EvaIcons.videoOutline,
                     color: Theme.of(context).iconTheme.color,
@@ -117,7 +117,7 @@ class SongsListView extends StatelessWidget {
                     child: FadeInImage(
                       fadeInDuration: Duration(milliseconds: 200),
                       placeholder: MemoryImage(kTransparentImage),
-                      image: FileImage(File(song.extras["artwork"])),
+                      image: FileImage(File(song.extras!["artwork"])),
                       fit: BoxFit.cover,
                     )
                   ),
@@ -128,26 +128,26 @@ class SongsListView extends StatelessWidget {
               borderRadius: 10,
               items: [
                 FlexiblePopupItem(
-                  title: Languages.of(context).labelShare,
+                  title: Languages.of(context)!.labelShare,
                   value: "Share"
                 ),
                 FlexiblePopupItem(
-                  title: Languages.of(context).labelAddToPlaylist,
+                  title: Languages.of(context)!.labelAddToPlaylist,
                   value: "Add Playlist"
                 ),
                 FlexiblePopupItem(
-                  title: Languages.of(context).labelEditTags,
+                  title: Languages.of(context)!.labelEditTags,
                   value: "Edit Tags"
                 ),
                 FlexiblePopupItem(
-                  title: Languages.of(context).labelDeleteSong,
+                  title: Languages.of(context)!.labelDeleteSong,
                   value: "Delete"
                 )
               ],
               onItemTap: (String value) async {
                 if (value == "Delete") {
                   if (AudioService.running && AudioService.playbackState.playing) {
-                    if (AudioService.currentMediaItem.id == song.id) {
+                    if (AudioService.currentMediaItem!.id == song.id) {
                       AudioService.stop();
                     }
                   }
@@ -218,7 +218,7 @@ class SongsListView extends StatelessWidget {
               )
             ),
             onTap: () async {
-              if (hasDownloadType == false || song.extras["downloadType"] == "Audio") {
+              if (hasDownloadType == false || song.extras!["downloadType"] == "Audio") {
                 if (!AudioService.running) {
                   await AudioService.start(
                     backgroundTaskEntrypoint: songtubePlayer,
@@ -231,9 +231,9 @@ class SongsListView extends StatelessWidget {
                   );
                 }
                 if (listEquals(songs, AudioService.queue) == false) {
-                  await AudioService.updateQueue(songs);
+                  await AudioService.updateQueue(songs!);
                 }
-                await AudioService.playMediaItem(songs[index]);
+                await AudioService.playMediaItem(songs![index]);
               } else {
                 Navigator.push(
                   context,
@@ -257,7 +257,7 @@ class SongsListView extends StatelessWidget {
     if (searchQuery != "") {
       if (song.title.toLowerCase().contains(searchQuery.toLowerCase())) {
         return true;
-      } else if (song.artist.toLowerCase().contains(searchQuery.toLowerCase())) {
+      } else if (song.artist!.toLowerCase().contains(searchQuery.toLowerCase())) {
         return true;
       } else {
         return false;

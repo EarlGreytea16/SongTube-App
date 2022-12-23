@@ -9,8 +9,8 @@ class SongTubeBanner extends StatelessWidget {
   final String appName;
   final String appVersion;
   SongTubeBanner({
-    @required this.appName,
-    @required this.appVersion
+    required this.appName,
+    required this.appVersion
   });
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class SongTubeBanner extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           Text(
-                            Languages.of(context).labelVersion+": ",
+                            Languages.of(context)!.labelVersion+": ",
                             style: TextStyle(
                               fontSize: 15,
                               fontFamily: "YTSans",

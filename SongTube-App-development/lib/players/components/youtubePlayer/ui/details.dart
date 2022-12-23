@@ -4,9 +4,9 @@ import 'package:newpipeextractor_dart/models/infoItems/video.dart';
 
 class VideoDetails extends StatelessWidget {
   final dynamic infoItem;
-  final Function onMoreDetails;
+  final Function? onMoreDetails;
   VideoDetails({
-    @required this.infoItem,
+    required this.infoItem,
     this.onMoreDetails
   });
   @override
@@ -37,7 +37,7 @@ class VideoDetails extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
                           fontFamily: 'Product Sans',
-                          color: Theme.of(context).textTheme.bodyText1.color,
+                          color: Theme.of(context).textTheme.bodyText1!.color,
                         ),
                         textAlign: TextAlign.left,
                         maxLines: 2,
@@ -50,7 +50,7 @@ class VideoDetails extends StatelessWidget {
                       child: Text(
                         (views.contains('-1') ? "" : (views + " • ")) + date,
                         style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyText1.color
+                          color: Theme.of(context).textTheme.bodyText1!.color!
                             .withOpacity(0.8),
                           fontFamily: "Product Sans",
                           fontSize: 12,
@@ -64,7 +64,7 @@ class VideoDetails extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.expand_more_rounded,
                   color: Theme.of(context).iconTheme.color),
-                onPressed: onMoreDetails,
+                onPressed: onMoreDetails as void Function()?,
               )
             ],
           ),

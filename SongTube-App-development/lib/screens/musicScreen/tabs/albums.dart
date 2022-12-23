@@ -10,8 +10,8 @@ import 'package:songtube/screens/musicScreen/components/music_type_expandable.da
 import 'package:songtube/screens/musicScreen/components/songsList.dart';
 
 class MusicScreenAlbumsTab extends StatefulWidget {
-  final List<MediaItem> songs;
-  final String searchQuery;
+  final List<MediaItem>? songs;
+  final String? searchQuery;
   MusicScreenAlbumsTab({
     this.songs,
     this.searchQuery
@@ -26,14 +26,14 @@ class _MusicScreenAlbumsTabState extends State<MusicScreenAlbumsTab> {
   List<MediaItemAlbum> _albums = [];
 
   // Current album
-  MediaItemAlbum currentAlbum;
+  MediaItemAlbum? currentAlbum;
 
   // Albums GridView Key
   final albumsGridKey = const PageStorageKey<String>('albumsGrid');
 
   @override
   void initState() {
-    widget.songs.forEach((song) => songCreateOrAssignToAlbum(song));
+    widget.songs!.forEach((song) => songCreateOrAssignToAlbum(song));
     super.initState();
   }
 
@@ -51,7 +51,7 @@ class _MusicScreenAlbumsTabState extends State<MusicScreenAlbumsTab> {
     }
     // Add song to Album
     int indexToAlbum = _albums.indexWhere((album) => album.albumTitle == song.album);
-    _albums[indexToAlbum].mediaItems.add(song);
+    _albums[indexToAlbum].mediaItems!.add(song);
   }
 
   @override
@@ -68,14 +68,14 @@ class _MusicScreenAlbumsTabState extends State<MusicScreenAlbumsTab> {
         MediaItemAlbum album = albums[index];
         return FutureBuilder(
           future: FFmpegExtractor.getAudioArtwork(
-            audioFile: album.mediaItems[0].id,
-            audioId: album.mediaItems[0].extras['albumId'],
+            audioFile: album.mediaItems![0].id,
+            audioId: album.mediaItems![0].extras!['albumId'],
           ),
           builder: (context, future) {
             return MusicScreenTypeExpandable(
               title: album.albumTitle,
               description: album.albumAuthor,
-              lowResThumbnail: album.mediaItems[0].extras['artwork'],
+              lowResThumbnail: album.mediaItems![0].extras!['artwork'],
               thumbnail: future.hasData ? future.data.path : null,
               songs: album.mediaItems,
             );
@@ -87,9 +87,9 @@ class _MusicScreenAlbumsTabState extends State<MusicScreenAlbumsTab> {
 
   bool getSearchQueryMatch(MediaItemAlbum album) {
     if (widget.searchQuery != "") {
-      if (album.albumTitle.toLowerCase().contains(widget.searchQuery.toLowerCase())) {
+      if (album.albumTitle!.toLowerCase().contains(widget.searchQuery!.toLowerCase())) {
         return true;
-      } else if (album.albumTitle.toLowerCase().contains(widget.searchQuery.toLowerCase())) {
+      } else if (album.albumTitle!.toLowerCase().contains(widget.searchQuery!.toLowerCase())) {
         return true;
       } else {
         return false;

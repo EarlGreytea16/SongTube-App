@@ -33,12 +33,12 @@ import 'package:string_validator/string_validator.dart';
 class MediaProvider extends ChangeNotifier {
 
   MediaProvider({
-    List<MediaItem> cachedSongs
+    required List<MediaItem> cachedSongs
   }) {
     audioQuery        = FlutterAudioQuery();
     listMediaItems    = <MediaItem>[];
     if (cachedSongs.isNotEmpty) {
-      listMediaItems.addAll(cachedSongs);
+      listMediaItems!.addAll(cachedSongs);
     }
     listVideos        = <VideoFile>[];
     listFolders       = <FolderItem>[];
@@ -48,7 +48,7 @@ class MediaProvider extends ChangeNotifier {
     databaseSongs     = <MediaItem>[];
     getDatabase();
     AudioService.currentMediaItemStream.listen((event) {
-      if (fwController.isAttached) {
+      if (fwController!.isAttached) {
         mediaItem = event;
       }
     });
@@ -58,19 +58,19 @@ class MediaProvider extends ChangeNotifier {
   FlutterAudioQuery audioQuery;
 
   // List MediaItems for AudioService
-  List<MediaItem> listMediaItems;
+  List<MediaItem>? listMediaItems;
 
   // List Songs on Database
-  List<MediaItem> databaseSongs;
+  List<MediaItem>? databaseSongs;
 
   // List all Videos
   List<VideoFile> listVideos;
 
   // List Video Folders
-  List<FolderItem> listFolders;
+  List<FolderItem>? listFolders;
 
   // Floating Widget Controller
-  FloatingWidgetController fwController;
+  FloatingWidgetController? fwController;
 
   // SlidingPanel Open/Closed Status
   bool slidingPanelOpen;
@@ -97,12 +97,12 @@ class MediaProvider extends ChangeNotifier {
 
   // Check if database has songs that the regular list doesnt
   void updateListMediaItemFromDb() {
-    databaseSongs.forEach((element) {
-      if (listMediaItems.indexWhere((song) => song.id == element.id) == -1) {
-        listMediaItems.add(element);
+    databaseSongs!.forEach((element) {
+      if (listMediaItems!.indexWhere((song) => song.id == element.id) == -1) {
+        listMediaItems!.add(element);
       }
     });
-    listMediaItems.sort((a, b) => a.title.toLowerCase().trim()
+    listMediaItems!.sort((a, b) => a.title.toLowerCase().trim()
       .compareTo(b.title.toLowerCase().trim()));
     notifyListeners();
   }
@@ -114,7 +114,7 @@ class MediaProvider extends ChangeNotifier {
       int hours = 0;
       int minutes = 0;
       int micros;
-      List<String> parts = element.duration.split(':');
+      List<String> parts = element.duration!.split(':');
       if (parts.length > 2) {
         hours = int.parse(parts[parts.length - 3]);
       }
@@ -131,9 +131,9 @@ class MediaProvider extends ChangeNotifier {
       );
       list.add(
         new MediaItem(
-          id: element.path,
-          title: element.title,
-          album: element.album,
+          id: element.path!,
+          title: element.title!,
+          album: element.album!,
           artist: element.author,
           artUri: Uri.parse("file://${element.coverPath}"),
           duration: duration,
@@ -161,27 +161,27 @@ class MediaProvider extends ChangeNotifier {
   void getLyrics() async {
     // First try use LyricsOvh
     currentLyrics = await LyricsProviders.lyricsOvh(
-      author: mediaItem.artist,
-      title: mediaItem.title
+      author: mediaItem!.artist!,
+      title: mediaItem!.title
     );
     // Second try use HappiDev
     if (currentLyrics == "") {
       currentLyrics = await LyricsProviders.lyricsHappiDev(
-        title: mediaItem.artist + mediaItem.title
+        title: mediaItem!.artist! + mediaItem!.title
       );
     }
     notifyListeners();
   }
 
   // MusicPlayer Current Values
-  MediaItem _mediaItem;
-  File artwork;
-  Color dominantColor;
-  Color vibrantColor;
-  Color textColor;
+  MediaItem? _mediaItem;
+  File? artwork;
+  Color? dominantColor;
+  Color? vibrantColor;
+  Color? textColor;
 
-  MediaItem get mediaItem => _mediaItem;
-  set mediaItem(MediaItem newMediaItem) {
+  MediaItem? get mediaItem => _mediaItem;
+  set mediaItem(MediaItem? newMediaItem) {
     _mediaItem = newMediaItem;
     currentLyrics = null;    
     updateUIElements();
@@ -189,39 +189,39 @@ class MediaProvider extends ChangeNotifier {
 
   Future<void> updateUIElements() async {
     if (AudioService.currentMediaItem == null) return;
-    String currentAlbumId = await AudioService.currentMediaItem.extras["albumId"];
+    String? currentAlbumId = await AudioService.currentMediaItem!.extras!["albumId"];
     artwork = await FFmpegExtractor.getAudioArtwork(
-      audioFile: mediaItem.id,
+      audioFile: mediaItem!.id,
       audioId: currentAlbumId,
     );
     PaletteGenerator palette = await PaletteGenerator
       .fromImageProvider(
-        FileImage(File(AudioService.currentMediaItem.extras["artwork"])));
-    dominantColor = palette.dominantColor.color;
+        FileImage(File(AudioService.currentMediaItem!.extras!["artwork"])));
+    dominantColor = palette.dominantColor!.color;
     if (palette.vibrantColor == null) {
       vibrantColor = dominantColor;
-    } else { vibrantColor = palette.vibrantColor.color; }
-    textColor = dominantColor.computeLuminance() > 0.5
+    } else { vibrantColor = palette.vibrantColor!.color; }
+    textColor = dominantColor!.computeLuminance() > 0.5
       ? Colors.black : Colors.white;
     showLyrics = false;
     notifyListeners();
     // Preload Previous and Next Artwork
-    int currentIndex = AudioService.queue.indexOf(AudioService.currentMediaItem);
-    int previousIndex = currentIndex == 0 ? null : currentIndex-1;
-    int nextIndex = currentIndex == AudioService.queue.length-1 ? null : currentIndex+1;
+    int currentIndex = AudioService.queue!.indexOf(AudioService.currentMediaItem!);
+    int? previousIndex = currentIndex == 0 ? null : currentIndex-1;
+    int? nextIndex = currentIndex == AudioService.queue!.length-1 ? null : currentIndex+1;
     if (previousIndex != null) {
       await FFmpegExtractor.getAudioArtwork(
-        audioFile: AudioService.queue[previousIndex].id,
-        audioId: AudioService.queue[previousIndex].extras["albumId"],
+        audioFile: AudioService.queue![previousIndex].id,
+        audioId: AudioService.queue![previousIndex].extras!["albumId"],
       );
     }
     if (nextIndex != null) {
       await FFmpegExtractor.getAudioArtwork(
-        audioFile: AudioService.queue[nextIndex].id,
-        audioId: AudioService.queue[nextIndex].extras["albumId"],
+        audioFile: AudioService.queue![nextIndex].id,
+        audioId: AudioService.queue![nextIndex].extras!["albumId"],
       );
     }
-    if (fwController.isAttached && fwController.isPanelOpen) {
+    if (fwController!.isAttached && fwController!.isPanelOpen) {
       SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(
           statusBarIconBrightness: textColor == Colors.black? Brightness.dark : Brightness.light,
@@ -232,14 +232,14 @@ class MediaProvider extends ChangeNotifier {
   }
 
   // Do we have storage Permission?
-  bool _storagePermission;
-  bool get storagePermission => _storagePermission;
-  set storagePermission(bool value) {
+  bool? _storagePermission;
+  bool? get storagePermission => _storagePermission;
+  set storagePermission(bool? value) {
     _storagePermission = value;
     notifyListeners();
   }
 
-  Future<List<MediaItem>> loadSongList() async {
+  Future<List<MediaItem>?> loadSongList() async {
     var storageStatus = await Permission.storage.status;
     if (storageStatus != PermissionStatus.granted) {
       storagePermission = false;
@@ -247,20 +247,20 @@ class MediaProvider extends ChangeNotifier {
     }
     List<SongInfo> songInfoList = await audioQuery.getSongs();
     for (SongInfo song in songInfoList) {
-      if (!(listMediaItems.any((element) => element.id == song.filePath))) {
+      if (!(listMediaItems!.any((element) => element.id == song.filePath))) {
         File artworkFile = await FFmpegExtractor.getAudioArtwork(
           audioFile: song.filePath,
           audioId: song.id
         );
-        AudioTags tags;
+        AudioTags? tags;
         try {
-          tags = await AudioTagger.extractAllTags(song.filePath);
+          tags = await AudioTagger.extractAllTags(song.filePath!);
         } catch (e) {}
         if (tags == null) {
           tags = AudioTags(
-            title: song.title,
-            album: song.album,
-            artist: song.artist,
+            title: song.title!,
+            album: song.album!,
+            artist: song.artist!,
             genre: 'Unknown',
             year: null,
             disc: null,
@@ -270,14 +270,14 @@ class MediaProvider extends ChangeNotifier {
         // Avoid this Method from stopping this function on
         // exception (Most probably because a corrupted audio)
         try {
-          listMediaItems.add(
+          listMediaItems!.add(
             MediaItem(
-              id:       song.filePath,
-              album:    tags.album.isNotEmpty ? tags.album : song.album,
-              title:    tags.title.isNotEmpty ? tags.title : song.title, 
+              id:       song.filePath!,
+              album:    tags.album.isNotEmpty ? tags.album : song.album!,
+              title:    tags.title.isNotEmpty ? tags.title : song.title!, 
               artist:   tags.artist.isNotEmpty ? tags.artist : song.artist,
               genre:    tags.genre,
-              duration: song.duration == null ? null : Duration(milliseconds: int.parse(song.duration)),
+              duration: song.duration == null ? null : Duration(milliseconds: int.parse(song.duration!)),
               artUri:   Uri.parse("file://${artworkFile.path}"),
               extras:   {
                 "albumId": song.id,
@@ -329,24 +329,24 @@ class MediaProvider extends ChangeNotifier {
             lastModified: FileStat.statSync(event).modified
           );
           listVideos.add(videoItem);
-          if (listFolders.firstWhere((element) => element.path == dirname(videoItem.path), orElse: () => null) == null) {
-            listFolders.add(FolderItem(
-              name: dirname(videoItem.path).split("/").last,
-              path: dirname(videoItem.path)
+          if (listFolders!.firstWhereOrNull((element) => element.path == dirname(videoItem.path!)) == null) {
+            listFolders!.add(FolderItem(
+              name: dirname(videoItem.path!).split("/").last,
+              path: dirname(videoItem.path!)
             ));
-            listFolders.sort((a, b) => a.name.compareTo(b.name));
+            listFolders!.sort((a, b) => a.name!.compareTo(b.name!));
           }
-          listFolders.forEach((element) {
-            if (element.path == dirname(videoItem.path)) {
-              element.videos.add(videoItem);
+          listFolders!.forEach((element) {
+            if (element.path == dirname(videoItem.path!)) {
+              element.videos!.add(videoItem);
             }
           });
         }
       },
         onDone: () {
           // Order Alphabetically Videos on all FolderItems
-          listFolders.forEach((element) {
-            element.videos.sort((a,b) => a.name.compareTo(b.name));
+          listFolders!.forEach((element) {
+            element.videos!.sort((a,b) => a.name!.compareTo(b.name!));
           });
           loadingVideos = false;
           notifyListeners();
@@ -357,11 +357,11 @@ class MediaProvider extends ChangeNotifier {
   Future<void> deleteSong(MediaItem song) async {
     await File(song.id).delete();
     NativeMethod.registerFile(song.id);
-    if (databaseSongs.contains(song)) {
-      databaseSongs.removeWhere((element) => element == song);
+    if (databaseSongs!.contains(song)) {
+      databaseSongs!.removeWhere((element) => element == song);
     }
-    if (listMediaItems.contains(song)) {
-      listMediaItems.removeWhere((element) => element == song);
+    if (listMediaItems!.contains(song)) {
+      listMediaItems!.removeWhere((element) => element == song);
     }
     notifyListeners();
   }
@@ -374,36 +374,36 @@ class MediaProvider extends ChangeNotifier {
     await AudioTagger.writeAllTags(
       songPath: song.id,
       tags: AudioTags(
-        title: tags.titleController.text,
-        album: tags.albumController.text,
-        artist: tags.artistController.text,
-        genre: tags.genreController.text,
-        year: tags.dateController.text,
-        disc: tags.discController.text,
-        track: tags.trackController.text
+        title: tags.titleController!.text,
+        album: tags.albumController!.text,
+        artist: tags.artistController!.text,
+        genre: tags.genreController!.text,
+        year: tags.dateController!.text,
+        disc: tags.discController!.text,
+        track: tags.trackController!.text
       )
     );
     // Only add Artwork if song is in AAC Format
     File croppedImage = new File(
-      (await getExternalStorageDirectory()).path +
+      (await getExternalStorageDirectory())!.path +
       "/${RandomString.getRandomString(5)}"
     );
-    if (isURL(tags.artworkController)) {
+    if (isURL(tags.artworkController!)) {
       http.Response response;
       File artwork = new File(
-        (await getExternalStorageDirectory()).path +
+        (await getExternalStorageDirectory())!.path +
         "/${RandomString.getRandomString(5)}"
       );
       try {
-        response = await http.get(Uri.parse(tags.artworkController))
+        response = await http.get(Uri.parse(tags.artworkController!))
           .timeout(Duration(seconds: 120));
         await artwork.writeAsBytes(response.bodyBytes);
       } catch (_) {}
       croppedImage.writeAsBytes(
-        await AudioTagger.cropToSquare(artwork));
+        await (AudioTagger.cropToSquare(artwork) as FutureOr<List<int>>));
     } else {
-      croppedImage.writeAsBytes(await AudioTagger
-        .cropToSquare(File(tags.artworkController)));
+      croppedImage.writeAsBytes(await (AudioTagger
+        .cropToSquare(File(tags.artworkController!)) as FutureOr<List<int>>));
     }
     await AudioTagger.writeArtwork(
       songPath: song.id,
@@ -412,32 +412,32 @@ class MediaProvider extends ChangeNotifier {
     // Create New Artwork
     await FFmpegExtractor.getAudioArtwork(
       audioFile: song.id,
-      audioId: song.extras["albumId"],
+      audioId: song.extras!["albumId"],
       forceExtraction: true
     );
     File thumbnail = await FFmpegExtractor.getAudioArtwork(
       audioFile: song.id,
-      audioId: song.extras["albumId"],
+      audioId: song.extras!["albumId"],
       forceExtraction: true
     );
     MediaItem newSong = MediaItem(
       id: song.id,
-      title: tags.titleController.text,
-      album: tags.albumController.text,
-      artist: tags.artistController.text,
-      genre: tags.genreController.text,
+      title: tags.titleController!.text,
+      album: tags.albumController!.text,
+      artist: tags.artistController!.text,
+      genre: tags.genreController!.text,
       duration: song.duration,
       artUri: Uri.parse("file://${thumbnail.path}"),
       extras: {
         "artwork": thumbnail.path,
-        "albumId": song.extras["albumId"],
-        "downloadType": song.extras.containsKey("downloadType")
-          ? song.extras["downloadType"] : ""
+        "albumId": song.extras!["albumId"],
+        "downloadType": song.extras!.containsKey("downloadType")
+          ? song.extras!["downloadType"] : ""
       }
     );
     
-    int songIndex = listMediaItems.indexWhere((element) => element.id == newSong.id);
-    listMediaItems[songIndex] = newSong;
+    int songIndex = listMediaItems!.indexWhere((element) => element.id == newSong.id);
+    listMediaItems![songIndex] = newSong;
     if (AudioService?.currentMediaItem != null) {
       await AudioService.updateMediaItem(listMediaItems[songIndex]);
     }

@@ -9,29 +9,29 @@ import 'package:songtube/ui/components/fancyScaffold.dart';
 import 'package:songtube/ui/sheets/musicEqualizer.dart';
 
 class PlayerBody extends StatelessWidget {
-  final File artworkFile;
+  final File? artworkFile;
   final bool expandArtwork;
-  final FloatingWidgetController controller;
-  final Color textColor;
+  final FloatingWidgetController? controller;
+  final Color? textColor;
   final double artworkRoundedCorners;
   final String playingFrom;
-  final Color vibrantColor;
-  final MediaItem mediaItem;
+  final Color? vibrantColor;
+  final MediaItem? mediaItem;
   final bool playing;
-  final Color dominantColor;
-  final PlaybackState state;
+  final Color? dominantColor;
+  final PlaybackState? state;
   PlayerBody({
-    @required this.artworkFile,
+    required this.artworkFile,
     this.expandArtwork = true,
-    @required this.controller,
-    @required this.textColor,
+    required this.controller,
+    required this.textColor,
     this.artworkRoundedCorners = 20,
-    @required this.playingFrom,
-    @required this.vibrantColor,
-    @required this.mediaItem,
-    @required this.playing,
-    @required this.dominantColor,
-    @required this.state
+    required this.playingFrom,
+    required this.vibrantColor,
+    required this.mediaItem,
+    required this.playing,
+    required this.dominantColor,
+    required this.state
   });
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class PlayerBody extends StatelessWidget {
                 leading: IconButton(
                   icon: Icon(Icons.expand_more, color: textColor),
                   onPressed: () {
-                    controller.close();
+                    controller!.close();
                   },
                 ),
                 title: RichText(
@@ -58,7 +58,7 @@ class PlayerBody extends StatelessWidget {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: Languages.of(context).labelPlayingFrom+"\n",
+                        text: Languages.of(context)!.labelPlayingFrom+"\n",
                         style: TextStyle(
                           letterSpacing: 2,
                           color: textColor,
@@ -68,7 +68,7 @@ class PlayerBody extends StatelessWidget {
                       TextSpan(
                         text: "$playingFrom",
                         style: TextStyle(
-                          color: textColor.withOpacity(0.6),
+                          color: textColor!.withOpacity(0.6),
                           fontSize: 12,
                           fontFamily: 'YTSans'
                         )

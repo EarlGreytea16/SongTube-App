@@ -21,18 +21,18 @@ class DownloadsProvider extends ChangeNotifier {
   int maxSimultaneousDownloads = 2;
 
   // Downloading List
-  List<DownloadSet> downloadingList;
+  late List<DownloadSet> downloadingList;
 
   // Completed List
-  List<DownloadSet> completedList;
+  late List<DownloadSet> completedList;
 
   // Cancelled List
-  List<DownloadSet> cancelledList;
+  late List<DownloadSet> cancelledList;
 
   // Handle Single Video Download
   void handleDownloadItem({
-    @required Languages language,
-    DownloadItem item
+    required Languages language,
+    DownloadItem? item
   }) {
     DownloadSet download = new DownloadSet(
       language: language,
@@ -60,12 +60,12 @@ class DownloadsProvider extends ChangeNotifier {
 
   // Handle Playlist Download
   void handleDownloadItems({
-    @required Languages language,
-    List<DownloadItem> items
+    required Languages? language,
+    required List<DownloadItem> items
   }) {
     items.forEach((item) {
       DownloadSet download = new DownloadSet(
-        language: language,
+        language: language!,
         downloadItem: item,
         downloadId: RandomString.getRandomString(6),
         completedCallback: (String downloadId, bool converted) {
@@ -94,7 +94,7 @@ class DownloadsProvider extends ChangeNotifier {
     int maxDownloads = downloadingList.length <= maxSimultaneousDownloads
       ? downloadingList.length : maxSimultaneousDownloads;
     for (int i = 0; i < maxDownloads; i++) {
-      if (downloadingList[i].downloadStatusStream.valueWrapper.value == DownloadStatus.Loading)
+      if (downloadingList[i].downloadStatusStream.valueWrapper!.value == DownloadStatus.Loading)
         downloadingList[i].downloadMedia();
     }
     notifyListeners();

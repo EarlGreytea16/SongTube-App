@@ -6,9 +6,9 @@ import 'package:newpipeextractor_dart/models/infoItems/video.dart';
 
 class LocalPlaylist {
 
-  String id;
-  String name;
-  List<MediaItem> songs;
+  String? id;
+  String? name;
+  List<MediaItem>? songs;
 
   LocalPlaylist({
     this.id,
@@ -20,17 +20,17 @@ class LocalPlaylist {
     return {
       'id': id,
       'name': name,
-      'songs': songs.map((e) {
+      'songs': songs!.map((e) {
           return {
             'id': e.id,
             'title': e.title,
             'album': e.album,
             'artist': e.artist,
             'genre': e.genre,
-            'duration': e.duration.inSeconds.toString(),
+            'duration': e.duration!.inSeconds.toString(),
             'artUri': e.artUri.toString(),
-            "artwork": e.extras['artwork'],
-            "albumId": e.extras["albumId"]
+            "artwork": e.extras!['artwork'],
+            "albumId": e.extras!["albumId"]
           };
         }).toList(),
     };
@@ -66,7 +66,7 @@ class LocalPlaylist {
     }).toList());
   }
 
-  static List<LocalPlaylist> fromJsonList(String json) {
+  static List<LocalPlaylist> fromJsonList(String? json) {
     if (json == null || json == "") return [];
     var map = jsonDecode(json);
     return List.generate(map.length, (index) {
@@ -98,10 +98,10 @@ class LocalPlaylist {
 
 class StreamPlaylist {
 
-  String name;
-  String author;
-  List<StreamInfoItem> streams;
-  bool favorited;
+  String? name;
+  String? author;
+  List<StreamInfoItem?>? streams;
+  bool? favorited;
 
   StreamPlaylist({
     this.name,
@@ -114,7 +114,7 @@ class StreamPlaylist {
     return {
       'name': name,
       'author': author,
-      'streams': StreamInfoItem.listToJson(streams),
+      'streams': StreamInfoItem.listToJson(streams as List<StreamInfoItem>),
       'favorited': favorited.toString()
     };
   }

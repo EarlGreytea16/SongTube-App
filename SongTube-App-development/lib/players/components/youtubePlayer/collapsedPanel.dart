@@ -86,7 +86,7 @@ class VideoPageCollapsed extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: 'Product Sans',
                             fontSize: 11,
-                            color: Theme.of(context).textTheme.bodyText1.color.withOpacity(0.6)
+                            color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.6)
                           ),
                           overflow: TextOverflow.fade,
                           softWrap: false,
@@ -108,13 +108,13 @@ class VideoPageCollapsed extends StatelessWidget {
                 ? Icon(MdiIcons.pause, size: 22)
                 : Icon(MdiIcons.play, size: 22),
               onPressed: pageProvider?.playerKey?.currentState?.controller?.value?.isPlaying ?? false
-                ? () { pageProvider.playerKey.currentState.controller.pause(); pageProvider.setState(); }
-                : () { pageProvider.playerKey.currentState.controller.play(); pageProvider.setState(); }
+                ? () { pageProvider.playerKey.currentState!.controller!.pause(); pageProvider.setState(); }
+                : () { pageProvider.playerKey.currentState!.controller!.play(); pageProvider.setState(); }
             ),
           ),
           InkWell(
             onTap: () {
-              if (pageProvider.playerKey.currentState.audioOnly && AudioService.running) {
+              if (pageProvider.playerKey.currentState!.audioOnly && AudioService.running) {
                 AudioService.stop();
               }
               pageProvider.closeVideoPanel();

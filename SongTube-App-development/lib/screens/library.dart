@@ -43,12 +43,12 @@ class LibraryScreen extends StatelessWidget {
               ),
             ),
             Text(
-              Languages.of(context).labelLibrary,
+              Languages.of(context)!.labelLibrary,
               style: TextStyle(
                 fontFamily: 'Product Sans',
                 fontWeight: FontWeight.w700,
                 fontSize: 24,
-                color: Theme.of(context).textTheme.bodyText1.color
+                color: Theme.of(context).textTheme.bodyText1!.color
               ),
             ),
           ],
@@ -88,12 +88,12 @@ class LibraryScreen extends StatelessWidget {
                 ListTile(
                   leading: Icon(Icons.playlist_play_rounded),
                   title: Text(
-                    Languages.of(context).labelPlaylists,
+                    Languages.of(context)!.labelPlaylists,
                     style: TextStyle(
                       fontFamily: 'Product Sans',
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
-                      color: Theme.of(context).textTheme.bodyText1.color
+                      color: Theme.of(context).textTheme.bodyText1!.color
                     ),
                   ),
                   onTap: () {
@@ -114,7 +114,7 @@ class LibraryScreen extends StatelessWidget {
                       fontFamily: 'Product Sans',
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
-                      color: Theme.of(context).textTheme.bodyText1.color
+                      color: Theme.of(context).textTheme.bodyText1!.color
                     ),
                   ),
                   onTap: () {
@@ -136,7 +136,7 @@ class LibraryScreen extends StatelessWidget {
                       fontFamily: 'Product Sans',
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
-                      color: Theme.of(context).textTheme.bodyText1.color
+                      color: Theme.of(context).textTheme.bodyText1!.color
                     ),
                   ),
                   onTap: () {
@@ -186,7 +186,7 @@ class LibraryScreen extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Product Sans',
-                      color: Theme.of(context).textTheme.bodyText1.color
+                      color: Theme.of(context).textTheme.bodyText1!.color
                     )
                   ),
                 ),
@@ -204,20 +204,20 @@ class LibraryScreen extends StatelessWidget {
                     size: 36,
                   ),
                   title: Text(
-                    Languages.of(context).labelDonate,
+                    Languages.of(context)!.labelDonate,
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Product Sans',
-                      color: Theme.of(context).textTheme.bodyText1.color
+                      color: Theme.of(context).textTheme.bodyText1!.color
                     )
                   ),
                   subtitle: Text(
                     "Support Development!",
                     style: TextStyle(
                       fontFamily: 'Product Sans',
-                      color: Theme.of(context).textTheme.bodyText1.color
+                      color: Theme.of(context).textTheme.bodyText1!.color
                     ),
                   ),
                 ),
@@ -243,14 +243,14 @@ class LibraryScreen extends StatelessWidget {
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Product Sans',
-                      color: Theme.of(context).textTheme.bodyText1.color
+                      color: Theme.of(context).textTheme.bodyText1!.color
                     )
                   ),
                   subtitle: Text(
                     "Licenses, Contact Info and more",
                     style: TextStyle(
                       fontFamily: 'Product Sans',
-                      color: Theme.of(context).textTheme.bodyText1.color
+                      color: Theme.of(context).textTheme.bodyText1!.color
                     ),
                   ),
                 ),

@@ -38,7 +38,7 @@ class MusicBrainzAPI {
     return parsedJson;
   }
 
-  static Future<List<dynamic>> getRecordings(String title) async {
+  static Future<List<dynamic>?> getRecordings(String title) async {
     http.Client client = new http.Client();
     var response = await client.get(Uri.parse(
       "http://musicbrainz.org/ws/2/recording?query="
@@ -50,15 +50,15 @@ class MusicBrainzAPI {
     return jsonDecode(utf8.decode(response.bodyBytes))["recordings"];
   }
 
-  static Future<TagsControllers> getSongTags(MusicBrainzRecord record, {String artworkLink}) async {
+  static Future<TagsControllers> getSongTags(MusicBrainzRecord record, {String? artworkLink}) async {
     TagsControllers tagsControllers = TagsControllers();
-    tagsControllers.titleController.text = record.title;
-    tagsControllers.artistController.text = record.artist;
-    tagsControllers.albumController.text = record.album;
-    tagsControllers.dateController.text = record.date;
-    tagsControllers.discController.text = record.disc;
-    tagsControllers.trackController.text = record.track;
-    tagsControllers.genreController.text = record.genre;
+    tagsControllers.titleController!.text = record.title!;
+    tagsControllers.artistController!.text = record.artist!;
+    tagsControllers.albumController!.text = record.album!;
+    tagsControllers.dateController!.text = record.date!;
+    tagsControllers.discController!.text = record.disc!;
+    tagsControllers.trackController!.text = record.track!;
+    tagsControllers.genreController!.text = record.genre!;
     tagsControllers.artworkController = null;
     if (artworkLink == null) {
       try {
@@ -77,12 +77,12 @@ class MusicBrainzAPI {
     return tagsControllers;
   }
 
-  static String getTitle(Map<String, dynamic> parsedJson) {
+  static String? getTitle(Map<String, dynamic> parsedJson) {
     return parsedJson["title"];
   }
 
-  static String getArtist(Map<String, dynamic> parsedJson) {
-    String fullArtist = "";
+  static String? getArtist(Map<String, dynamic> parsedJson) {
+    String? fullArtist = "";
     for (var map in parsedJson["artist-credit"]) {
       if (fullArtist == "") {
         fullArtist = map["name"];
@@ -93,7 +93,7 @@ class MusicBrainzAPI {
     return fullArtist;
   }
 
-  static String getAlbum(Map<String, dynamic> parsedJson) {
+  static String? getAlbum(Map<String, dynamic> parsedJson) {
     if (parsedJson.containsKey('releases') && parsedJson['releases'].isNotEmpty) {
       return parsedJson["releases"][0]["title"];
     } else {
@@ -113,7 +113,7 @@ class MusicBrainzAPI {
     return "0";
   }
 
-  static String getDate(Map<String, dynamic>parsedJson) {
+  static String? getDate(Map<String, dynamic>parsedJson) {
     if (parsedJson.containsKey('releases') && parsedJson['releases'].isNotEmpty) {
       return parsedJson["releases"][0]["date"];
     } else {
@@ -121,7 +121,7 @@ class MusicBrainzAPI {
     }
   }
 
-  static String getGenre(Map<String, dynamic> parsedJson) {
+  static String? getGenre(Map<String, dynamic> parsedJson) {
     if (parsedJson.containsKey("genres")) {
       if (parsedJson["genres"].isNotEmpty) {
         return parsedJson["genres"][0]["name"];
@@ -133,7 +133,7 @@ class MusicBrainzAPI {
     }
   }
 
-  static Future<String> getArtwork(mbid, 
+  static Future<String?> getArtwork(mbid, 
   {ArtworkQuality quality = ArtworkQuality.Large}) async {
     http.Client client = new http.Client();
     var response = await client.get(Uri.parse(
@@ -148,7 +148,7 @@ class MusicBrainzAPI {
     }
   }
 
-  static Future<String> getThumbnail(mbid) async {
+  static Future<String?> getThumbnail(mbid) async {
     http.Client client = new http.Client();
     var response = await client.get(Uri.parse(
       "http://coverartarchive.org/release/$mbid")
@@ -162,7 +162,7 @@ class MusicBrainzAPI {
     }
   }
 
-  static Future<Map<String, String>> getThumbnails(mbid) async {
+  static Future<Map<String, String>?> getThumbnails(mbid) async {
     if (mbid == null) return null;
     http.Client client = new http.Client();
     Map<String, String> thumbnails = Map<String, String>();
@@ -196,15 +196,15 @@ class MusicBrainzAPI {
 
 class MusicBrainzRecord {
 
-  final String id;
-  final String title;
-  final String artist;
-  final String album;
-  final String date;
-  final String genre;
-  final String disc;
-  final String track;
-  String artwork;
+  final String? id;
+  final String? title;
+  final String? artist;
+  final String? album;
+  final String? date;
+  final String? genre;
+  final String? disc;
+  final String? track;
+  String? artwork;
 
   MusicBrainzRecord({
     this.id,

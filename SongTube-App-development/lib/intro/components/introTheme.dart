@@ -23,7 +23,7 @@ class IntroTheme extends StatefulWidget {
 class _IntroThemeState extends State<IntroTheme> {
   
   // Currently Selected Theme
-  ThemeSelected theme;
+  ThemeSelected? theme;
 
   @override
   void initState() {
@@ -78,14 +78,14 @@ class _IntroThemeState extends State<IntroTheme> {
                         style: GoogleFonts.poppins(
                           fontSize: 28,
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).textTheme.bodyText1.color
+                          color: Theme.of(context).textTheme.bodyText1!.color
                         ),
                         children: [
                           TextSpan(
                             text: "App "
                           ),
                           TextSpan(
-                            text: Languages.of(context).labelAppCustomization,
+                            text: Languages.of(context)!.labelAppCustomization,
                             style: TextStyle(
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.w600
@@ -117,14 +117,14 @@ class _IntroThemeState extends State<IntroTheme> {
                         style: GoogleFonts.poppins(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).textTheme.bodyText1.color
+                          color: Theme.of(context).textTheme.bodyText1!.color
                         ),
                         children: [
                           TextSpan(
-                            text: Languages.of(context).labelSelectPreferred + "\n"
+                            text: Languages.of(context)!.labelSelectPreferred + "\n"
                           ),
                           TextSpan(
-                            text: Languages.of(context).labelTheme + "!",
+                            text: Languages.of(context)!.labelTheme + "!",
                             style: TextStyle(
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.w700
@@ -179,12 +179,12 @@ class _IntroThemeState extends State<IntroTheme> {
                           ),
                           child: Center(
                             child: Text(
-                              Languages.of(context).labelSystem,
+                              Languages.of(context)!.labelSystem,
                               style: GoogleFonts.poppins(
                                 fontSize: 14,
                                 color: theme == ThemeSelected.System
                                   ? Colors.white
-                                  : Theme.of(context).textTheme.bodyText1.color,
+                                  : Theme.of(context).textTheme.bodyText1!.color,
                                 fontWeight: FontWeight.w700,
                               )
                             ),
@@ -233,7 +233,7 @@ class _IntroThemeState extends State<IntroTheme> {
                                 fontSize: 14,
                                 color: theme == ThemeSelected.Light
                                   ? Colors.white
-                                  : Theme.of(context).textTheme.bodyText1.color,
+                                  : Theme.of(context).textTheme.bodyText1!.color,
                                 fontWeight: FontWeight.w700,
                               )
                             ),
@@ -282,7 +282,7 @@ class _IntroThemeState extends State<IntroTheme> {
                                 fontSize: 14,
                                 color: theme == ThemeSelected.Dark
                                   ? Colors.white
-                                  : Theme.of(context).textTheme.bodyText1.color,
+                                  : Theme.of(context).textTheme.bodyText1!.color,
                                 fontWeight: FontWeight.w700,
                               )
                             ),

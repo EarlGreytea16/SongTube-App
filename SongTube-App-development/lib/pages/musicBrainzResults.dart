@@ -17,8 +17,8 @@ class TagsResultsPage extends StatefulWidget {
   final String title;
   final String artist;
   TagsResultsPage({
-    @required this.title,
-    @required this.artist
+    required this.title,
+    required this.artist
   });
 
   @override
@@ -27,7 +27,7 @@ class TagsResultsPage extends StatefulWidget {
 
 class _TagsResultsPageState extends State<TagsResultsPage> {
 
-  TextEditingController searchController;
+  TextEditingController? searchController;
 
   List<MusicBrainzRecord> searchResults = [];
 
@@ -39,7 +39,7 @@ class _TagsResultsPageState extends State<TagsResultsPage> {
   }
 
   void searchForRecords() async {
-    final result = await MusicBrainzAPI.getRecordings(searchController.text);
+    final result = await (MusicBrainzAPI.getRecordings(searchController!.text) as FutureOr<List<dynamic>>);
     searchResults.clear();
     result.forEach((element) {
       searchResults.add(MusicBrainzRecord.fromMap(element));
@@ -57,7 +57,7 @@ class _TagsResultsPageState extends State<TagsResultsPage> {
             fontFamily: 'Product Sans',
             fontWeight: FontWeight.w600,
             fontSize: 24,
-            color: Theme.of(context).textTheme.bodyText1.color
+            color: Theme.of(context).textTheme.bodyText1!.color
           ),
         ),
         leading: IconButton(
@@ -84,14 +84,14 @@ class _TagsResultsPageState extends State<TagsResultsPage> {
                     child: TextFormField(
                       controller: searchController,
                       style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1.color,
+                        color: Theme.of(context).textTheme.bodyText1!.color,
                         fontWeight: FontWeight.w600,
                       ),
                       decoration: InputDecoration(
                         enabledBorder: InputBorder.none
                       ),
                       onFieldSubmitted: (searchQuery) {
-                        setState(() => searchController.text = searchQuery);
+                        setState(() => searchController!.text = searchQuery);
                         searchForRecords();
                       },
                     ),
@@ -162,7 +162,7 @@ class _TagsResultsPageState extends State<TagsResultsPage> {
                       children: [
                         // Title
                         Text(
-                          record.title,
+                          record.title!,
                           maxLines: 1,
                           style: TextStyle(
                             fontSize: 22,
@@ -172,7 +172,7 @@ class _TagsResultsPageState extends State<TagsResultsPage> {
                         SizedBox(height: 4),
                         // Album
                         Text(
-                          record.album,
+                          record.album!,
                           maxLines: 1,
                           style: TextStyle(
                             fontSize: 16,
@@ -244,13 +244,13 @@ class _TagsResultsPageState extends State<TagsResultsPage> {
     );
   }
 
-  Future<String> _getArtworkLink(MusicBrainzRecord record, int index) async {
+  Future<String?> _getArtworkLink(MusicBrainzRecord record, int index) async {
     await Future.delayed(Duration(seconds: index));
     if (record.id == null) return null;
-    Map<String, String> map = await MusicBrainzAPI
+    Map<String, String>? map = await MusicBrainzAPI
       .getThumbnails(record.id);
     if (map == null) return null;
-    String url;
+    String? url;
     if (map.containsKey("1200x1200")) {
       url = map["1200x1200"];
     } else {
@@ -263,10 +263,10 @@ class _TagsResultsPageState extends State<TagsResultsPage> {
 
 class _DataItem extends StatefulWidget {
   const _DataItem({this.record, this.image, this.index,
-    Key key}) : super(key: key);
-  final MusicBrainzRecord record;
-  final AsyncSnapshot<dynamic> image;
-  final int index;
+    Key? key}) : super(key: key);
+  final MusicBrainzRecord? record;
+  final AsyncSnapshot<dynamic>? image;
+  final int? index;
   @override
   __DataItemState createState() => __DataItemState();
 }
@@ -274,9 +274,9 @@ class _DataItem extends StatefulWidget {
 class __DataItemState extends State<_DataItem> {
 
   // Current ArtWork
-  String artwork;
+  String? artwork;
   
-  Widget _artworkWidget(AsyncSnapshot image, int index, bool fullRound) {
+  Widget _artworkWidget(AsyncSnapshot image, int? index, bool fullRound) {
     return AspectRatio(
       aspectRatio: 1,
       child: AnimatedSwitcher(
@@ -286,8 +286,8 @@ class __DataItemState extends State<_DataItem> {
               onTap: () async {
                 try {
                   File image = File((await FilePicker.platform
-                    .pickFiles(type: FileType.image))
-                    .paths[0]);
+                    .pickFiles(type: FileType.image))!
+                    .paths[0]!);
                   if (image == null) return;
                   artwork = image.path;
                   setState(() {});
@@ -306,9 +306,9 @@ class __DataItemState extends State<_DataItem> {
                       ),
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: artwork == null
+                        image: (artwork == null
                           ? NetworkImage(image.data)
-                          : FileImage(File(artwork))
+                          : FileImage(File(artwork!))) as ImageProvider<Object>
                       )
                     ),
                   ),
@@ -361,7 +361,7 @@ class __DataItemState extends State<_DataItem> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _artworkWidget(widget.image, widget.index, false),
+            _artworkWidget(widget.image!, widget.index, false),
             Container(
               padding: EdgeInsets.all(16),
               width: double.infinity,
@@ -380,20 +380,20 @@ class __DataItemState extends State<_DataItem> {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: Languages.of(context).labelEditorTitle + ": ",
+                          text: Languages.of(context)!.labelEditorTitle + ": ",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontFamily: 'Product Sans',
                             fontSize: 16,
                             color: Theme.of(context).textTheme
-                              .bodyText1.color
+                              .bodyText1!.color
                           )
                         ),
                         TextSpan(
-                          text: widget.record.title,
+                          text: widget.record!.title,
                           style: TextStyle(
                             color: Theme.of(context).textTheme
-                              .bodyText1.color
+                              .bodyText1!.color
                           )
                         ),
                       ]
@@ -403,20 +403,20 @@ class __DataItemState extends State<_DataItem> {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: Languages.of(context).labelEditorArtist + ": ",
+                          text: Languages.of(context)!.labelEditorArtist + ": ",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontFamily: 'Product Sans',
                             fontSize: 16,
                             color: Theme.of(context).textTheme
-                              .bodyText1.color
+                              .bodyText1!.color
                           )
                         ),
                         TextSpan(
-                          text: widget.record.artist,
+                          text: widget.record!.artist,
                           style: TextStyle(
                             color: Theme.of(context).textTheme
-                              .bodyText1.color
+                              .bodyText1!.color
                           )
                         ),
                       ]
@@ -426,20 +426,20 @@ class __DataItemState extends State<_DataItem> {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: Languages.of(context).labelEditorAlbum + ": ",
+                          text: Languages.of(context)!.labelEditorAlbum + ": ",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontFamily: 'Product Sans',
                             fontSize: 16,
                             color: Theme.of(context).textTheme
-                              .bodyText1.color
+                              .bodyText1!.color
                           )
                         ),
                         TextSpan(
-                          text: widget.record.album,
+                          text: widget.record!.album,
                           style: TextStyle(
                             color: Theme.of(context).textTheme
-                              .bodyText1.color
+                              .bodyText1!.color
                           ),
                         ),
                       ]
@@ -449,20 +449,20 @@ class __DataItemState extends State<_DataItem> {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: Languages.of(context).labelEditorDate + ": ",
+                          text: Languages.of(context)!.labelEditorDate + ": ",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontFamily: 'Product Sans',
                             fontSize: 16,
                             color: Theme.of(context).textTheme
-                              .bodyText1.color
+                              .bodyText1!.color
                           )
                         ),
                         TextSpan(
-                          text: widget.record.date,
+                          text: widget.record!.date,
                           style: TextStyle(
                             color: Theme.of(context).textTheme
-                              .bodyText1.color
+                              .bodyText1!.color
                           ),
                         ),
                       ]
@@ -472,20 +472,20 @@ class __DataItemState extends State<_DataItem> {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: Languages.of(context).labelEditorGenre + ": ",
+                          text: Languages.of(context)!.labelEditorGenre + ": ",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontFamily: 'Product Sans',
                             fontSize: 16,
                             color: Theme.of(context).textTheme
-                              .bodyText1.color
+                              .bodyText1!.color
                           )
                         ),
                         TextSpan(
-                          text: widget.record.genre,
+                          text: widget.record!.genre,
                           style: TextStyle(
                             color: Theme.of(context).textTheme
-                              .bodyText1.color
+                              .bodyText1!.color
                           ),
                         ),
                       ]
@@ -511,7 +511,7 @@ class __DataItemState extends State<_DataItem> {
                                 fontFamily: 'Product Sans',
                                 fontSize: 16,
                                 color: Theme.of(context).textTheme
-                                  .bodyText1.color
+                                  .bodyText1!.color
                               ),
                             ),
                             SizedBox(width: 8),

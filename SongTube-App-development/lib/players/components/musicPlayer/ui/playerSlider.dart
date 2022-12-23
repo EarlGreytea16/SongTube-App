@@ -5,22 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PlayerSlider extends StatelessWidget {
-  final PlaybackState state;
-  final MediaItem mediaItem;
-  final Color sliderColor;
-  final Color textColor;
+  final PlaybackState? state;
+  final MediaItem? mediaItem;
+  final Color? sliderColor;
+  final Color? textColor;
   PlayerSlider({
-    @required this.state,
-    @required this.mediaItem,
-    @required this.sliderColor,
-    @required this.textColor
+    required this.state,
+    required this.mediaItem,
+    required this.sliderColor,
+    required this.textColor
   });
-  final BehaviorSubject<double> _dragPositionSubject =
+  final BehaviorSubject<double?> _dragPositionSubject =
     BehaviorSubject.seeded(null);
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: Rx.combineLatest2<double, double, double>(
+      stream: Rx.combineLatest2<double?, double, double?>(
           _dragPositionSubject.stream,
           Stream.periodic(Duration(milliseconds: 1000)),
           (dragPosition, _) => dragPosition),
@@ -42,7 +42,7 @@ class PlayerSlider extends StatelessWidget {
                     trackHeight: 2,
                   ),
                   child: Slider(
-                    activeColor: sliderColor.withOpacity(0.7),
+                    activeColor: sliderColor!.withOpacity(0.7),
                     inactiveColor: Colors.black12.withOpacity(0.1),
                     min: 0.0,
                     max: duration.inMilliseconds?.toDouble(),
@@ -69,7 +69,7 @@ class PlayerSlider extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: "YTSans",
                         fontSize: 12,
-                        color: textColor.withOpacity(0.6)
+                        color: textColor!.withOpacity(0.6)
                       ),
                     ),
                     Spacer(),
@@ -78,7 +78,7 @@ class PlayerSlider extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: "YTSans",
                         fontSize: 12,
-                        color: textColor.withOpacity(0.6)
+                        color: textColor!.withOpacity(0.6)
                       ),
                     )
                   ],

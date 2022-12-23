@@ -13,7 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:songtube/ui/animations/showUp.dart';
 
 class IntroWelcome extends StatelessWidget {
-  final Function onNext;
+  final Function? onNext;
   IntroWelcome({
     this.onNext
   });
@@ -67,11 +67,11 @@ class IntroWelcome extends StatelessWidget {
                           fontSize: 20,
                           fontFamily: 'YTSans',
                           fontWeight: FontWeight.w400,
-                          color: Theme.of(context).textTheme.bodyText1.color
+                          color: Theme.of(context).textTheme.bodyText1!.color
                         ),
                         children: [
                           TextSpan(
-                            text: Languages.of(context).labelAppWelcome.toLowerCase() + "\n",
+                            text: Languages.of(context)!.labelAppWelcome.toLowerCase() + "\n",
                             style: GoogleFonts.poppins(
                               fontWeight: FontWeight.w600,
                               fontSize: 22
@@ -131,7 +131,7 @@ class IntroWelcome extends StatelessWidget {
                             fontSize: 16,
                             fontFamily: 'YTSans',
                             fontWeight: FontWeight.w400,
-                            color: Theme.of(context).textTheme.bodyText1.color
+                            color: Theme.of(context).textTheme.bodyText1!.color
                           ),
                           children: [
                             TextSpan(
@@ -178,14 +178,14 @@ class IntroWelcome extends StatelessWidget {
             child: FloatingActionButton.extended(
               backgroundColor: Theme.of(context).accentColor,
               label: Text(
-                Languages.of(context).labelStart,
+                Languages.of(context)!.labelStart,
                 style: GoogleFonts.poppins(
                   color: Colors.white,
                   fontSize: 22,
                   fontWeight: FontWeight.w600
                 ),
               ),
-              onPressed: onNext,
+              onPressed: onNext as void Function()?,
             ),
           ),
         ),
@@ -206,13 +206,13 @@ class IntroWelcome extends StatelessWidget {
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.w800,
-              color: Theme.of(context).textTheme.bodyText1.color
+              color: Theme.of(context).textTheme.bodyText1!.color
             ),
           ),
         ),
         icon: SizedBox(),
-        onChanged: (LanguageData language) {
-          changeLanguage(context, language.languageCode);
+        onChanged: (LanguageData? language) {
+          changeLanguage(context, language!.languageCode);
         },
         underline: DropdownButtonHideUnderline(child: Container()),
         items: supportedLanguages
@@ -229,7 +229,7 @@ class IntroWelcome extends StatelessWidget {
                       fontSize: 16,
                       fontFamily: 'YTSans',
                       fontWeight: FontWeight.w400,
-                      color: Theme.of(context).textTheme.bodyText1.color
+                      color: Theme.of(context).textTheme.bodyText1!.color
                     ),
                   )
                 ],

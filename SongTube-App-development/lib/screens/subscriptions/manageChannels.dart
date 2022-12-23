@@ -35,7 +35,7 @@ class ManageChannelsSheet extends StatelessWidget {
               elevation: 0,
               automaticallyImplyLeading: false,
               title: Text("Your subscriptions", style: TextStyle(
-                color: Theme.of(context).textTheme.bodyText1.color,
+                color: Theme.of(context).textTheme.bodyText1!.color,
                 fontWeight: FontWeight.w600
               )),
             ),
@@ -43,7 +43,7 @@ class ManageChannelsSheet extends StatelessWidget {
           Divider(
             height: 1,
             thickness: 1,
-            color: Colors.grey[600].withOpacity(0.1),
+            color: Colors.grey[600]!.withOpacity(0.1),
             indent: 12,
             endIndent: 12
           ),
@@ -117,9 +117,9 @@ class ManageChannelsSheet extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  channel.name,
+                  channel.name!,
                   style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1.color,
+                    color: Theme.of(context).textTheme.bodyText1!.color,
                     fontSize: 18,
                     fontFamily: 'Product Sans',
                     fontWeight: FontWeight.w600,

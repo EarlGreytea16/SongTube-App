@@ -8,11 +8,11 @@ class DownloadFixSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StyledBottomSheet(
-      title: Languages.of(context).labelAndroid11Detected,
+      title: Languages.of(context)!.labelAndroid11Detected,
       content: Text(
-        Languages.of(context).labelAndroid11DetectedJustification,
+        Languages.of(context)!.labelAndroid11DetectedJustification,
         style: GoogleFonts.poppins(
-          color: Theme.of(context).textTheme.bodyText1.color,
+          color: Theme.of(context).textTheme.bodyText1!.color,
           fontSize: 16,
         ),
       ),

@@ -61,7 +61,7 @@ class _ChannelRecommendationsSheetState extends State<ChannelRecommendationsShee
               elevation: 0,
               automaticallyImplyLeading: false,
               title: Text("Add Channels", style: TextStyle(
-                color: Theme.of(context).textTheme.bodyText1.color,
+                color: Theme.of(context).textTheme.bodyText1!.color,
                 fontWeight: FontWeight.w600
               )),
             ),
@@ -78,7 +78,7 @@ class _ChannelRecommendationsSheetState extends State<ChannelRecommendationsShee
           Divider(
             height: 1,
             thickness: 1,
-            color: Colors.grey[600].withOpacity(0.1),
+            color: Colors.grey[600]!.withOpacity(0.1),
             indent: 12,
             endIndent: 12
           ),
@@ -157,9 +157,9 @@ class _ChannelRecommendationsSheetState extends State<ChannelRecommendationsShee
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    channel.name,
+                    channel.name!,
                     style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1.color,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
                       fontSize: 18,
                       fontFamily: 'Product Sans',
                       fontWeight: FontWeight.w600,
@@ -169,7 +169,7 @@ class _ChannelRecommendationsSheetState extends State<ChannelRecommendationsShee
                   Text(
                     "${NumberFormat().format(channel.subscriberCount)} Subs",
                     style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1.color,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
                       fontSize: 12,
                       fontFamily: 'Product Sans',
                     ),
@@ -206,7 +206,7 @@ class _ChannelRecommendationsSheetState extends State<ChannelRecommendationsShee
               fontSize: 14,
               fontWeight: FontWeight.w600,
               fontFamily: 'Product Sans',
-              color: Theme.of(context).iconTheme.color
+              color: Theme.of(context).iconTheme.color!
                 .withOpacity(0.6)
             ),
           )
@@ -216,11 +216,11 @@ class _ChannelRecommendationsSheetState extends State<ChannelRecommendationsShee
   }
 
   // Generate a list of YoutubeChannels extracting channels from multiple sources
-  Future<void> generateChannelRecommendations(List<StreamInfoItem> trendingPage) async {
+  Future<void> generateChannelRecommendations(List<StreamInfoItem>? trendingPage) async {
     setState(() {
       fetchingChannels = true;
     });
-    List<StreamInfoItem> trendingVideos = trendingPage;
+    List<StreamInfoItem>? trendingVideos = trendingPage;
 
     //If trending page videos are null, extract manually the trending page
     if (trendingVideos == null) {
@@ -234,7 +234,7 @@ class _ChannelRecommendationsSheetState extends State<ChannelRecommendationsShee
       StreamInfoItem lastWHVideo = Provider.of<PreferencesProvider>
         (context, listen: false).watchHistory.first;
       List<StreamInfoItem> watchHistoryRelatedVideos = await VideoExtractor
-        .getRelatedStreams(lastWHVideo.url);
+        .getRelatedStreams(lastWHVideo.url!);
       for (var video in watchHistoryRelatedVideos) {
         // Check if this channel already exist in our recommended list, if not, add it
         if (channels.indexWhere((element) => element.name == video.uploaderName) == -1) {

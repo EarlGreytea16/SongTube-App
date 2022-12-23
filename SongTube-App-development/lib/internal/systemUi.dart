@@ -13,7 +13,7 @@ void setSystemUiColor(BuildContext context) {
     Brightness _statusBarBrightness = _systemBrightness == Brightness.light
       ? Brightness.dark
       : Brightness.light;
-    if (!mediaProvider.fwController.isAttached) {
+    if (!mediaProvider.fwController!.isAttached) {
       SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
@@ -24,15 +24,15 @@ void setSystemUiColor(BuildContext context) {
         ),
       );
     } else {
-      double position = mediaProvider.fwController.panelPosition;
-      int sdkInt = config.preferences.sdkInt;
+      double position = mediaProvider.fwController!.panelPosition;
+      int? sdkInt = config.preferences.sdkInt;
       if (position > 0.95) {
         bool mediaBlurBackground = prefs.enablePlayerBlurBackground;
         SystemChrome.setSystemUIOverlayStyle(
           SystemUiOverlayStyle(
             statusBarIconBrightness: mediaBlurBackground ? mediaProvider.textColor == Colors.black
               ? Brightness.dark : Brightness.light : _statusBarBrightness,
-            systemNavigationBarIconBrightness: mediaBlurBackground ? sdkInt >= 30 ? mediaProvider.textColor == Colors.black
+            systemNavigationBarIconBrightness: mediaBlurBackground ? sdkInt! >= 30 ? mediaProvider.textColor == Colors.black
               ? Brightness.dark : Brightness.light : null : _statusBarBrightness,
           ),
         );

@@ -6,19 +6,19 @@ import 'package:flutter_xlider/flutter_xlider.dart';
 class PlayerProgressBar extends StatefulWidget {
   final Duration position;
   final Duration duration;
-  final Function(double) onSeek;
-  final Function onFullScreenTap;
-  final List<StreamSegment> segments;
-  final Function onSeekStart;
+  final Function(double?) onSeek;
+  final Function? onFullScreenTap;
+  final List<StreamSegment>? segments;
+  final Function? onSeekStart;
   final bool audioOnly;
   final Function() onAudioOnlySwitch;
   PlayerProgressBar({
-    @required this.position,
-    @required this.duration,
-    @required this.onSeek,
-    @required this.segments,
-    @required this.audioOnly,
-    @required this.onAudioOnlySwitch,
+    required this.position,
+    required this.duration,
+    required this.onSeek,
+    required this.segments,
+    required this.audioOnly,
+    required this.onAudioOnlySwitch,
     this.onFullScreenTap,
     this.onSeekStart
   });
@@ -30,22 +30,22 @@ class PlayerProgressBar extends StatefulWidget {
 class _PlayerProgressBarState extends State<PlayerProgressBar> with TickerProviderStateMixin {
 
   // Current label, modified if segmets are available
-  String currentLabel;
+  String? currentLabel;
   bool isDragging = false;
 
   StreamSegment currentSegment(double value) {
     int position = value.round();
-    if (value < widget.segments[1].startTimeSeconds) {
-      return widget.segments.first;
-    } else if (value >= widget.segments.last.startTimeSeconds) {
-      return widget.segments.last;
+    if (value < widget.segments![1].startTimeSeconds) {
+      return widget.segments!.first;
+    } else if (value >= widget.segments!.last.startTimeSeconds) {
+      return widget.segments!.last;
     } else {
-      List<int> startTimes = List.generate(widget.segments.length, (index)
-        => widget.segments[index].startTimeSeconds).toList();
+      List<int> startTimes = List.generate(widget.segments!.length, (index)
+        => widget.segments![index].startTimeSeconds).toList();
       int closestStartTime = (startTimes.where((e) => e >= position).toList()..sort()).first;
-      int nearIndex = (widget.segments.indexWhere((element) =>
+      int nearIndex = (widget.segments!.indexWhere((element) =>
         element.startTimeSeconds == closestStartTime))-1;
-      return widget.segments[nearIndex];
+      return widget.segments![nearIndex];
     }
   }
 
@@ -122,8 +122,8 @@ class _PlayerProgressBarState extends State<PlayerProgressBar> with TickerProvid
                     values: [widget?.position?.inSeconds?.toDouble() ?? 0],
                     onDragCompleted: (_, newPosition, __) {
                       setState(() => isDragging = false);
-                      double seekPosition = newPosition;
-                      if (widget.segments != null && widget.segments.length >= 2) {
+                      double? seekPosition = newPosition;
+                      if (widget.segments != null && widget.segments!.length >= 2) {
                         StreamSegment segment = currentSegment(newPosition);
                         if (segment.startTimeSeconds < newPosition) {
                           if (newPosition - segment.startTimeSeconds <= 10)
@@ -141,11 +141,11 @@ class _PlayerProgressBarState extends State<PlayerProgressBar> with TickerProvid
                       ? 1 : widget.duration.inSeconds.toDouble(),
                     min: 0,
                     onDragStarted: (handlerIndex, lowerValue, upperValue) {
-                      widget.onSeekStart();
+                      widget.onSeekStart!();
                       setState(() { isDragging = true; currentLabel = null; });
                     },
                     onDragging: (_, value, ___) {
-                      if (widget.segments != null && widget.segments.length >= 2) {
+                      if (widget.segments != null && widget.segments!.length >= 2) {
                         if (currentLabel != currentSegment(value).title)
                           setState(() => currentLabel = currentSegment(value).title);
                       }
@@ -179,7 +179,7 @@ class _PlayerProgressBarState extends State<PlayerProgressBar> with TickerProvid
               SizedBox(width: 16),
               // FullScreen Button
               GestureDetector(
-                onTap: widget.onFullScreenTap,
+                onTap: widget.onFullScreenTap as void Function()?,
                 child: Container(
                   color: Colors.transparent,
                   child: Icon(
@@ -210,8 +210,8 @@ class _PlayerProgressBarState extends State<PlayerProgressBar> with TickerProvid
                     },
                     duration: Duration(milliseconds: 300),
                     child: Text(
-                      currentLabel,
-                      key: ValueKey<String>(currentLabel),
+                      currentLabel!,
+                      key: ValueKey<String?>(currentLabel),
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

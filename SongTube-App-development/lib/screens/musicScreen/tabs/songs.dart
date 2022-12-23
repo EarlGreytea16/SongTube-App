@@ -7,11 +7,11 @@ import 'package:songtube/screens/musicScreen/components/songsList.dart';
 
 
 class MusicScreenSongsTab extends StatefulWidget {
-  final List<MediaItem> songs;
+  final List<MediaItem>? songs;
   final bool hasDownloadType;
   final String searchQuery;
   MusicScreenSongsTab({
-    @required this.songs,
+    required this.songs,
     this.hasDownloadType = false,
     this.searchQuery = ""
   });
@@ -23,15 +23,15 @@ class MusicScreenSongsTab extends StatefulWidget {
 class _MusicScreenSongsTabState extends State<MusicScreenSongsTab> {
   
   // Scroll Controller
-  ScrollController controller;
+  ScrollController? controller;
 
   @override
   void initState() {
     controller = ScrollController(initialScrollOffset:
       Provider.of<MediaProvider>(context, listen: false).musicScrollPosition);
-    controller.addListener(() {
+    controller!.addListener(() {
       Provider.of<MediaProvider>(context, listen: false)
-        .musicScrollPosition = controller.position.pixels;
+        .musicScrollPosition = controller!.position.pixels;
     });
     super.initState();
   }

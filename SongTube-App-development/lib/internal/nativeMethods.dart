@@ -12,8 +12,8 @@ class NativeMethod {
   static const imageProcessing = const MethodChannel("imageProcessing");
 
   // Handle Intent (Ej: when you share a YouTube link to this app)
-  static Future<String> handleIntent() async {
-    String _intent = await platform.invokeMethod('getSharedText');
+  static Future<String?> handleIntent() async {
+    String? _intent = await platform.invokeMethod('getSharedText');
     await platform.invokeMethod('clearSharedText');
     if (_intent == null) return null;
     print("IntentHandler: Result: " + _intent);

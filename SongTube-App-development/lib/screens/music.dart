@@ -26,8 +26,8 @@ class MediaScreen extends StatefulWidget {
 class _MediaScreenState extends State<MediaScreen> {
 
   // Search Controller and FocusNode
-  TextEditingController searchController;
-  FocusNode searchNode;
+  TextEditingController? searchController;
+  FocusNode? searchNode;
 
   // Current Search Query
   String searchQuery = "";
@@ -38,14 +38,14 @@ class _MediaScreenState extends State<MediaScreen> {
     searchController = new TextEditingController();
     searchNode = new FocusNode();
     var keyboardVisibilityController = KeyboardVisibilityController();
-    searchNode.addListener(() {
-      if (!searchNode.hasFocus && searchQuery.isEmpty) {
+    searchNode!.addListener(() {
+      if (!searchNode!.hasFocus && searchQuery.isEmpty) {
         setState(() => showSearchBar = false);
       }
     });
     keyboardVisibilityController.onChange.listen((bool visible) {
         if (visible == false) {
-          searchNode.unfocus();
+          searchNode!.unfocus();
         }
       }
     );
@@ -57,17 +57,17 @@ class _MediaScreenState extends State<MediaScreen> {
   @override
   Widget build(BuildContext context) {
     MediaProvider mediaProvider = Provider.of<MediaProvider>(context);
-    List<MediaItem> songs = <MediaItem>[];
+    List<MediaItem>? songs = <MediaItem>[];
     if (searchQuery == "") {
       songs = mediaProvider.listMediaItems;
     } else {
-      mediaProvider.listMediaItems.forEach((item) {
+      mediaProvider.listMediaItems!.forEach((item) {
         if (item.title.toLowerCase()
           .replaceAll(RegExp("[^0-9a-zA-Z]+"), "")
           .contains(searchQuery.toLowerCase()
           .replaceAll(RegExp("[^0-9a-zA-Z]+"), ""))
         ) {
-          songs.add(item);
+          songs!.add(item);
         }
       });
     }
@@ -89,12 +89,12 @@ class _MediaScreenState extends State<MediaScreen> {
                 ),
               ),
               Text(
-                Languages.of(context).labelMusic,
+                Languages.of(context)!.labelMusic,
                 style: TextStyle(
                   fontFamily: 'Product Sans',
                   fontWeight: FontWeight.w700,
                   fontSize: 24,
-                  color: Theme.of(context).textTheme.bodyText1.color
+                  color: Theme.of(context).textTheme.bodyText1!.color
                 ),
               ),
               Spacer(),
@@ -105,7 +105,7 @@ class _MediaScreenState extends State<MediaScreen> {
                 ),
                 onPressed: () {
                   setState(() => showSearchBar = !showSearchBar);
-                  searchNode.requestFocus();
+                  searchNode!.requestFocus();
                 },
               ),
             ],
@@ -113,13 +113,13 @@ class _MediaScreenState extends State<MediaScreen> {
             textController: searchController,
             onClear: () {
               setState(() {
-                searchController.clear();
+                searchController!.clear();
                 searchQuery = "";
               });
             },
             focusNode: searchNode,
             onChanged: (String search) => setState(() => searchQuery = search),
-            hintText: Languages.of(context).labelSearchMedia,
+            hintText: Languages.of(context)!.labelSearchMedia,
           )
         ),
       ),
@@ -146,8 +146,8 @@ class _MediaScreenState extends State<MediaScreen> {
                     letterSpacing: 0.2
                 ),
                 labelColor: Theme.of(context).accentColor,
-                unselectedLabelColor: Theme.of(context).textTheme.bodyText1
-                  .color.withOpacity(0.4),
+                unselectedLabelColor: Theme.of(context).textTheme.bodyText1!
+                  .color!.withOpacity(0.4),
                 indicator: MD2Indicator(
                   indicatorSize: MD2IndicatorSize.tiny,
                   indicatorHeight: 4,
@@ -175,14 +175,14 @@ class _MediaScreenState extends State<MediaScreen> {
             Divider(
               height: 1,
               thickness: 1,
-              color: Colors.grey[600].withOpacity(0.1),
+              color: Colors.grey[600]!.withOpacity(0.1),
               indent: 12,
               endIndent: 12
             ),
             Expanded(
               child: MediaListBase(
                 isLoading: mediaProvider.loadingMusic,
-                isEmpty: mediaProvider.listMediaItems.isEmpty,
+                isEmpty: mediaProvider.listMediaItems!.isEmpty,
                 listType: MediaListBaseType.Any,
                 child: TabBarView(
                   children: [

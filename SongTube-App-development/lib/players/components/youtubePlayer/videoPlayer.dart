@@ -21,37 +21,37 @@ import 'package:volume/volume.dart';
 
 class StreamManifestPlayer extends StatefulWidget {
   final String videoTitle;
-  final List<dynamic> streams;
-  final AudioOnlyStream audioStream;
-  final Function onAutoPlay;
-  final Function onFullscreenTap;
-  final bool isFullscreen;
-  final Function onEnterPipMode;
-  final double borderRadius;
+  final List<dynamic>? streams;
+  final AudioOnlyStream? audioStream;
+  final Function? onAutoPlay;
+  final Function? onFullscreenTap;
+  final bool? isFullscreen;
+  final Function? onEnterPipMode;
+  final double? borderRadius;
   final bool forceHideControls;
   final String quality;
   final Function(String) onQualityChanged;
-  final List<StreamSegment> segments;
-  final Function(double) onAspectRatioInit;
-  final String videoThumbnail;
+  final List<StreamSegment>? segments;
+  final Function(double)? onAspectRatioInit;
+  final String? videoThumbnail;
   final Duration duration;
   StreamManifestPlayer({
-    Key key,
-    @required this.videoTitle,
-    @required this.streams,
-    @required this.audioStream,
+    Key? key,
+    required this.videoTitle,
+    required this.streams,
+    required this.audioStream,
     this.onAutoPlay,
     this.onFullscreenTap,
     this.isFullscreen,
     this.onEnterPipMode,
     this.borderRadius,
     this.forceHideControls = false,
-    @required this.quality,
-    @required this.onQualityChanged,
+    required this.quality,
+    required this.onQualityChanged,
     this.segments = const [],
     this.onAspectRatioInit,
-    @required this.videoThumbnail,
-    @required this.duration,
+    required this.videoThumbnail,
+    required this.duration,
   }) : super(key: key);
   @override
   StreamManifestPlayerState createState() => StreamManifestPlayerState();
@@ -60,19 +60,19 @@ class StreamManifestPlayer extends StatefulWidget {
 class StreamManifestPlayerState extends State<StreamManifestPlayer> {
 
   // Player Variables (width is set automatically)
-  bool isPlaying;
+  bool? isPlaying;
   bool hideControls = false;
   bool videoEnded = false;
   bool buffering = true;
   bool isSeeking = false;
-  String currentQuality;
+  String? currentQuality;
 
   // Reverse and Forward Animation
   bool showReverse = false;
   bool showForward = false;
 
   // Current Aspect Ratio
-  double aspectRatio;
+  double? aspectRatio;
 
   // UI
   bool _showControls   = true;
@@ -113,8 +113,8 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
   // Show quality menu
   bool showStreamQualityMenu = false;
 
-  String currentVolumePercentage;
-  String currentBrightnessPercentage;
+  String? currentVolumePercentage;
+  String? currentBrightnessPercentage;
 
   // Gestures
   bool showVolumeUI     = false;
@@ -122,19 +122,19 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
   int tapId = 0;
 
   // ignore: close_sinks
-  final BehaviorSubject<double> _dragPositionSubject =
+  final BehaviorSubject<double?> _dragPositionSubject =
     BehaviorSubject.seeded(null);
 
   // Player Controller
-  VideoPlayerController _controller;
-  VideoPlayerController get controller => _controller;
+  VideoPlayerController? _controller;
+  VideoPlayerController? get controller => _controller;
 
   // Audio Only On/Off
-  bool _audioOnly = globalPrefs.getBool('videoPlayerAudioOnly') ?? false;
+  bool _audioOnly = globalPrefs!.getBool('videoPlayerAudioOnly') ?? false;
   bool get audioOnly => _audioOnly;
   set audioOnly(bool value) {
     _audioOnly = value;
-    globalPrefs.setBool('videoPlayerAudioOnly', value);
+    globalPrefs!.setBool('videoPlayerAudioOnly', value);
     if (value) {
       setupAudioPlayer();
     } else {
@@ -152,11 +152,11 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
     currentQuality = widget.quality;
     Volume.controlVolume(AudioManager.STREAM_MUSIC).then((value) async {
       currentVolumePercentage =
-        "${(((await Volume.getVol)/(await Volume.getMaxVol)) * 100).round()}";
-    });
+        "${(((await Volume.getVol)!/(await (Volume.getMaxVol as FutureOr<num>))) * 100).round()}";
+    } as FutureOr<_> Function(Null));
     FlutterScreen.brightness.then((value) {
       currentBrightnessPercentage =
-        "${((value/1) * 100).round()}";
+        "${((value!/1) * 100).round()}";
     });
     FlutterScreen.keepOn(true);
     Future.delayed(Duration(seconds: 2), () {
@@ -170,30 +170,30 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
   }
 
   void setupVideoPlayer() async {
-    int indexToPlay = widget.streams.indexWhere((element)
+    int indexToPlay = widget.streams!.indexWhere((element)
       => element.resolution.contains(widget.quality));
     if (indexToPlay == -1) {
       indexToPlay = 0;
-      currentQuality = widget.streams[indexToPlay].resolution.split("p").first;
+      currentQuality = widget.streams![indexToPlay].resolution.split("p").first;
     }
     _controller = VideoPlayerController.network(
-      videoDataSource: widget.streams[indexToPlay].url,
-      audioDataSource: widget.streams[indexToPlay]
-        is VideoOnlyStream ? widget.audioStream.url : null,
+      videoDataSource: widget.streams![indexToPlay].url,
+      audioDataSource: widget.streams![indexToPlay]
+        is VideoOnlyStream ? widget.audioStream!.url : null,
       formatHint: VideoFormat.other
     )..initialize().then((value) {
       if (Provider.of<PreferencesProvider>(context, listen: false).videoPageAutoPlay) {
-        _controller.play().then((_) {
-          Duration position;
+        _controller!.play().then((_) {
+          Duration? position;
           if (AudioService.running) {
-            if (AudioService.currentMediaItem?.id == widget.audioStream.url) {
+            if (AudioService.currentMediaItem?.id == widget.audioStream!.url) {
               if (AudioService.playbackState.position != null) {
                 position = AudioService.playbackState.currentPosition;
               }
             }
           }
           if (position != null) {
-            _controller.seekTo(position).then((_) {
+            _controller!.seekTo(position).then((_) {
               AudioService.stop();
             });
           }
@@ -204,29 +204,29 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
         setState(() {isPlaying = false; buffering = false;});
       }
       if (aspectRatio != controller?.value?.aspectRatio ?? null) {
-        widget.onAspectRatioInit(controller?.value?.aspectRatio ?? 16/9);
+        widget.onAspectRatioInit!(controller?.value?.aspectRatio ?? 16/9);
         setState(() =>
           aspectRatio = controller?.value?.aspectRatio ?? null);
       }
     });
-    _controller.addListener(() {
-      if (_controller.value.isBuffering && buffering == false) {
+    _controller!.addListener(() {
+      if (_controller!.value.isBuffering && buffering == false) {
         setState(() => buffering = true);
       }
-      if (!_controller.value.isBuffering && buffering == true) {
+      if (!_controller!.value.isBuffering && buffering == true) {
         setState(() => buffering = false);
       }
     });
     Future.delayed(Duration(seconds: 10), () {
-      _controller.addListener(() {
-        int currentPosition = _controller?.value?.position?.inSeconds ?? null;
-        int totalDuration = _controller?.value?.duration?.inSeconds ?? null;
+      _controller!.addListener(() {
+        int? currentPosition = _controller?.value?.position?.inSeconds ?? null;
+        int? totalDuration = _controller?.value?.duration?.inSeconds ?? null;
         bool autoPlayEnabled = Provider.of<PreferencesProvider>(context, listen : false).youtubeAutoPlay;
         if (currentPosition == totalDuration && currentPosition != null && totalDuration != null && autoPlayEnabled) {
           if (!videoEnded) {
             videoEnded = true;
             Future.delayed((Duration(seconds: 2)),
-              () => widget.onAutoPlay());
+              () => widget.onAutoPlay!());
           }
         }
       });
@@ -246,22 +246,22 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
       );
     }
     final mediaItem = MediaItem(
-      id: widget.audioStream.url,
+      id: widget.audioStream!.url!,
       album: 'YouTube',
       title: widget.videoTitle,
-      artUri: Uri.parse(widget.videoThumbnail),
+      artUri: Uri.parse(widget.videoThumbnail!),
       duration: widget.duration,
       artist: 'YouTube',
     );
     await AudioService.updateQueue([mediaItem]);
     if (_controller != null) {
       Duration position;
-      position = _controller.value.position;
+      position = _controller!.value.position;
       await AudioService.playMediaItem(mediaItem);
       await AudioService.seekTo(position);
-      _controller.pause();
-      _controller.removeListener(() { });
-      _controller.dispose();
+      _controller!.pause();
+      _controller!.removeListener(() { });
+      _controller!.dispose();
     } else {
       await AudioService.playMediaItem(mediaItem);
     }
@@ -275,7 +275,7 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
   void runListener() async {
     AudioService.playbackStateStream.listen((event) {
       if (event.processingState == AudioProcessingState.completed) {
-        widget.onAutoPlay();
+        widget.onAutoPlay!();
       }
     });
   }
@@ -284,27 +284,27 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
     if (audioOnly) {
       AudioService.seekTo(position);
     } else {
-      controller.seekTo(position);
+      controller!.seekTo(position);
     }
   }
 
   Duration get currentPosition => audioOnly
     ? AudioService.playbackState.currentPosition
-    : _controller.value.position;
+    : _controller!.value.position;
 
   @override
   void dispose() {
     FlutterScreen.keepOn(false);
     if (_controller != null)
-      _controller.dispose();
+      _controller!.dispose();
     super.dispose();
   }
 
   Future<void> handleVolumeGesture(double primaryDelta) async {
     tapId = Random().nextInt(10);
     int currentId = tapId;
-    int maxVolume = await Volume.getMaxVol;
-    int currentVolume = await Volume.getVol;
+    int maxVolume = await (Volume.getMaxVol as FutureOr<int>);
+    int currentVolume = await (Volume.getVol as FutureOr<int>);
     int newVolume = (currentVolume +
       primaryDelta * 0.2 *
       (-1)).round();
@@ -336,7 +336,7 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
   void handleBrightnessGesture(double primaryDelta) async {
     tapId = Random().nextInt(10);
     int currentId = tapId;
-    double currentBrightness = await FlutterScreen.brightness;
+    double currentBrightness = await (FlutterScreen.brightness as FutureOr<double>);
     double newBrightness =
       currentBrightness + ((primaryDelta*-1)*0.01);
     currentBrightnessPercentage = newBrightness > 1 ? "100" :
@@ -394,7 +394,7 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(widget.borderRadius),
+      borderRadius: BorderRadius.circular(widget.borderRadius!),
       child: Material(
         color: Colors.black,
         child: audioOnly
@@ -410,10 +410,10 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
       children: [
         // Video Beign Played
         Container(
-          child: _controller.value.isInitialized
+          child: _controller!.value.isInitialized
             ? AspectRatio(
                 aspectRatio: _controller?.value?.aspectRatio ?? 16/9,
-                child: VideoPlayer(_controller)
+                child: VideoPlayer(_controller!)
               )
             : Container(color: Colors.black),
         ),
@@ -435,9 +435,9 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
         // Video Beign Played
         FadeInImage(
           placeholder: MemoryImage(kTransparentImage),
-          image: widget.videoThumbnail == null
+          image: (widget.videoThumbnail == null
             ? AssetImage('assets/images/artworkPlaceholder_big.png')
-            : NetworkImage(widget.videoThumbnail)
+            : NetworkImage(widget.videoThumbnail!)) as ImageProvider<Object>
         ),
         // Player Controls and Gestures
         GestureDetector(
@@ -477,7 +477,7 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
                 },
                 onVerticalDragUpdate: MediaQuery.of(context).orientation == Orientation.landscape
                   ? (update) {
-                      handleBrightnessGesture(update.primaryDelta);
+                      handleBrightnessGesture(update.primaryDelta!);
                     }
                   : null,
                 child: AnimatedContainer(
@@ -531,7 +531,7 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
                 },
                 onVerticalDragUpdate: MediaQuery.of(context).orientation == Orientation.landscape
                   ? (update) {
-                      handleVolumeGesture(update.primaryDelta);
+                      handleVolumeGesture(update.primaryDelta!);
                     }
                   : null,
                 child: AnimatedContainer(
@@ -650,11 +650,11 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
                         isPlaying = true;
                       }
                     } else {
-                      if (controller.value.isPlaying) {
-                        await controller.pause();
+                      if (controller!.value.isPlaying) {
+                        await controller!.pause();
                         isPlaying = false;
                       } else {
-                        await controller.play();
+                        await controller!.play();
                         isPlaying = true;
                       }
                     }
@@ -666,8 +666,8 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
                   child: Builder(
                     builder: (context) {
                       if (audioOnly) {
-                        return StreamBuilder<Object>(
-                          stream: Rx.combineLatest2<double, double, double>(
+                        return StreamBuilder<Object?>(
+                          stream: Rx.combineLatest2<double?, double, double?>(
                             _dragPositionSubject.stream,
                             Stream.periodic(Duration(milliseconds: 1000)),
                             (dragPosition, _) => dragPosition),
@@ -692,8 +692,8 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
                           }
                         );
                       } else {
-                        return StreamBuilder<Object>(
-                          stream: Rx.combineLatest2<double, double, double>(
+                        return StreamBuilder<Object?>(
+                          stream: Rx.combineLatest2<double?, double, double?>(
                             _dragPositionSubject.stream,
                             Stream.periodic(Duration(milliseconds: 1000)),
                             (dragPosition, _) => dragPosition),
@@ -704,10 +704,10 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
                               },
                               audioOnly: audioOnly,
                               segments: widget.segments,
-                              position: controller.value.position,
+                              position: controller!.value.position,
                               duration: controller == null
                                 ? Duration(seconds: 2)
-                                : controller.value.duration,
+                                : controller!.value.duration,
                               onSeek: (double newPosition) {
                                 handleSeek(Duration(seconds: newPosition.round()));
                                 setState(() => isSeeking = false);
@@ -740,8 +740,8 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
   }
 
   Widget _playbackQualityOverlay() {
-    List<String> qualities = [];
-    widget.streams.forEach((stream) {
+    List<String?> qualities = [];
+    widget.streams!.forEach((stream) {
       if (stream.formatSuffix.contains('webm'))
         qualities.add(stream.formatSuffix + " • " + stream.resolution);
     });
@@ -769,12 +769,12 @@ class StreamManifestPlayerState extends State<StreamManifestPlayer> {
           padding: EdgeInsets.only(top: 40),
           itemCount: qualities.length,
           itemBuilder: (context, index) {
-            String quality = qualities[index];
+            String quality = qualities[index]!;
             return GestureDetector(
               onTap: () {
-                int index = widget.streams.indexWhere((element) =>
+                int index = widget.streams!.indexWhere((element) =>
                   element.formatSuffix + " • " + element.resolution == quality);
-                _controller.setVideoUrl(widget.streams[index].url);
+                _controller!.setVideoUrl(widget.streams![index].url);
                 widget.onQualityChanged(quality.split("p").first);
                 setState(() => currentQuality = quality);
                 setState(() => showStreamQualityMenu = false);

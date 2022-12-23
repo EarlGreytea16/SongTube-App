@@ -8,8 +8,8 @@ import 'package:songtube/ui/sheets/createPlaylist.dart';
 class LocalPlaylistSheet extends StatefulWidget {
   
   const LocalPlaylistSheet({
-    @required this.song,
-    Key key }) : super(key: key);
+    required this.song,
+    Key? key }) : super(key: key);
   final MediaItem song;
 
   @override
@@ -39,9 +39,9 @@ class _LocalPlaylistSheetState extends State<LocalPlaylistSheet> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      Languages.of(context).labelAddToPlaylist,
+                      Languages.of(context)!.labelAddToPlaylist,
                       style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1.color,
+                        color: Theme.of(context).textTheme.bodyText1!.color,
                         fontSize: 18,
                         fontFamily: 'Product Sans',
                         fontWeight: FontWeight.w600
@@ -50,7 +50,7 @@ class _LocalPlaylistSheetState extends State<LocalPlaylistSheet> {
                     Text(
                       widget.song.title,
                       style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1.color,
+                        color: Theme.of(context).textTheme.bodyText1!.color,
                         fontSize: 12,
                         fontFamily: 'Product Sans',
                       ),
@@ -67,7 +67,7 @@ class _LocalPlaylistSheetState extends State<LocalPlaylistSheet> {
         Divider(
           height: 1,
           thickness: 1,
-          color: Colors.grey[600].withOpacity(0.1),
+          color: Colors.grey[600]!.withOpacity(0.1),
           indent: 12,
           endIndent: 12
         ),
@@ -82,18 +82,18 @@ class _LocalPlaylistSheetState extends State<LocalPlaylistSheet> {
                 children: [
                   Icon(Icons.playlist_play, color: Theme.of(context).accentColor),
                   SizedBox(width: 8),
-                  Text(playlist.name,
+                  Text(playlist.name!,
                     style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1.color
+                    color: Theme.of(context).textTheme.bodyText1!.color!
                       .withOpacity(0.8),
                     fontSize: 14,
                     fontWeight: FontWeight.w600
                   )),
                 ],
               ),
-              value: playlist.songs.any((element) => element.id == widget.song.id),
+              value: playlist.songs!.any((element) => element.id == widget.song.id),
               onChanged: (_) {
-                if (playlist.songs.any((element) => element.id == widget.song.id)) {
+                if (playlist.songs!.any((element) => element.id == widget.song.id)) {
                   prefs.localPlaylistDeleteSong(playlist.id, widget.song);
                 } else {
                   prefs.localPlaylistAddSong(playlist.id, widget.song);
@@ -146,8 +146,8 @@ class _LocalPlaylistSheetState extends State<LocalPlaylistSheet> {
                 child: Row(
                   children: [
                     Text(
-                      Languages.of(context).labelCreate + " " +
-                      Languages.of(context).labelPlaylist,
+                      Languages.of(context)!.labelCreate + " " +
+                      Languages.of(context)!.labelPlaylist,
                       style: TextStyle(
                         fontFamily: 'Product Sans',
                         fontWeight: FontWeight.w800,
@@ -174,8 +174,8 @@ class _LocalPlaylistSheetState extends State<LocalPlaylistSheet> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      Languages.of(context).labelCreate + " " +
-                      Languages.of(context).labelPlaylist,
+                      Languages.of(context)!.labelCreate + " " +
+                      Languages.of(context)!.labelPlaylist,
                       style: TextStyle(
                         fontFamily: 'Product Sans',
                         fontWeight: FontWeight.w600,

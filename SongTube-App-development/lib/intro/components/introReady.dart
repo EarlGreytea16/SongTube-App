@@ -10,7 +10,7 @@ import 'package:songtube/internal/languages.dart';
 import 'package:songtube/ui/animations/showUp.dart';
 
 class IntroReady extends StatelessWidget {
-  final Function onEnd;
+  final Function? onEnd;
   IntroReady({
     this.onEnd
   });
@@ -49,11 +49,11 @@ class IntroReady extends StatelessWidget {
                           style: GoogleFonts.poppins(
                             fontSize: 28,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context).textTheme.bodyText1.color
+                            color: Theme.of(context).textTheme.bodyText1!.color
                           ),
                           children: [
                             TextSpan(
-                              text: Languages.of(context).labelConfigReady
+                              text: Languages.of(context)!.labelConfigReady
                             )
                           ]
                         ),
@@ -81,14 +81,14 @@ class IntroReady extends StatelessWidget {
                           style: GoogleFonts.poppins(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context).textTheme.bodyText1.color
+                            color: Theme.of(context).textTheme.bodyText1!.color
                           ),
                           children: [
                             TextSpan(
                               text: 
-                                Languages.of(context).labelIntroductionIsOver
+                                Languages.of(context)!.labelIntroductionIsOver
                                 + "\n" +
-                                Languages.of(context).labelEnjoy.toLowerCase() + " "
+                                Languages.of(context)!.labelEnjoy.toLowerCase() + " "
                             ),
                             TextSpan(
                               text: "SongTube!",
@@ -117,14 +117,14 @@ class IntroReady extends StatelessWidget {
             child: FloatingActionButton.extended(
               backgroundColor: Theme.of(context).accentColor,
               label: Text(
-                Languages.of(context).labelGoHome,
+                Languages.of(context)!.labelGoHome,
                 style: GoogleFonts.poppins(
                   color: Colors.white,
                   fontSize: 22,
                   fontWeight: FontWeight.w600
                 ),
               ),
-              onPressed: onEnd,
+              onPressed: onEnd as void Function()?,
             ),
           ),
         ),

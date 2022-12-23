@@ -15,7 +15,7 @@ class LocalVideosPage extends StatefulWidget {
 class _LocalVideosPageState extends State<LocalVideosPage> {
   
   // Current Viewing Folder
-  FolderItem folderOnView;
+  FolderItem? folderOnView;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _LocalVideosPageState extends State<LocalVideosPage> {
             fontFamily: 'Product Sans',
             fontWeight: FontWeight.w600,
             fontSize: 24,
-            color: Theme.of(context).textTheme.bodyText1.color
+            color: Theme.of(context).textTheme.bodyText1!.color
           ),
         ),
         leading: IconButton(
@@ -45,7 +45,7 @@ class _LocalVideosPageState extends State<LocalVideosPage> {
           Divider(
             height: 1,
             thickness: 1,
-            color: Colors.grey[600].withOpacity(0.1),
+            color: Colors.grey[600]!.withOpacity(0.1),
             indent: 12,
             endIndent: 12
           ),
@@ -65,7 +65,7 @@ class _LocalVideosPageState extends State<LocalVideosPage> {
                       return Future.value(false);
                     },
                     child: VideosOnFolderListView(
-                      list: folderOnView.videos,
+                      list: folderOnView!.videos,
                       onVideoTap: (VideoFile video) {
                         Navigator.push(
                           context,

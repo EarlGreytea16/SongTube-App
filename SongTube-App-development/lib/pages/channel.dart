@@ -20,13 +20,13 @@ import 'package:string_validator/string_validator.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class YoutubeChannelPage extends StatefulWidget {
-  final String url;
-  final String name;
-  final String lowResAvatar;
-  final String heroTag;
+  final String? url;
+  final String? name;
+  final String? lowResAvatar;
+  final String? heroTag;
   YoutubeChannelPage({
-    @required this.url,
-    @required this.name,
+    required this.url,
+    required this.name,
     this.lowResAvatar,
     this.heroTag = ""
   });
@@ -37,9 +37,9 @@ class YoutubeChannelPage extends StatefulWidget {
 
 class _YoutubeChannelPageState extends State<YoutubeChannelPage> {
 
-  YoutubeChannel channel;
+  YoutubeChannel? channel;
 
-  GlobalKey<ScaffoldState> scaffoldKey;
+  GlobalKey<ScaffoldState>? scaffoldKey;
 
   @override
   void initState() {
@@ -136,7 +136,7 @@ class _YoutubeChannelPageState extends State<YoutubeChannelPage> {
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600,
                                     fontFamily: 'Product Sans',
-                                    color: Theme.of(context).textTheme.bodyText1.color,
+                                    color: Theme.of(context).textTheme.bodyText1!.color,
                                   ),
                                 ),
                                 // Subscribe button and subs count
@@ -147,7 +147,7 @@ class _YoutubeChannelPageState extends State<YoutubeChannelPage> {
                                     ChannelSubscribeComponent(
                                       channelName: widget.name,
                                       channel: channel,
-                                      scaffoldState: scaffoldKey.currentState
+                                      scaffoldState: scaffoldKey!.currentState
                                     ),
                                     SizedBox(width: 8),
                                     Text(
@@ -156,7 +156,7 @@ class _YoutubeChannelPageState extends State<YoutubeChannelPage> {
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
                                         fontFamily: 'Product Sans',
-                                        color: Theme.of(context).textTheme.bodyText1.color
+                                        color: Theme.of(context).textTheme.bodyText1!.color!
                                           .withOpacity(0.6)
                                       ),
                                     ),
@@ -170,7 +170,7 @@ class _YoutubeChannelPageState extends State<YoutubeChannelPage> {
                           Divider(
                             height: 1,
                             thickness: 1,
-                            color: Colors.grey[600].withOpacity(0.1),
+                            color: Colors.grey[600]!.withOpacity(0.1),
                             indent: 12,
                             endIndent: 12
                           ),
@@ -179,7 +179,7 @@ class _YoutubeChannelPageState extends State<YoutubeChannelPage> {
                             child: FadeInTransition(
                               delay: Duration(milliseconds: 600),
                               child: FutureBuilder<List<StreamInfoItem>>(
-                                future: ChannelExtractor.getChannelUploads(widget.url),
+                                future: ChannelExtractor.getChannelUploads(widget.url!),
                                 builder: (context, AsyncSnapshot<List<StreamInfoItem>> snapshot) {
                                   return StreamsListTileView(
                                     topPadding: true,
@@ -213,12 +213,12 @@ class _YoutubeChannelPageState extends State<YoutubeChannelPage> {
                             border: Border.all(width: 2, color: Theme.of(context).scaffoldBackgroundColor)
                           ),
                           child: Hero(
-                            tag: widget.heroTag,
+                            tag: widget.heroTag!,
                             child: FutureBuilder(
                               future: AvatarHandler.getAvatarUrl(widget.name, widget.url),
                               builder: (context, snapshot) {
                                 String avatar = snapshot.hasData
-                                  ? snapshot.data : widget.lowResAvatar;
+                                  ? snapshot.data : widget.lowResAvatar!;
                                 return Container(
                                   height: 100,
                                   width: 100,
@@ -227,9 +227,9 @@ class _YoutubeChannelPageState extends State<YoutubeChannelPage> {
                                     child: ImageFade(
                                       duration: Duration(milliseconds: 300),
                                       placeholder: Image.memory(kTransparentImage),
-                                      image: isURL(avatar)
+                                      image: (isURL(avatar)
                                         ? NetworkImage(avatar)
-                                        : FileImage(File(avatar)),
+                                        : FileImage(File(avatar))) as ImageProvider<Object>?,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -265,7 +265,7 @@ class _YoutubeChannelPageState extends State<YoutubeChannelPage> {
     } else {
       return FadeInImage(
         placeholder: MemoryImage(kTransparentImage),
-        image: NetworkImage(channel.bannerUrl),
+        image: NetworkImage(channel!.bannerUrl!),
         fit: BoxFit.fitHeight,
         height: 150,
       );

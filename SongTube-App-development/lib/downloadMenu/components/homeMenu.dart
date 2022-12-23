@@ -9,14 +9,14 @@ class DownloadMenuHome extends StatelessWidget {
   final Function onAudioTap;
   final Function onVideoTap;
   final Function onPlaylistTap;
-  final List<StreamInfoItem> playlistVideos;
+  final List<StreamInfoItem?>? playlistVideos;
   final scaffoldState;
   DownloadMenuHome({
-    @required this.onBack,
-    @required this.onAudioTap,
-    @required this.onVideoTap,
-    @required this.onPlaylistTap,
-    @required this.playlistVideos,
+    required this.onBack,
+    required this.onAudioTap,
+    required this.onVideoTap,
+    required this.onPlaylistTap,
+    required this.playlistVideos,
     this.scaffoldState
   });
   @override
@@ -33,10 +33,10 @@ class DownloadMenuHome extends StatelessWidget {
             children: [
               IconButton(
                 icon: Icon(Icons.arrow_back_ios_new_rounded),
-                onPressed: onBack
+                onPressed: onBack as void Function()?
               ),
               SizedBox(width: 4),
-              Text(Languages.of(context).labelDownload, style: TextStyle(
+              Text(Languages.of(context)!.labelDownload, style: TextStyle(
                 fontSize: 24,
                 fontFamily: "Product Sans",
                 fontWeight: FontWeight.w600
@@ -56,15 +56,15 @@ class DownloadMenuHome extends StatelessWidget {
             children: [
               // Audio
               GestureDetector(
-                onTap: onAudioTap,
+                onTap: onAudioTap as void Function()?,
                 child: ListTile(
                   leading: Icon(EvaIcons.musicOutline, size: 35,
                     color: Theme.of(context).accentColor),
                   title: Text(
-                    Languages.of(context).labelMusic,
+                    Languages.of(context)!.labelMusic,
                     style: TextStyle(
                       fontSize: 20,
-                      color: Theme.of(context).textTheme.bodyText1.color.withOpacity(0.9),
+                      color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.9),
                       fontFamily: "Product Sans",
                       fontWeight: FontWeight.w600
                     )
@@ -72,7 +72,7 @@ class DownloadMenuHome extends StatelessWidget {
                   subtitle: Text(
                     'Select quality, convert and download audio only',
                     style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1.color.withOpacity(0.8),
+                      color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.8),
                       fontSize: 14,
                       fontWeight: FontWeight.w600
                     ),
@@ -82,15 +82,15 @@ class DownloadMenuHome extends StatelessWidget {
               const SizedBox(height: 24),
               // Video
               GestureDetector(
-                onTap: onVideoTap,
+                onTap: onVideoTap as void Function()?,
                 child: ListTile(
                   leading: Icon(EvaIcons.videoOutline, size: 35,
                     color: Theme.of(context).accentColor),
                   title: Text(
-                    Languages.of(context).labelVideo,
+                    Languages.of(context)!.labelVideo,
                     style: TextStyle(
                       fontSize: 20,
-                      color: Theme.of(context).textTheme.bodyText1.color.withOpacity(0.9),
+                      color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.9),
                       fontFamily: "Product Sans",
                       fontWeight: FontWeight.w600
                     )
@@ -98,7 +98,7 @@ class DownloadMenuHome extends StatelessWidget {
                   subtitle: Text(
                     'Choose a Video quality from the list and download it',
                     style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1.color.withOpacity(0.8),
+                      color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.8),
                       fontSize: 14,
                       fontWeight: FontWeight.w600
                     ),
@@ -109,15 +109,15 @@ class DownloadMenuHome extends StatelessWidget {
               //Playlist
               if (playlistVideos != null)
               GestureDetector(
-                onTap: onPlaylistTap,
+                onTap: onPlaylistTap as void Function()?,
                 child: ListTile(
                   leading: Icon(MdiIcons.playlistMusicOutline, size: 35,
                     color: Theme.of(context).accentColor),
                   title: Text(
-                    Languages.of(context).labelPlaylist,
+                    Languages.of(context)!.labelPlaylist,
                     style: TextStyle(
                       fontSize: 20,
-                      color: Theme.of(context).textTheme.bodyText1.color.withOpacity(0.9),
+                      color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.9),
                       fontFamily: "Product Sans",
                       fontWeight: FontWeight.w600
                     )
@@ -125,7 +125,7 @@ class DownloadMenuHome extends StatelessWidget {
                   subtitle: Text(
                     'Download everything as video or audio',
                     style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyText1.color.withOpacity(0.8),
+                      color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.8),
                       fontSize: 14,
                       fontWeight: FontWeight.w600
                     ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:songtube/internal/languages.dart';
 
 class CreatePlaylistSheet extends StatefulWidget {
-  const CreatePlaylistSheet({ Key key }) : super(key: key);
+  const CreatePlaylistSheet({ Key? key }) : super(key: key);
 
   @override
   State<CreatePlaylistSheet> createState() => _CreatePlaylistSheetState();
@@ -33,10 +33,10 @@ class _CreatePlaylistSheetState extends State<CreatePlaylistSheet> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      Languages.of(context).labelCreate + " " +
-                      Languages.of(context).labelPlaylist,
+                      Languages.of(context)!.labelCreate + " " +
+                      Languages.of(context)!.labelPlaylist,
                       style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1.color,
+                        color: Theme.of(context).textTheme.bodyText1!.color,
                         fontSize: 18,
                         fontFamily: 'Product Sans',
                         fontWeight: FontWeight.w600
@@ -52,7 +52,7 @@ class _CreatePlaylistSheetState extends State<CreatePlaylistSheet> {
         Divider(
           height: 1,
           thickness: 1,
-          color: Colors.grey[600].withOpacity(0.1),
+          color: Colors.grey[600]!.withOpacity(0.1),
           indent: 12,
           endIndent: 12
         ),
@@ -64,7 +64,7 @@ class _CreatePlaylistSheetState extends State<CreatePlaylistSheet> {
           ),
           child: TextField(
             style: TextStyle(
-              color: Theme.of(context).textTheme.bodyText1.color,
+              color: Theme.of(context).textTheme.bodyText1!.color,
               fontSize: 14
             ),
             controller: nameController,
@@ -72,9 +72,9 @@ class _CreatePlaylistSheetState extends State<CreatePlaylistSheet> {
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.playlist_play, color: Theme.of(context).accentColor),
               contentPadding: EdgeInsets.all(14.0),
-              hintText: Languages.of(context).labelEditorTitle,
+              hintText: Languages.of(context)!.labelEditorTitle,
               hintStyle: TextStyle(
-                color: Theme.of(context).textTheme.bodyText1.color.withOpacity(0.4),
+                color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.4),
                 fontSize: 14
               ),
               border: UnderlineInputBorder(
@@ -94,7 +94,7 @@ class _CreatePlaylistSheetState extends State<CreatePlaylistSheet> {
             children: [
               TextButton(
                 child: Text(
-                  Languages.of(context).labelCancel,
+                  Languages.of(context)!.labelCancel,
                   style: TextStyle(
                     color: Theme.of(context).accentColor
                   ),
@@ -113,11 +113,11 @@ class _CreatePlaylistSheetState extends State<CreatePlaylistSheet> {
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: TextButton(
                   child: Text(
-                    Languages.of(context).labelCreate,
+                    Languages.of(context)!.labelCreate,
                     style: TextStyle(
                       color: nameController.text.isNotEmpty && nameController.text.length > 3
                         ? Colors.white
-                        : Theme.of(context).textTheme.bodyText1.color 
+                        : Theme.of(context).textTheme.bodyText1!.color! 
                             .withOpacity(0.4)
                     ),
                   ),

@@ -19,7 +19,7 @@ class AboutPage extends StatelessWidget {
             fontFamily: 'Product Sans',
             fontWeight: FontWeight.w600,
             fontSize: 24,
-            color: Theme.of(context).textTheme.bodyText1.color
+            color: Theme.of(context).textTheme.bodyText1!.color
           ),
         ),
         leading: IconButton(
@@ -75,7 +75,7 @@ class AboutPage extends StatelessWidget {
                 Text(
                   "SongTube",
                   style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1.color,
+                    color: Theme.of(context).textTheme.bodyText1!.color,
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     fontFamily: 'Product Sans'
@@ -89,7 +89,7 @@ class AboutPage extends StatelessWidget {
               text: TextSpan(
                 style: TextStyle(
                   fontSize: 14,
-                  color: Theme.of(context).textTheme.bodyText1.color
+                  color: Theme.of(context).textTheme.bodyText1!.color
                 ),
                 children: [
                   TextSpan(
@@ -116,7 +116,7 @@ class AboutPage extends StatelessWidget {
                 Text(
                   "Airis Team",
                   style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1.color,
+                    color: Theme.of(context).textTheme.bodyText1!.color,
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     fontFamily: 'Product Sans'
@@ -172,14 +172,14 @@ class AboutPage extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   fontFamily: 'Product Sans',
-                  color: Theme.of(context).textTheme.bodyText1.color
+                  color: Theme.of(context).textTheme.bodyText1!.color
                 )
               ),
               subtitle: Text(
                 "artx4dev@gmail.com",
                 style: TextStyle(
                   fontFamily: 'Product Sans',
-                  color: Theme.of(context).textTheme.bodyText1.color
+                  color: Theme.of(context).textTheme.bodyText1!.color
                 ),
               ),
             ),
@@ -199,14 +199,14 @@ class AboutPage extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   fontFamily: 'Product Sans',
-                  color: Theme.of(context).textTheme.bodyText1.color
+                  color: Theme.of(context).textTheme.bodyText1!.color
                 )
               ),
               subtitle: Text(
                 "airisdevgroup@gmail.com",
                 style: TextStyle(
                   fontFamily: 'Product Sans',
-                  color: Theme.of(context).textTheme.bodyText1.color
+                  color: Theme.of(context).textTheme.bodyText1!.color
                 ),
               ),
             ),

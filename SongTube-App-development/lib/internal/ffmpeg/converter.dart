@@ -25,9 +25,9 @@ enum FFmpegTask {
 class FFmpegConverter {
   
   // Declare our FFmpeg instances
-  FlutterFFmpeg flutterFFmpeg;
-  FlutterFFprobe flutterFFprobe;
-  FlutterFFmpegConfig ffconfig;
+  late FlutterFFmpeg flutterFFmpeg;
+  late FlutterFFprobe flutterFFprobe;
+  FlutterFFmpegConfig? ffconfig;
   // Initialize FFmpegConverter
   FFmpegConverter() {
     flutterFFmpeg = new FlutterFFmpeg();
@@ -36,10 +36,10 @@ class FFmpegConverter {
   }
 
   /// Gets the [Duration] of the Audio file provided
-  Future<String> getMediaDuration(String mediaFile) async {
+  Future<String?> getMediaDuration(String mediaFile) async {
     assert(mediaFile != "" || mediaFile != null);
     if (!await File(mediaFile).exists()) return null;
-    return (await flutterFFprobe.getMediaInformation(mediaFile)).getMediaProperties()["duration"];
+    return (await flutterFFprobe.getMediaInformation(mediaFile)).getMediaProperties()!["duration"];
   }
 
   /// Gets the file Extension of any Media [File]
@@ -62,15 +62,15 @@ class FFmpegConverter {
   /// converts the [Audio] to the compatible format of the [Video]
   /// (only if it's needed)
   Future<File> writeAudioToVideo({
-    String videoFormat,
-    String videoPath,
-    String audioPath,
+    String? videoFormat,
+    required String videoPath,
+    required String audioPath,
   }) async {
     assert(videoFormat != "" || videoFormat != null);
     assert(videoPath != "" || videoPath != null);
     assert(audioPath != "" || audioPath != null);
     List<String> _argsList = <String>[];
-    String outDir = (await getExternalStorageDirectory()).path + "/";
+    String outDir = (await getExternalStorageDirectory())!.path + "/";
     File output = File(outDir + RandomString.getRandomString(10));
     String audioFormat = await getMediaFormat(audioPath);
     if (videoFormat == "webm" && audioFormat == "ogg" || videoFormat == "mp4" && audioFormat == "m4a") {
@@ -120,16 +120,16 @@ class FFmpegConverter {
   /// Converting to anything provided will set the conversion bitrate to 256k
   /// to avoid any quality loss
   Future<File> convertAudio({
-    String audioFile,
-    FFmpegTask task,
+    required String audioFile,
+    required FFmpegTask task,
   }) async {
     assert(audioFile != "" || audioFile != null);
     assert(task != null);
     if (!await audioConversionRequired(task, audioFile)) {
       return File(audioFile);
     }
-    List<String> _argsList;
-    String outDir = (await getExternalStorageDirectory()).path + "/";
+    List<String>? _argsList;
+    String outDir = (await getExternalStorageDirectory())!.path + "/";
     File output = File(outDir + RandomString.getRandomString(10));
     if (task == FFmpegTask.ConvertToAAC) {
       _argsList = [
@@ -194,7 +194,7 @@ class FFmpegConverter {
     assert(audioPath != "" || audioPath != null);
     assert(audioModifiers != null);
     if (audioModifiers == null) return File(audioPath);
-    String outDir = (await getExternalStorageDirectory()).path + "/";
+    String outDir = (await getExternalStorageDirectory())!.path + "/";
     String format = await getMediaFormat(audioPath);
     File output = File(outDir +
       RandomString.getRandomString(10) + ".$format");
@@ -243,7 +243,7 @@ class FFmpegConverter {
   /// incompatible one
   Future<File> clearFileMetadata(String audioFile) async {
     assert(audioFile != "" || audioFile != null);
-    String outDir = (await getExternalStorageDirectory()).path + "/";
+    String outDir = (await getExternalStorageDirectory())!.path + "/";
     String fileFormat = await getMediaFormat(audioFile);
     File output = File(outDir + RandomString.getRandomString(10) + ".$fileFormat");
     List<String> _argsList = [
@@ -265,7 +265,7 @@ class FFmpegConverter {
   /// Normalize any [Audio] file using FFmpeg's dynaudnorm
   Future<File> normalizeAudio(String audioFile) async {
     assert(audioFile != "" || audioFile != null);
-    String outDir = (await getExternalStorageDirectory()).path + "/";
+    String outDir = (await getExternalStorageDirectory())!.path + "/";
     String fileFormat = await getMediaFormat(audioFile);
     File output = File(outDir + RandomString.getRandomString(10) + ".$fileFormat");
     List<String> _argsList = [
@@ -288,7 +288,7 @@ class FFmpegConverter {
   /// and returns a new File
   Future<File> extractAudio(String audioFile, int start, int end) async {
     assert(audioFile != "" || audioFile != null);
-    String outDir = (await getExternalStorageDirectory()).path + "/";
+    String outDir = (await getExternalStorageDirectory())!.path + "/";
     String fileFormat = await getMediaFormat(audioFile);
     File output = File(outDir + RandomString.getRandomString(10) + ".$fileFormat");
     List<String> _argsList = [

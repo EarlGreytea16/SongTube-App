@@ -16,15 +16,15 @@ import 'package:songtube/internal/models/tagsControllers.dart';
 import 'package:songtube/provider/configurationProvider.dart';
 
 class VideoDownloadMenu extends StatefulWidget {
-  final YoutubeVideo video;
-  final AudioOnlyStream audioStream;
+  final YoutubeVideo? video;
+  final AudioOnlyStream? audioStream;
   final Function(DownloadItem) onOptionSelect;
   final Function onBack;
   VideoDownloadMenu({
-    @required this.video,
-    @required this.onOptionSelect,
-    @required this.audioStream,
-    @required this.onBack
+    required this.video,
+    required this.onOptionSelect,
+    required this.audioStream,
+    required this.onBack
   });
 
   @override
@@ -48,10 +48,10 @@ class _VideoDownloadMenuState extends State<VideoDownloadMenu> {
             children: [
               IconButton(
                 icon: Icon(Icons.arrow_back_ios_new_rounded),
-                onPressed: widget.onBack
+                onPressed: widget.onBack as void Function()?
               ),
               SizedBox(width: 4),
-              Text(Languages.of(context).labelSelectVideo, style: TextStyle(
+              Text(Languages.of(context)!.labelSelectVideo, style: TextStyle(
                 fontSize: 24,
                 fontFamily: "Product Sans",
                 fontWeight: FontWeight.w600
@@ -61,15 +61,15 @@ class _VideoDownloadMenuState extends State<VideoDownloadMenu> {
         ),
         Expanded(
           child: FutureBuilder(
-            future: ExtractorHttpClient.getContentLength(widget.audioStream.url),
+            future: ExtractorHttpClient.getContentLength(widget.audioStream!.url!),
             builder: (context, audioStreamData) {
               return GroupedListView<VideoOnlyStream, String>(
                 stickyHeaderBackgroundColor: Theme.of(context)
                   .scaffoldBackgroundColor,
                 
-                elements: widget.video.videoOnlyStreams,
+                elements: widget.video!.videoOnlyStreams!,
                 groupBy: (element) =>
-                  (element.resolution.split("p").first+"p"),
+                  (element.resolution!.split("p").first+"p"),
                 groupSeparatorBuilder: (String groupByValue) =>
                   Container(
                     padding: EdgeInsets.only(
@@ -101,7 +101,7 @@ class _VideoDownloadMenuState extends State<VideoDownloadMenu> {
                   int.parse(item1.split("p").first)
                   .compareTo(int.parse(item2.split("p").first)),
                 itemBuilder: (context, VideoOnlyStream element) {
-                  String framerateString = element.resolution.split("p").last;
+                  String framerateString = element.resolution!.split("p").last;
                   int framerate = int.parse(
                     framerateString == "" ? "30" : framerateString
                   );
@@ -112,11 +112,11 @@ class _VideoDownloadMenuState extends State<VideoDownloadMenu> {
                     false, <StreamSegmentTrack>[]
                   ];
                   TagsControllers tags = TagsControllers();
-                  tags.updateTextControllers(widget.video);
+                  tags.updateTextControllers(widget.video!);
                   return GestureDetector(
                     onTap: () {
                       widget.onOptionSelect(DownloadItem.fetchData(
-                        widget.video,
+                        widget.video!,
                         configList,
                         tags,
                         Provider.of<ConfigurationProvider>(context, listen: false)
@@ -140,7 +140,7 @@ class _VideoDownloadMenuState extends State<VideoDownloadMenu> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${element.formatSuffix.toUpperCase()}",
+                                  "${element.formatSuffix!.toUpperCase()}",
                                   overflow: TextOverflow.fade,
                                   textAlign: TextAlign.left,
                                   softWrap: false,
@@ -151,7 +151,7 @@ class _VideoDownloadMenuState extends State<VideoDownloadMenu> {
                                   ),
                                 ),
                                 FutureBuilder(
-                                  future: ExtractorHttpClient.getContentLength(element.url),
+                                  future: ExtractorHttpClient.getContentLength(element.url!),
                                   builder: (context, snapshot) {
                                     return Text(
                                       snapshot.hasData && audioStreamData.hasData

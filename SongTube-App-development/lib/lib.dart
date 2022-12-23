@@ -51,10 +51,10 @@ class Lib extends StatefulWidget {
 class _LibState extends State<Lib> {
 
   // Current Screen Index
-  int _screenIndex;
+  int? _screenIndex;
 
   // This Widget ScaffoldKey
-  GlobalKey<ScaffoldState> _internalScaffoldKey;
+  GlobalKey<ScaffoldState>? _internalScaffoldKey;
 
   @override
   void initState() {
@@ -95,14 +95,14 @@ class _LibState extends State<Lib> {
             );
           }
         }
-        String intent = await NativeMethod.handleIntent();
+        String? intent = await NativeMethod.handleIntent();
         if (intent == null) return;
         _handleIntent(intent);
         return;
       })
     );
     Provider.of<MediaProvider>(context, listen: false).loadSongList().then((value) {
-      Provider.of<ConfigurationProvider>(context, listen: false).preferences.saveCachedSongs(value);
+      Provider.of<ConfigurationProvider>(context, listen: false).preferences.saveCachedSongs(value!);
     });
     Provider.of<MediaProvider>(context, listen: false).loadVideoList();
     // Disclaimer
@@ -128,7 +128,7 @@ class _LibState extends State<Lib> {
       bottomSheets.add(DisclaimerSheet());
       config.disclaimerAccepted = true;
     }
-    if (config.showDownloadFixDialog && config.preferences.sdkInt >= 30) {
+    if (config.showDownloadFixDialog && config.preferences.sdkInt! >= 30) {
       bottomSheets.add(DownloadFixSheet());
       config.showDownloadFixDialog = false;
     }
@@ -157,7 +157,7 @@ class _LibState extends State<Lib> {
       double appVersion = double
         .parse(android.version.replaceRange(3, 5, ""));
       getLatestRelease().then((details) {
-        double newVersion = double.parse(details.version
+        double newVersion = double.parse(details!.version!
           .split("+").first.trim().replaceRange(3, 5, ""));
         if (appVersion < newVersion) {
           // Show the user an Update is available
@@ -178,8 +178,8 @@ class _LibState extends State<Lib> {
   }
 
   void _handleIntent(String intent) async {
-    String streamId = await YoutubeId.getIdFromStreamUrl(intent);
-    String playlistId = await YoutubeId.getIdFromPlaylistUrl(intent);
+    String? streamId = await YoutubeId.getIdFromStreamUrl(intent);
+    String? playlistId = await YoutubeId.getIdFromPlaylistUrl(intent);
     if (streamId != null) {
       showDialog(
         context: context,
@@ -222,12 +222,12 @@ class _LibState extends State<Lib> {
           builder: (context, mediaProvider, manager, pageProvider, child) {
             return WillPopScope(
               onWillPop: () {
-                if (pageProvider.fwController.isAttached && pageProvider.fwController.isPanelOpen) {
-                  pageProvider.fwController.close();
+                if (pageProvider.fwController!.isAttached && pageProvider.fwController!.isPanelOpen) {
+                  pageProvider.fwController!.close();
                   return Future.value(false);
                 } else if (mediaProvider.slidingPanelOpen) {
                   mediaProvider.slidingPanelOpen = false;
-                  mediaProvider.fwController.close();
+                  mediaProvider.fwController!.close();
                   return Future.value(false);
                 } else if (_screenIndex != 0) {
                   setState(() => _screenIndex = 0);
@@ -243,7 +243,7 @@ class _LibState extends State<Lib> {
                   return Future.value(true);
                 }
               },
-              child: child,
+              child: child!,
             );
           },
           child: PageTransitionSwitcher(
@@ -343,7 +343,7 @@ class _LibState extends State<Lib> {
       backdropBlurStrength: prefs.enableBlurUI ? 15 : 0,
       maxHeight: MediaQuery.of(context).size.height,
       onSlide: (double position) {
-        int sdkInt = config.preferences.sdkInt;
+        int? sdkInt = config.preferences.sdkInt;
         final iconColor = Theme.of(context).brightness == Brightness.dark
           ? Brightness.light : Brightness.dark;
         if (position > 0.95) {
@@ -367,7 +367,7 @@ class _LibState extends State<Lib> {
     );
   }
 
-  FloatingWidgetController _currentFloatingWidgetController() {
+  FloatingWidgetController? _currentFloatingWidgetController() {
     MediaProvider mediaProvider = Provider.of<MediaProvider>(context);
     VideoPageProvider pageProvider = Provider.of<VideoPageProvider>(context);
     if (pageProvider.infoItem != null) {

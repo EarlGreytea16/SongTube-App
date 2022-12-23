@@ -10,20 +10,20 @@ import 'package:transparent_image/transparent_image.dart';
 class MusicScreenTypeExpandable extends StatefulWidget {
   const MusicScreenTypeExpandable({
     this.id,
-    @required this.title,
-    @required this.songs,
+    required this.title,
+    required this.songs,
     this.description,
     this.thumbnail,
     this.lowResThumbnail,
     this.onDeletePlaylist,
-    Key key }) : super(key: key);
-  final String id;
-  final String title;
-  final String description;
-  final String thumbnail;
-  final String lowResThumbnail;
-  final List<MediaItem> songs;
-  final Function() onDeletePlaylist;
+    Key? key }) : super(key: key);
+  final String? id;
+  final String? title;
+  final String? description;
+  final String? thumbnail;
+  final String? lowResThumbnail;
+  final List<MediaItem>? songs;
+  final Function()? onDeletePlaylist;
 
   @override
   _MusicScreenTypeExpandableState createState() => _MusicScreenTypeExpandableState();
@@ -70,14 +70,14 @@ class _MusicScreenTypeExpandableState extends State<MusicScreenTypeExpandable> {
                     child: ImageFade(
                       duration: Duration(milliseconds: 300),
                       placeholder: !isPlaylist
-                        ? Image.file(File(widget.lowResThumbnail))
+                        ? Image.file(File(widget.lowResThumbnail!))
                         : Image.memory(kTransparentImage),
                       image: !isPlaylist
                         ? FileImage(File(widget.thumbnail == null
-                          ? widget.lowResThumbnail : widget.thumbnail))
-                        : widget.lowResThumbnail != null
-                          ? FileImage(File(widget.lowResThumbnail))
-                          : MemoryImage(kTransparentImage),
+                          ? widget.lowResThumbnail! : widget.thumbnail!))
+                        : (widget.lowResThumbnail != null
+                          ? FileImage(File(widget.lowResThumbnail!))
+                          : MemoryImage(kTransparentImage)) as ImageProvider<Object>?,
                       fit: BoxFit.cover,
                     ),
                   )
@@ -90,12 +90,12 @@ class _MusicScreenTypeExpandableState extends State<MusicScreenTypeExpandable> {
                       Container(
                         margin: EdgeInsets.only(left: 8, right: 8),
                         child: Text(
-                          widget.title,
+                          widget.title!,
                           maxLines: 1,
                           overflow: TextOverflow.fade,
                           softWrap: false,
                           style: TextStyle(
-                            color: Theme.of(context).textTheme.bodyText1.color,
+                            color: Theme.of(context).textTheme.bodyText1!.color,
                             fontFamily: 'Product Sans',
                             fontWeight: FontWeight.w600,
                             fontSize: 20
@@ -106,10 +106,10 @@ class _MusicScreenTypeExpandableState extends State<MusicScreenTypeExpandable> {
                       Container(
                         margin: EdgeInsets.only(left: 8, right: 8),
                         child: Text(
-                          widget.description,
+                          widget.description!,
                           maxLines: 1,
                           style: TextStyle(
-                            color: Theme.of(context).textTheme.bodyText1.color
+                            color: Theme.of(context).textTheme.bodyText1!.color!
                               .withOpacity(0.7),
                             fontFamily: 'Product Sans',
                             fontWeight: FontWeight.w600,
@@ -139,11 +139,11 @@ class _MusicScreenTypeExpandableState extends State<MusicScreenTypeExpandable> {
                           ]
                         ),
                         child: Text(
-                          "${widget.songs.length} Songs",
+                          "${widget.songs!.length} Songs",
                           style: TextStyle(
                             color: selected
                               ? Colors.white
-                              : Theme.of(context).textTheme.bodyText1.color,
+                              : Theme.of(context).textTheme.bodyText1!.color,
                             fontSize: 10,
                             fontFamily: 'Product Sans',
                             fontWeight: FontWeight.w700
