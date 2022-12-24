@@ -29,7 +29,7 @@ class DisclaimerSheet extends StatelessWidget {
             );
           },
           child: Text("License", style: GoogleFonts.poppins(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             fontWeight: FontWeight.w600,
             fontSize: 18
           )),

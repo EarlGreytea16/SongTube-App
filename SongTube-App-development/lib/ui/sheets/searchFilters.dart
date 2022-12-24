@@ -44,7 +44,7 @@ class SearchFiltersSheet extends StatelessWidget {
           child: Text(
             "Close",
             style: TextStyle(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
               fontFamily: 'Product Sans',
               fontWeight: FontWeight.w700,
               fontSize: 18

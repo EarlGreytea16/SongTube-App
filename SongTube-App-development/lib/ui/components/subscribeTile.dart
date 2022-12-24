@@ -73,7 +73,7 @@ class _ChannelSubscribeComponentState extends State<ChannelSubscribeComponent> w
                   color: isSubscribed || widget.channel == null
                     ? Theme.of(context).iconTheme.color
                         .withOpacity(0.6)
-                    : Theme.of(context).accentColor,
+                    : Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
                 ),

@@ -87,7 +87,7 @@ class _IntroThemeState extends State<IntroTheme> {
                           TextSpan(
                             text: Languages.of(context).labelAppCustomization,
                             style: TextStyle(
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               fontWeight: FontWeight.w600
                             )
                           )
@@ -126,7 +126,7 @@ class _IntroThemeState extends State<IntroTheme> {
                           TextSpan(
                             text: Languages.of(context).labelTheme + "!",
                             style: TextStyle(
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               fontWeight: FontWeight.w700
                             )
                           )
@@ -166,7 +166,7 @@ class _IntroThemeState extends State<IntroTheme> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: theme == ThemeSelected.System
-                              ? Theme.of(context).accentColor
+                              ? Theme.of(context).colorScheme.secondary
                               : Theme.of(context).cardColor.withOpacity(0.4),
                             boxShadow: [
                               BoxShadow(
@@ -215,7 +215,7 @@ class _IntroThemeState extends State<IntroTheme> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: theme == ThemeSelected.Light
-                              ? Theme.of(context).accentColor
+                              ? Theme.of(context).colorScheme.secondary
                               : Theme.of(context).cardColor.withOpacity(0.4),
                             boxShadow: [
                               BoxShadow(
@@ -264,7 +264,7 @@ class _IntroThemeState extends State<IntroTheme> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: theme == ThemeSelected.Dark
-                              ? Theme.of(context).accentColor
+                              ? Theme.of(context).colorScheme.secondary
                               : Theme.of(context).cardColor.withOpacity(0.4),
                             boxShadow: [
                               BoxShadow(

@@ -82,7 +82,7 @@ class _VideoDownloadMenuState extends State<VideoDownloadMenu> {
                     child: Row(
                       children: [
                         Icon(EvaIcons.monitorOutline,
-                          color: Theme.of(context).accentColor),
+                          color: Theme.of(context).colorScheme.secondary),
                         SizedBox(width: 8),
                         Text(
                           groupByValue,

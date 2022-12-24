@@ -69,7 +69,7 @@ class _StyledBottomSheetListState extends State<StyledBottomSheetList> with Tick
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           letterSpacing: 3
                         ),
                       ),
@@ -89,7 +89,7 @@ class _StyledBottomSheetListState extends State<StyledBottomSheetList> with Tick
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
                             color: _selectedIndex == index
-                              ? Theme.of(context).accentColor
+                              ? Theme.of(context).colorScheme.secondary
                               : Theme.of(context).iconTheme.color.withOpacity(0.08)
                           ),
                         ),
@@ -118,7 +118,7 @@ class _StyledBottomSheetListState extends State<StyledBottomSheetList> with Tick
                           style: GoogleFonts.poppins(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                         ),
                       ),

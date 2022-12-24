@@ -15,11 +15,11 @@ class VideoDownloadFab extends StatelessWidget {
         child: readyToDownload
           ? Icon(Icons.file_download)
           : CircularProgressIndicator(
-              backgroundColor: Theme.of(context).accentColor,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
               valueColor: AlwaysStoppedAnimation(Colors.white),
             ),
       ),
-      backgroundColor: Theme.of(context).accentColor,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       foregroundColor: Colors.white,
       onPressed: () {
         if (readyToDownload) {

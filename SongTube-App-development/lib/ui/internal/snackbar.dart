@@ -34,7 +34,7 @@ class AppSnack {
             children: <Widget>[
               Icon(
                 icon,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
               SizedBox(width: 8),
               Expanded(

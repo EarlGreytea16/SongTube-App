@@ -143,7 +143,7 @@ class _HomePageAppBarState extends State<HomePageAppBar> with TickerProviderStat
                         child: id.data != null && manager.searchController.text.isEmpty
                           ? IconButton(
                               icon: Icon(EvaIcons.link,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 size: 20),
                               onPressed: () {
                                 manager.searchBarFocusNode.unfocus();

@@ -29,7 +29,7 @@ class AppBottomNavigationBar extends StatelessWidget {
       selectedFontSize: 12,
       unselectedFontSize: 12,
       elevation: 8,
-      selectedItemColor: Theme.of(context).accentColor,
+      selectedItemColor: Theme.of(context).colorScheme.secondary,
       unselectedItemColor: Theme.of(context).iconTheme.color,
       type: BottomNavigationBarType.fixed,
       onTap: (int index) => onItemTap(index),

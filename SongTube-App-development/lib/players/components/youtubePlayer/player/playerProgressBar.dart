@@ -83,7 +83,7 @@ class _PlayerProgressBarState extends State<PlayerProgressBar> with TickerProvid
                       ),
                       activeTrackBar: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        color: Theme.of(context).accentColor
+                        color: Theme.of(context).colorScheme.secondary
                       ),
                     ),
                     tooltip: FlutterSliderTooltip(
@@ -114,7 +114,7 @@ class _PlayerProgressBarState extends State<PlayerProgressBar> with TickerProvid
                           height: 10,
                           width: 10,
                           decoration: BoxDecoration(
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                         ),
                       )

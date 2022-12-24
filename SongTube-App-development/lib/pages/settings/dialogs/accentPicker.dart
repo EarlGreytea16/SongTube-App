@@ -39,7 +39,7 @@ class _AccentPickerState extends State<AccentPicker> {
                 margin: EdgeInsets.only(bottom: 8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black12.withOpacity(0.10),
@@ -105,7 +105,7 @@ class _AccentPickerState extends State<AccentPicker> {
                       Colors.deepOrangeAccent,
                     ],
                     onMainColorChange: (color) => widget.onColorChanged(color),
-                    selectedColor: Theme.of(context).accentColor
+                    selectedColor: Theme.of(context).colorScheme.secondary
                   ),
                 ),
               ),

@@ -70,7 +70,7 @@ class _CreatePlaylistSheetState extends State<CreatePlaylistSheet> {
             controller: nameController,
             onChanged: (_) => setState(() {}),
             decoration: InputDecoration(
-              prefixIcon: Icon(Icons.playlist_play, color: Theme.of(context).accentColor),
+              prefixIcon: Icon(Icons.playlist_play, color: Theme.of(context).colorScheme.secondary),
               contentPadding: EdgeInsets.all(14.0),
               hintText: Languages.of(context).labelEditorTitle,
               hintStyle: TextStyle(
@@ -96,7 +96,7 @@ class _CreatePlaylistSheetState extends State<CreatePlaylistSheet> {
                 child: Text(
                   Languages.of(context).labelCancel,
                   style: TextStyle(
-                    color: Theme.of(context).accentColor
+                    color: Theme.of(context).colorScheme.secondary
                   ),
                 ),
                 onPressed: () => Navigator.pop(context),
@@ -107,7 +107,7 @@ class _CreatePlaylistSheetState extends State<CreatePlaylistSheet> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
                   color: nameController.text.isNotEmpty && nameController.text.length > 3
-                    ? Theme.of(context).accentColor
+                    ? Theme.of(context).colorScheme.secondary
                     : Theme.of(context).scaffoldBackgroundColor,
                 ),
                 padding: EdgeInsets.only(left: 16, right: 16),

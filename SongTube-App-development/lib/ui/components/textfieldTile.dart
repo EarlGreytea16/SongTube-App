@@ -18,7 +18,7 @@ class TextFieldTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(100),
       child: TextField(
         keyboardType: inputType,
-        cursorColor: Theme.of(context).accentColor,
+        cursorColor: Theme.of(context).colorScheme.secondary,
         controller: textController,
         decoration: InputDecoration(
           prefixIcon: Icon(icon,
@@ -35,7 +35,7 @@ class TextFieldTile extends StatelessWidget {
           labelText: labelText,
           labelStyle: TextStyle(
             fontWeight: FontWeight.w600,
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
           )
         ),
         style: TextStyle(

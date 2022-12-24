@@ -50,7 +50,7 @@ class VideoPlayerProgressBar extends StatelessWidget {
               controller,
               allowScrubbing: true,
               colors: VideoProgressColors(
-                playedColor: Theme.of(context).accentColor,
+                playedColor: Theme.of(context).colorScheme.secondary,
                 bufferedColor: Colors.grey[500].withOpacity(0.6),
                 backgroundColor: Colors.grey[600].withOpacity(0.6)
               ),

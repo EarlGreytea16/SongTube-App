@@ -236,7 +236,7 @@ class _TagsResultsPageState extends State<TagsResultsPage> {
             : Center(
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation(
-                    Theme.of(context).accentColor
+                    Theme.of(context).colorScheme.secondary
                   ),
                 ),
               )
@@ -345,7 +345,7 @@ class __DataItemState extends State<_DataItem> {
             : Center(
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation(
-                    Theme.of(context).accentColor
+                    Theme.of(context).colorScheme.secondary
                   ),
                 ),
               )
@@ -516,7 +516,7 @@ class __DataItemState extends State<_DataItem> {
                             ),
                             SizedBox(width: 8),
                             Icon(EvaIcons.checkmark,
-                              color: Theme.of(context).accentColor),
+                              color: Theme.of(context).colorScheme.secondary),
                           ],
                         ),
                       ),

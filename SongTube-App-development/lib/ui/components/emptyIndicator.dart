@@ -18,7 +18,7 @@ class EmptyIndicator extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.2),

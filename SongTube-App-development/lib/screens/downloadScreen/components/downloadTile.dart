@@ -182,7 +182,7 @@ class DownloadTile extends StatelessWidget {
                     child: LinearProgressIndicator(
                       value: snapshot.data,
                       backgroundColor: Theme.of(context).cardColor,
-                      valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
+                      valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                 );

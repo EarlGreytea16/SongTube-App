@@ -57,7 +57,7 @@ class SongsListView extends StatelessWidget {
         if (searchQuery == "" || getSearchQueryMatch(song)) {
           return ListTile(
             tileColor: selected && tintNowPlaying
-              ? Theme.of(context).accentColor.withOpacity(0.08) : null,
+              ? Theme.of(context).colorScheme.secondary.withOpacity(0.08) : null,
             title: Text(
               song.title,
               maxLines: 1,

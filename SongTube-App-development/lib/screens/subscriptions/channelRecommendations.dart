@@ -72,7 +72,7 @@ class _ChannelRecommendationsSheetState extends State<ChannelRecommendationsShee
             child: LinearProgressIndicator(
               minHeight: 2,
               backgroundColor: Colors.white,
-              valueColor: AlwaysStoppedAnimation(Theme.of(context).accentColor),
+              valueColor: AlwaysStoppedAnimation(Theme.of(context).colorScheme.secondary),
             ),
           ),
           Divider(
@@ -197,7 +197,7 @@ class _ChannelRecommendationsSheetState extends State<ChannelRecommendationsShee
             height: 120, width: 120,
             child: LoadingIndicator(
               indicatorType: Indicator.orbit,
-              color: Theme.of(context).accentColor),
+              color: Theme.of(context).colorScheme.secondary),
           ),
           SizedBox(height: 8),
           Text(

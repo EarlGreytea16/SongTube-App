@@ -32,7 +32,7 @@ class _ThemeSettingsState extends State<ThemeSettings> with TickerProviderStateM
           ),
           subtitle: Text(Languages.of(context).labelUseSystemThemeJustification,
             style: TextStyle(fontSize: 12),),
-          activeColor: Theme.of(context).accentColor,
+          activeColor: Theme.of(context).colorScheme.secondary,
           value: config.systemThemeEnabled,
           onChanged: (bool newValue) async {
             config.systemThemeEnabled = newValue;
@@ -54,7 +54,7 @@ class _ThemeSettingsState extends State<ThemeSettings> with TickerProviderStateM
               ),
               subtitle: Text(Languages.of(context).labelEnableDarkThemeJustification,
                 style: TextStyle(fontSize: 12),),
-              activeColor: Theme.of(context).accentColor,
+              activeColor: Theme.of(context).colorScheme.secondary,
               value: config.darkThemeEnabled,
               onChanged: (bool newValue) async {
                 config.darkThemeEnabled = newValue;
@@ -73,7 +73,7 @@ class _ThemeSettingsState extends State<ThemeSettings> with TickerProviderStateM
           ),
           subtitle: Text(Languages.of(context).labelEnableBlackThemeJustification,
             style: TextStyle(fontSize: 12),),
-          activeColor: Theme.of(context).accentColor,
+          activeColor: Theme.of(context).colorScheme.secondary,
           value: config.blackThemeEnabled,
           onChanged: (bool newValue) async {
             config.blackThemeEnabled = newValue;

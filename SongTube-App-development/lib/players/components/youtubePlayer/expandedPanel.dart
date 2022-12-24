@@ -211,14 +211,14 @@ class _YoutubePlayerVideoPageState extends State<YoutubePlayerVideoPage> with Ti
             DeviceOrientation.portraitUp,
             DeviceOrientation.portraitDown,
           ]);
-          SystemChrome.setEnabledSystemUIOverlays
-            ([SystemUiOverlay.top, SystemUiOverlay.bottom]);
+          SystemChrome.setEnabledSystemUIMode
+            (SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
         } else {
           SystemChrome.setPreferredOrientations([
             DeviceOrientation.landscapeLeft,
             DeviceOrientation.landscapeRight,
           ]);
-          SystemChrome.setEnabledSystemUIOverlays([]);
+          SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
         }
       },
       onEnterPipMode: () {
@@ -247,7 +247,7 @@ class _YoutubePlayerVideoPageState extends State<YoutubePlayerVideoPage> with Ti
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return AnimatedSwitcher(
       duration: Duration(milliseconds: 400),
       child: pageProvider.currentVideo != null 
@@ -263,8 +263,8 @@ class _YoutubePlayerVideoPageState extends State<YoutubePlayerVideoPage> with Ti
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    SystemChrome.setEnabledSystemUIOverlays
-      ([SystemUiOverlay.top, SystemUiOverlay.bottom]);
+    SystemChrome.setEnabledSystemUIMode
+      (SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
     FlutterScreen.resetBrightness();
     return isPlaylist
       ? _portraitPlaylistPage()
@@ -277,8 +277,8 @@ class _YoutubePlayerVideoPageState extends State<YoutubePlayerVideoPage> with Ti
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    SystemChrome.setEnabledSystemUIOverlays
-      ([SystemUiOverlay.top, SystemUiOverlay.bottom]);
+    SystemChrome.setEnabledSystemUIMode
+      (SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
     FlutterScreen.resetBrightness();
     return MeasureSize(
       onChange: (Size size) {
@@ -406,8 +406,8 @@ class _YoutubePlayerVideoPageState extends State<YoutubePlayerVideoPage> with Ti
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    SystemChrome.setEnabledSystemUIOverlays
-      ([SystemUiOverlay.top, SystemUiOverlay.bottom]);
+    SystemChrome.setEnabledSystemUIMode
+      (SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
     FlutterScreen.resetBrightness();
     return Column(
       children: [

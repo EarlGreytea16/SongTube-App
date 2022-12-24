@@ -374,7 +374,7 @@ class _PlaylistDownloadMenuState extends State<PlaylistDownloadMenu> {
                             ),
                             SizedBox(width: 4),
                             Icon(EvaIcons.cloudDownloadOutline,
-                              color: Theme.of(context).accentColor)
+                              color: Theme.of(context).colorScheme.secondary)
                           ],
                         ),
                       ),

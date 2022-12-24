@@ -30,7 +30,7 @@ class CommonSearchBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(20)
         ),
         child: Theme(
-          data: ThemeData(primaryColor: Theme.of(context).accentColor),
+          data: ThemeData(primaryColor: Theme.of(context).colorScheme.secondary),
           child: Stack(
             children: [
               TextField(

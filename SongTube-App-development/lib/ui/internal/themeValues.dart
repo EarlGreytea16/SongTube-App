@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static ThemeData white(Color accent) {
     return ThemeData.light().copyWith(
-      accentColor: accent,
       toggleableActiveColor: accent,
       primaryColor: accent,
       iconTheme: IconThemeData(
@@ -37,7 +36,7 @@ class AppTheme {
       ),
       textSelectionTheme: TextSelectionThemeData(
         selectionHandleColor: accent
-      ),
+      ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: accent),
     );
   }
 
@@ -45,7 +44,6 @@ class AppTheme {
     HSVColor color = HSVColor.fromColor(accent);
     HSVColor desaturated = HSVColor.fromAHSV(color.alpha, color.hue, 0.65, color.value);
     return ThemeData.dark().copyWith(
-      accentColor: desaturated.toColor(),
       iconTheme: IconThemeData(
         color: Colors.white
       ),
@@ -76,7 +74,7 @@ class AppTheme {
       ),
       textSelectionTheme: TextSelectionThemeData(
         selectionHandleColor: accent
-      ),
+      ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: desaturated.toColor()),
     );
   }
 
@@ -85,7 +83,6 @@ class AppTheme {
     HSVColor desaturated = HSVColor.fromAHSV(color.alpha, color.hue, 0.65, color.value);
     return ThemeData.dark().copyWith(
       canvasColor: Colors.black,
-      accentColor: desaturated.toColor(),
       iconTheme: IconThemeData(
         color: Colors.white
       ),
@@ -119,7 +116,7 @@ class AppTheme {
       ),
       textSelectionTheme: TextSelectionThemeData(
         selectionHandleColor: accent
-      ),
+      ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: desaturated.toColor()),
     );
   }
 }

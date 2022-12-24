@@ -141,7 +141,7 @@ class _IntroScreenState extends State<IntroScreen> with TickerProviderStateMixin
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
                           color: _selectedIndex == index
-                            ? Theme.of(context).accentColor
+                            ? Theme.of(context).colorScheme.secondary
                             : Theme.of(context).iconTheme.color.withOpacity(0.08)
                         ),
                       ),

@@ -131,7 +131,7 @@ class ManageChannelsSheet extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(EvaIcons.trashOutline,
-              color: Theme.of(context).accentColor),
+              color: Theme.of(context).colorScheme.secondary),
             onPressed: () {
               prefs.removeChannelSubscription(channel.url);
             },

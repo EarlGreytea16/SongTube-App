@@ -32,7 +32,7 @@ class DownloadTab extends StatelessWidget {
                 margin: EdgeInsets.only(right: 8),
                 child: Icon(
                   EvaIcons.cloudDownloadOutline,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               Text(
@@ -65,13 +65,13 @@ class DownloadTab extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.2
                 ),
-                labelColor: Theme.of(context).accentColor,
+                labelColor: Theme.of(context).colorScheme.secondary,
                 unselectedLabelColor: Theme.of(context).textTheme.bodyText1
                   .color.withOpacity(0.4),
                 indicator: MD2Indicator(
                   indicatorSize: MD2IndicatorSize.tiny,
                   indicatorHeight: 4,
-                  indicatorColor: Theme.of(context).accentColor,
+                  indicatorColor: Theme.of(context).colorScheme.secondary,
                 ),
                 tabs: [
                   Tab(child: Text(

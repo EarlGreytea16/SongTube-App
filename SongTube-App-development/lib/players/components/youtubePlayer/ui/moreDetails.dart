@@ -68,13 +68,13 @@ class _MoreDetailsSheetState extends State<MoreDetailsSheet> {
                 ]
               ),
               child: TabBar(
-                labelColor: Theme.of(context).accentColor,
+                labelColor: Theme.of(context).colorScheme.secondary,
                 unselectedLabelColor: Theme.of(context).textTheme.bodyText1
                   .color.withOpacity(0.4),
                 indicator: MD2Indicator(
                   indicatorSize: MD2IndicatorSize.tiny,
                   indicatorHeight: 4,
-                  indicatorColor: Theme.of(context).accentColor,
+                  indicatorColor: Theme.of(context).colorScheme.secondary,
                 ),
                 tabs: [
                   Tab(icon: Icon(EvaIcons.listOutline, color: Theme.of(context).iconTheme.color)),
@@ -162,7 +162,7 @@ class _MoreDetailsSheetState extends State<MoreDetailsSheet> {
                         child: Text(
                           text ?? '',
                           style: TextStyle(
-                            color: Theme.of(context.buildContext).accentColor,
+                            color: Theme.of(context.buildContext).colorScheme.secondary,
                             fontWeight: FontWeight.w600,
                             decoration: TextDecoration.underline,
                             decorationStyle: TextDecorationStyle.dotted,
@@ -278,7 +278,7 @@ class _MoreDetailsSheetState extends State<MoreDetailsSheet> {
                                 "${Duration(seconds: segment.startTimeSeconds).inMinutes.toString().padLeft(2, '0')}:"+
                                 "${Duration(seconds: segment.startTimeSeconds).inSeconds.remainder(60).toString().padLeft(2, '0')}",
                                 style: TextStyle(
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   fontFamily: 'Product Sans',
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600

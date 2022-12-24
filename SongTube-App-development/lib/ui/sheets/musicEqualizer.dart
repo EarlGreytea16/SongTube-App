@@ -40,8 +40,8 @@ class _MusicEqualizerSheetState extends State<MusicEqualizerSheet> {
 
   SliderThemeData sliderTheme() {
     return SliderThemeData(
-      thumbColor: Theme.of(context).accentColor,
-      activeTrackColor: Theme.of(context).accentColor,
+      thumbColor: Theme.of(context).colorScheme.secondary,
+      activeTrackColor: Theme.of(context).colorScheme.secondary,
       trackHeight: 3,
       thumbShape: RoundSliderThumbShape(
         disabledThumbRadius: 8,

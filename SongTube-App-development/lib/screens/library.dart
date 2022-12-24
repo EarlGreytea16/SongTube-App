@@ -39,7 +39,7 @@ class LibraryScreen extends StatelessWidget {
               margin: EdgeInsets.only(right: 8),
               child: Icon(
                 EvaIcons.folderOutline,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
             Text(

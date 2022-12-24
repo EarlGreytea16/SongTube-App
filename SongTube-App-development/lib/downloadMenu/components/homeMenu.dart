@@ -59,7 +59,7 @@ class DownloadMenuHome extends StatelessWidget {
                 onTap: onAudioTap,
                 child: ListTile(
                   leading: Icon(EvaIcons.musicOutline, size: 35,
-                    color: Theme.of(context).accentColor),
+                    color: Theme.of(context).colorScheme.secondary),
                   title: Text(
                     Languages.of(context).labelMusic,
                     style: TextStyle(
@@ -85,7 +85,7 @@ class DownloadMenuHome extends StatelessWidget {
                 onTap: onVideoTap,
                 child: ListTile(
                   leading: Icon(EvaIcons.videoOutline, size: 35,
-                    color: Theme.of(context).accentColor),
+                    color: Theme.of(context).colorScheme.secondary),
                   title: Text(
                     Languages.of(context).labelVideo,
                     style: TextStyle(
@@ -112,7 +112,7 @@ class DownloadMenuHome extends StatelessWidget {
                 onTap: onPlaylistTap,
                 child: ListTile(
                   leading: Icon(MdiIcons.playlistMusicOutline, size: 35,
-                    color: Theme.of(context).accentColor),
+                    color: Theme.of(context).colorScheme.secondary),
                   title: Text(
                     Languages.of(context).labelPlaylist,
                     style: TextStyle(

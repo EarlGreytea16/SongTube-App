@@ -262,7 +262,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                                   value: selectedAudio.formatName == "m4a" ? "AAC" : "OGG",
                                   iconSize: 20,
                                   style: TextStyle(
-                                    color: Theme.of(context).accentColor,
+                                    color: Theme.of(context).colorScheme.secondary,
                                     fontFamily: 'Product Sans',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 14
@@ -294,7 +294,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                                   value: "${selectedAudio.averageBitrate}",
                                   iconSize: 20,
                                   style: TextStyle(
-                                    color: Theme.of(context).accentColor,
+                                    color: Theme.of(context).colorScheme.secondary,
                                     fontFamily: 'Product Sans',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 14
@@ -374,7 +374,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                         SizedBox(width: 4),
                         Icon(EvaIcons.downloadOutline,
                           size: 28,
-                          color: Theme.of(context).accentColor)
+                          color: Theme.of(context).colorScheme.secondary)
                       ],
                     ),
                   ),
@@ -425,7 +425,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Icon(EvaIcons.editOutline,
-                    color: Theme.of(context).accentColor),
+                    color: Theme.of(context).colorScheme.secondary),
                   SizedBox(width: 8),
                   Text(
                     Languages.of(context).labelTagsEditor.replaceAll("\n", " "),
@@ -566,7 +566,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Icon(EvaIcons.musicOutline,
-                    color: Theme.of(context).accentColor),
+                    color: Theme.of(context).colorScheme.secondary),
                   SizedBox(width: 8),
                   Text(
                     "Audio Features",
@@ -667,7 +667,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                               ? Icons.check_box
                               : Icons.check_box_outline_blank,
                             color: normalizeAudio
-                              ? Theme.of(context).accentColor
+                              ? Theme.of(context).colorScheme.secondary
                               : Theme.of(context).iconTheme.color
                           ),
                           SizedBox(width: 8),
@@ -708,7 +708,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                 ),
                 activeTrackBar: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  color: Theme.of(context).accentColor
+                  color: Theme.of(context).colorScheme.secondary
                 ),
               ),
               tooltip: FlutterSliderTooltip(
@@ -724,7 +724,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                   width: 10,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 )
               ),
@@ -766,7 +766,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                   ? Icons.check_box
                   : Icons.check_box_outline_blank,
                 color: enableConversion
-                  ? Theme.of(context).accentColor
+                  ? Theme.of(context).colorScheme.secondary
                   : Theme.of(context).iconTheme.color
               ),
               SizedBox(width: 8),
@@ -788,7 +788,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                     items: [
                       DropdownMenuItem<String>(
                         child: Text('AAC', style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
                           fontFamily: 'Product Sans'
@@ -797,7 +797,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                       ),
                       DropdownMenuItem<String>(
                         child: Text('OGG', style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
                           fontFamily: 'Product Sans'
@@ -806,7 +806,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                       ),
                       DropdownMenuItem<String>(
                         child: Text('MP3', style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
                           fontFamily: 'Product Sans'
@@ -846,7 +846,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                 children: [
                   Icon(
                     EvaIcons.listOutline,
-                    color: Theme.of(context).accentColor
+                    color: Theme.of(context).colorScheme.secondary
                   ),
                   SizedBox(width: 8),
                   Text(
@@ -885,7 +885,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                         ? Icons.check_box
                         : Icons.check_box_outline_blank,
                       color: segmentedDownload
-                        ? Theme.of(context).accentColor
+                        ? Theme.of(context).colorScheme.secondary
                         : Theme.of(context).iconTheme.color
                     ),
                     SizedBox(width: 8),
@@ -941,7 +941,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                           SizedBox(width: 8),
                           Icon(
                             EvaIcons.edit2Outline,
-                            color: Theme.of(context).accentColor
+                            color: Theme.of(context).colorScheme.secondary
                           ),
                           SizedBox(width: 8),
                           Expanded(
@@ -1002,7 +1002,7 @@ class _AudioDownloadMenuState extends State<AudioDownloadMenu> with TickerProvid
                         padding: EdgeInsets.only(bottom: 12, left: 24, right: 24),
                           child: LinearProgressIndicator(value: null,
                             valueColor: AlwaysStoppedAnimation(
-                              Theme.of(context).accentColor
+                              Theme.of(context).colorScheme.secondary
                             ),
                             backgroundColor: Colors.transparent,
                             minHeight: 1,

@@ -108,7 +108,7 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
             duration: Duration(milliseconds: 400),
             opacity: currentPlaylist == null ? 0.0 : 1.0,
             child: FloatingActionButton.extended(
-              backgroundColor: Theme.of(context).accentColor,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
               onPressed: () {
                 Navigator.pop(context);
                 pageProvider.infoItem = currentPlaylist;

@@ -18,7 +18,7 @@ class MusicPlayerSettingsDialog extends StatelessWidget {
         children: [
           Icon(
             EvaIcons.brushOutline,
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
           SizedBox(width: 8),
           Text(
@@ -87,7 +87,7 @@ class MusicPlayerSettingsDialog extends StatelessWidget {
                     onChanged: (double value) {
                       prefs.musicPlayerArtworkRoundCorners = value;
                     },
-                    activeColor: Theme.of(context).accentColor,
+                    activeColor: Theme.of(context).colorScheme.secondary,
                     inactiveColor: Colors.transparent,
                   ),
                 ),

@@ -29,7 +29,7 @@ class AppUpdateSheet extends StatelessWidget {
                   repeat: true,
                   endRadius: 45,
                   showTwoGlows: false,
-                  glowColor: Theme.of(context).accentColor,
+                  glowColor: Theme.of(context).colorScheme.secondary,
                   repeatPauseDuration: Duration(milliseconds: 50),
                   child: Image.asset(
                     'assets/images/ic_launcher.png',
@@ -67,7 +67,7 @@ class AppUpdateSheet extends StatelessWidget {
               Text(
                 "${details.version}",
                 style: TextStyle(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   fontSize: 18,
                   fontFamily: 'Product Sans',
                   fontWeight: FontWeight.w600
@@ -81,7 +81,7 @@ class AppUpdateSheet extends StatelessWidget {
             child: Text(
               "What's new:",
               style: TextStyle(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 fontSize: 18,
                 fontFamily: 'Product Sans',
                 fontWeight: FontWeight.w600
@@ -92,7 +92,7 @@ class AppUpdateSheet extends StatelessWidget {
           Divider(
             height: 1,
             thickness: 1,
-            color: Theme.of(context).accentColor.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
           ),
           Expanded(
             child: SingleChildScrollView(
@@ -108,7 +108,7 @@ class AppUpdateSheet extends StatelessWidget {
           Divider(
             height: 1,
             thickness: 1,
-            color: Theme.of(context).accentColor.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
           ),
           SizedBox(height: 16),
           Row(
@@ -158,7 +158,7 @@ class AppUpdateSheet extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Theme.of(context).scaffoldBackgroundColor,
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Theme.of(context).accentColor),
+                    border: Border.all(color: Theme.of(context).colorScheme.secondary),
                   ),
                   child: Center(
                     child: FutureBuilder(
@@ -170,7 +170,7 @@ class AppUpdateSheet extends StatelessWidget {
                             Text(
                               Languages.of(context).labelDownload,
                               style: TextStyle(
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontFamily: 'Product Sans',
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600
@@ -180,7 +180,7 @@ class AppUpdateSheet extends StatelessWidget {
                               ? Text(
                                   " (${((data.data/1024)/1024).toStringAsFixed(0)} MB)",
                                   style: TextStyle(
-                                    color: Theme.of(context).accentColor,
+                                    color: Theme.of(context).colorScheme.secondary,
                                     fontFamily: 'Product Sans',
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600
@@ -191,7 +191,7 @@ class AppUpdateSheet extends StatelessWidget {
                                   width: 20,
                                   margin: const EdgeInsets.only(left: 12, right: 4),
                                   child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation(Theme.of(context).accentColor),
+                                    valueColor: AlwaysStoppedAnimation(Theme.of(context).colorScheme.secondary),
                                     strokeWidth: 2,
                                   ),
                                 )
@@ -299,7 +299,7 @@ class _AppUpdateDownloadSheetState extends State<AppUpdateDownloadSheet> {
               Divider(
                 height: 1,
                 thickness: 1,
-                color: Theme.of(context).accentColor.withOpacity(0.1),
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
               ),
               Row(
                 children: [
@@ -311,7 +311,7 @@ class _AppUpdateDownloadSheetState extends State<AppUpdateDownloadSheet> {
                       repeat: true,
                       endRadius: 45,
                       showTwoGlows: false,
-                      glowColor: Theme.of(context).accentColor,
+                      glowColor: Theme.of(context).colorScheme.secondary,
                       repeatPauseDuration: Duration(milliseconds: 50),
                       child: Image.asset(
                         'assets/images/ic_launcher.png',
@@ -330,7 +330,7 @@ class _AppUpdateDownloadSheetState extends State<AppUpdateDownloadSheet> {
                           Text(
                             "${widget.newVersion.split("+").first}",
                             style: TextStyle(
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               fontSize: 18,
                               fontFamily: 'Product Sans',
                               fontWeight: FontWeight.w600
@@ -342,7 +342,7 @@ class _AppUpdateDownloadSheetState extends State<AppUpdateDownloadSheet> {
                             child: LinearProgressIndicator(
                               value: progress == 0 ? null : progress,
                               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                              valueColor: AlwaysStoppedAnimation(Theme.of(context).accentColor),
+                              valueColor: AlwaysStoppedAnimation(Theme.of(context).colorScheme.secondary),
                             ),
                           )
                         ],

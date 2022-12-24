@@ -46,7 +46,7 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
                 margin: EdgeInsets.only(right: 8),
                 child: Icon(
                   EvaIcons.bookOpenOutline,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               Text(
@@ -108,12 +108,12 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
                           spreadRadius: 0.2
                         )
                       ],
-                      border: Border.all(color: Theme.of(context).accentColor),
+                      border: Border.all(color: Theme.of(context).colorScheme.secondary),
                       color: Theme.of(context).cardColor
                     ),
                     child: Center(
                       child: Icon(Icons.add_rounded,
-                        color: Theme.of(context).accentColor),
+                        color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                 ),
@@ -238,7 +238,7 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
                     manager.loadChannelsFeed();
                   },
                   icon: Icon(EvaIcons.settingsOutline,
-                    color: Theme.of(context).accentColor),
+                    color: Theme.of(context).colorScheme.secondary),
                 ),
               ],
             ),
@@ -326,17 +326,17 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
                               borderRadius: BorderRadius.circular(100),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Theme.of(context).accentColor.withOpacity(0.2),
+                                  color: Theme.of(context).colorScheme.secondary.withOpacity(0.2),
                                   blurRadius: 12,
                                   spreadRadius: 0.2
                                 )
                               ],
-                              border: Border.all(color: Theme.of(context).accentColor),
+                              border: Border.all(color: Theme.of(context).colorScheme.secondary),
                               color: Theme.of(context).cardColor
                             ),
                             child: Center(
                               child: Icon(Icons.add_rounded,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).colorScheme.secondary),
                             ),
                           ),
                         ),

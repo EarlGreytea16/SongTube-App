@@ -134,13 +134,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             fontWeight: FontWeight.w600,
                             letterSpacing: 0.2
                         ),
-                        labelColor: Theme.of(context).accentColor,
+                        labelColor: Theme.of(context).colorScheme.secondary,
                         unselectedLabelColor: Theme.of(context).textTheme.bodyText1
                           .color.withOpacity(0.4),
                         indicator: MD2Indicator(
                           indicatorSize: MD2IndicatorSize.tiny,
                           indicatorHeight: 4,
-                          indicatorColor: Theme.of(context).accentColor,
+                          indicatorColor: Theme.of(context).colorScheme.secondary,
                         ),
                         tabs: [
                           Tab(text: Languages.of(context).labelTrending),

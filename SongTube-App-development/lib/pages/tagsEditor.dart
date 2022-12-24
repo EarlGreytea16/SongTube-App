@@ -219,7 +219,7 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
           title: Text(
             "Restore Artwork",
             style: TextStyle(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.w800
             ),
           ),
@@ -239,7 +239,7 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
           backgroundColor: Theme.of(context).cardColor,
           foregroundColor: Colors.white,
           child: Icon(Icons.search,
-            color: Theme.of(context).accentColor),
+            color: Theme.of(context).colorScheme.secondary),
           onPressed: () async {
             manualWriteTags();
           },
@@ -248,7 +248,7 @@ class _TagsEditorPageState extends State<TagsEditorPage> {
         // Save Audio Information
         FloatingActionButton.extended(
           heroTag: 'fabSave',
-          backgroundColor: Theme.of(context).accentColor,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
           foregroundColor: Colors.white,
           label: Row(
             children: [

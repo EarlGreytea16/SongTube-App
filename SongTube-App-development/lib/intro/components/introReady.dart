@@ -93,7 +93,7 @@ class IntroReady extends StatelessWidget {
                             TextSpan(
                               text: "SongTube!",
                               style: TextStyle(
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.w700
                               )
                             )
@@ -115,7 +115,7 @@ class IntroReady extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(right: 16),
             child: FloatingActionButton.extended(
-              backgroundColor: Theme.of(context).accentColor,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
               label: Text(
                 Languages.of(context).labelGoHome,
                 style: GoogleFonts.poppins(

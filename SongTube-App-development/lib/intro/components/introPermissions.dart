@@ -82,7 +82,7 @@ class _IntroPermissionsState extends State<IntroPermissions> {
                           TextSpan(
                             text: Languages.of(context).labelAccess,
                             style: GoogleFonts.poppins(
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               fontWeight: FontWeight.w600
                             )
                           )
@@ -117,7 +117,7 @@ class _IntroPermissionsState extends State<IntroPermissions> {
                           TextSpan(
                             text: "SongTube ",
                             style: GoogleFonts.poppins(
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               fontWeight: FontWeight.w700
                             )
                           ),
@@ -160,7 +160,7 @@ class _IntroPermissionsState extends State<IntroPermissions> {
                   height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: Theme.of(context).accentColor
+                    color: Theme.of(context).colorScheme.secondary
                   ),
                   child: accessGranted
                     ? Container(

@@ -153,7 +153,7 @@ class DownloadSettings extends StatelessWidget {
             style: TextStyle(fontSize: 12)
           ),
           trailing: Checkbox(
-            activeColor: Theme.of(context).accentColor,
+            activeColor: Theme.of(context).colorScheme.secondary,
             value: config.enableAlbumFolder,
             onChanged: (bool newValue) async {
               config.enableAlbumFolder = newValue;
@@ -259,8 +259,8 @@ class DownloadSettings extends StatelessWidget {
               Expanded(
                 child: SliderTheme(
                   data: SliderThemeData(
-                    thumbColor: Theme.of(context).accentColor,
-                    activeTrackColor: Theme.of(context).accentColor,
+                    thumbColor: Theme.of(context).colorScheme.secondary,
+                    activeTrackColor: Theme.of(context).colorScheme.secondary,
                     inactiveTrackColor: Colors.black.withOpacity(0.1)
                   ),
                   child: Slider(

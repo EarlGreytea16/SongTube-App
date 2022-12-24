@@ -44,7 +44,7 @@ class VideoPlayerControls extends StatelessWidget {
                     children: [
                       Container(
                         margin: EdgeInsets.only(top: 8, left: 8, right: 8),
-                        child: Icon(EvaIcons.videoOutline, color: Theme.of(context).accentColor),
+                        child: Icon(EvaIcons.videoOutline, color: Theme.of(context).colorScheme.secondary),
                       ),
                       Container(
                         margin: EdgeInsets.only(top: 8, left: 8),

@@ -80,7 +80,7 @@ class _LocalPlaylistSheetState extends State<LocalPlaylistSheet> {
             return CheckboxListTile(
               title: Row(
                 children: [
-                  Icon(Icons.playlist_play, color: Theme.of(context).accentColor),
+                  Icon(Icons.playlist_play, color: Theme.of(context).colorScheme.secondary),
                   SizedBox(width: 8),
                   Text(playlist.name,
                     style: TextStyle(
@@ -140,7 +140,7 @@ class _LocalPlaylistSheetState extends State<LocalPlaylistSheet> {
                   top: 8, bottom: 8, left: 16, right: 16
                 ),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.circular(100)
                 ),
                 child: Row(
@@ -167,7 +167,7 @@ class _LocalPlaylistSheetState extends State<LocalPlaylistSheet> {
                   top: 8, bottom: 8, left: 16, right: 16
                 ),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.circular(100)
                 ),
                 child: Row(

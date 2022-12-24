@@ -52,7 +52,7 @@ class _MusicScreenPlaylistTabState extends State<MusicScreenPlaylistTab> {
                     onDeletePlaylist: () async {
                       final result = await showDialog<bool>(context: context, builder: (context) {
                         return CustomAlert(
-                          leadingIcon: Icon(Icons.warning_rounded, color: Theme.of(context).accentColor),
+                          leadingIcon: Icon(Icons.warning_rounded, color: Theme.of(context).colorScheme.secondary),
                           title: playlist.name,
                           content: 'Are you sure? This Playlist will be permanently deleted!',
                           actions: [

@@ -38,14 +38,14 @@ class IntroWelcome extends StatelessWidget {
                       repeat: true,
                       endRadius: 120,
                       showTwoGlows: false,
-                      glowColor: Theme.of(context).accentColor.withOpacity(0.1),
+                      glowColor: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                       repeatPauseDuration: Duration(milliseconds: 400),
                       child: Container(
                         height: 160,
                         width: 160,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(200),
-                          color: Theme.of(context).accentColor.withOpacity(0.1)
+                          color: Theme.of(context).colorScheme.secondary.withOpacity(0.1)
                         ),
                         child: Center(
                           child: Container(
@@ -80,7 +80,7 @@ class IntroWelcome extends StatelessWidget {
                           TextSpan(
                             text: "SongTube",
                             style: GoogleFonts.poppins(
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               fontWeight: FontWeight.w700,
                               fontSize: 42,
                             )
@@ -144,7 +144,7 @@ class IntroWelcome extends StatelessWidget {
                             TextSpan(
                               text: "NewPipe Extractor",
                               style: TextStyle(
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontFamily: 'Product Sans',
                                 fontWeight: FontWeight.w600
                               )
@@ -176,7 +176,7 @@ class IntroWelcome extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(right: 16),
             child: FloatingActionButton.extended(
-              backgroundColor: Theme.of(context).accentColor,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
               label: Text(
                 Languages.of(context).labelStart,
                 style: GoogleFonts.poppins(

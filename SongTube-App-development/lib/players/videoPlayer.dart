@@ -95,7 +95,7 @@ class _AppVideoPlayerState extends State<AppVideoPlayer> {
                   child: Text(
                     "OK",
                     style: TextStyle(
-                      color: Theme.of(context).accentColor
+                      color: Theme.of(context).colorScheme.secondary
                     ),
                   ),
                   onPressed: () {
@@ -136,7 +136,7 @@ class _AppVideoPlayerState extends State<AppVideoPlayer> {
     _controller.dispose();
     // Show Top, Bottom system Bars and rotate screen
     // to portrait on VideoPlayer dispose
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top, SystemUiOverlay.bottom]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -147,7 +147,7 @@ class _AppVideoPlayerState extends State<AppVideoPlayer> {
   @override
   Widget build(BuildContext context) {
     // Hide Top and Bottom system Bars
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
       backgroundColor: Colors.black,
       resizeToAvoidBottomInset: false,

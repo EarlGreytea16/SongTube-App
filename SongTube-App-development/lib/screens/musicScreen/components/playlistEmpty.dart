@@ -20,7 +20,7 @@ class PlaylistEmptyWidget extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Icon(EvaIcons.loaderOutline, size: 100, color: Theme.of(context).accentColor),
+              Icon(EvaIcons.loaderOutline, size: 100, color: Theme.of(context).colorScheme.secondary),
               SizedBox(height: 8),
               Text(
                 Languages.of(context).labelNoMediaYet,

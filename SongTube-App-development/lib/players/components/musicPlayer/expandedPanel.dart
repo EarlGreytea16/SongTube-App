@@ -40,13 +40,13 @@ class ExpandedPlayer extends StatelessWidget {
         File image = mediaProvider.artwork;
         Color dominantColor = prefs.enablePlayerBlurBackground
           ? mediaProvider.dominantColor == null ? Colors.white : mediaProvider.dominantColor
-          : Theme.of(context).accentColor;
+          : Theme.of(context).colorScheme.secondary;
         Color textColor = prefs.enablePlayerBlurBackground
           ? dominantColor.computeLuminance() > 0.5 ? Colors.black : Colors.white
           : Theme.of(context).textTheme.bodyText1.color;
         Color vibrantColor = prefs.enablePlayerBlurBackground
           ? mediaProvider.vibrantColor == null ? Colors.white : mediaProvider.vibrantColor
-          : Theme.of(context).accentColor;
+          : Theme.of(context).colorScheme.secondary;
         return PlayerBackground(
           backgroundImage: File(AudioService.currentMediaItem?.extras["artwork"] ?? ''),
           enableBlur: prefs.enablePlayerBlurBackground,

@@ -21,7 +21,7 @@ class DownloadFixSheet extends StatelessWidget {
           child: Text(
             "Allow",
             style: GoogleFonts.poppins(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
@@ -35,7 +35,7 @@ class DownloadFixSheet extends StatelessWidget {
           child: Text(
             "Not Now",
             style: GoogleFonts.poppins(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),

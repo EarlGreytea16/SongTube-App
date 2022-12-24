@@ -31,7 +31,7 @@ class FolderGridView extends StatelessWidget {
           ),
           child: InkWell(
             borderRadius: BorderRadius.circular(20),
-            splashColor: Theme.of(context).accentColor.withOpacity(0.1),
+            splashColor: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
             onTap: () => onFolderTap(folder),
             child: Ink(
               decoration: BoxDecoration(

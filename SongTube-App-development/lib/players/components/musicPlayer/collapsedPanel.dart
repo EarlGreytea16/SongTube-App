@@ -121,7 +121,7 @@ class CollapsedPanel extends StatelessWidget {
                       return CircularProgressIndicator(
                         strokeWidth: 3,
                         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                        valueColor: AlwaysStoppedAnimation(Theme.of(context).accentColor),
+                        valueColor: AlwaysStoppedAnimation(Theme.of(context).colorScheme.secondary),
                         value: (position.inMilliseconds/duration.inMilliseconds),
                       );
                     }

@@ -41,13 +41,13 @@ class _MusicPlayerCurrentPlaylistState extends State<MusicPlayerCurrentPlaylist>
     MediaProvider mediaProvider = Provider.of<MediaProvider>(context);
     Color dominantColor = widget.blurUIEnabled
       ? mediaProvider.dominantColor == null ? Colors.white : mediaProvider.dominantColor
-      : Theme.of(context).accentColor;
+      : Theme.of(context).colorScheme.secondary;
     Color textColor = widget.blurUIEnabled
       ? dominantColor.computeLuminance() > 0.5 ? Colors.black : Colors.white
       : Theme.of(context).textTheme.bodyText1.color;
     Color vibrantColor = widget.blurUIEnabled
       ? mediaProvider.vibrantColor == null ? Colors.white : mediaProvider.vibrantColor
-      : Theme.of(context).accentColor;
+      : Theme.of(context).colorScheme.secondary;
     return WillPopScope(
       onWillPop: () {
         setState(() => bodyOpacity = 0.0);

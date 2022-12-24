@@ -25,7 +25,7 @@ class SongTubeBanner extends StatelessWidget {
             repeat: true,
             endRadius: 80,
             showTwoGlows: false,
-            glowColor: Theme.of(context).accentColor,
+            glowColor: Theme.of(context).colorScheme.secondary,
             repeatPauseDuration: Duration(milliseconds: 50),
             child: Container(
               width: 120,
@@ -65,7 +65,7 @@ class SongTubeBanner extends StatelessWidget {
                           fontSize: 26,
                           fontFamily: "YTSans",
                           fontWeight: FontWeight.w700,
-                          color: Theme.of(context).accentColor
+                          color: Theme.of(context).colorScheme.secondary
                         ),
                       )
                     ),
@@ -90,7 +90,7 @@ class SongTubeBanner extends StatelessWidget {
                               fontSize: 15,
                               fontFamily: "Varela",
                               fontWeight: FontWeight.w700,
-                              color: Theme.of(context).accentColor
+                              color: Theme.of(context).colorScheme.secondary
                             ),
                           ),
                         ],

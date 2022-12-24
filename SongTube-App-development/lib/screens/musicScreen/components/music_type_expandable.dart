@@ -48,7 +48,7 @@ class _MusicScreenTypeExpandableState extends State<MusicScreenTypeExpandable> {
           child: AnimatedContainer(
             duration: Duration(milliseconds: 300),
             padding: EdgeInsets.all(12),
-            color: selected ? Theme.of(context).accentColor.withOpacity(0.08) : Colors.transparent,
+            color: selected ? Theme.of(context).colorScheme.secondary.withOpacity(0.08) : Colors.transparent,
             child: Row(
               children: [
                 if (widget.lowResThumbnail != null || isPlaylist)
@@ -124,13 +124,13 @@ class _MusicScreenTypeExpandableState extends State<MusicScreenTypeExpandable> {
                         padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           color: selected
-                            ? Theme.of(context).accentColor
+                            ? Theme.of(context).colorScheme.secondary
                             : Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(50),
                           boxShadow: [
                             BoxShadow(
                               color: selected
-                                ? Theme.of(context).accentColor
+                                ? Theme.of(context).colorScheme.secondary
                                     .withOpacity(0.4)
                                 : Colors.black.withOpacity(0.05),
                               blurRadius: 8,

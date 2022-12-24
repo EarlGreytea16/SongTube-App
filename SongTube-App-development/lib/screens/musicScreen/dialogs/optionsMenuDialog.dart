@@ -22,7 +22,7 @@ class MediaOptionsMenuDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           ListTile(
-            leading: Icon(EvaIcons.trashOutline, color: Theme.of(context).accentColor),
+            leading: Icon(EvaIcons.trashOutline, color: Theme.of(context).colorScheme.secondary),
             title: Text(
               Languages.of(context).labelDeleteSong,
               style: TextStyle(

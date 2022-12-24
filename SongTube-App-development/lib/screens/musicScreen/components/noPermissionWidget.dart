@@ -35,7 +35,7 @@ class NoPermissionWidget extends StatelessWidget {
               height: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Theme.of(context).accentColor
+                color: Theme.of(context).colorScheme.secondary
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,

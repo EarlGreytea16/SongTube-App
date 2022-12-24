@@ -10,7 +10,7 @@ class LoadingDownloadMenu extends StatelessWidget {
         SizedBox(width: 16),
         CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation(
-            Theme.of(context).accentColor
+            Theme.of(context).colorScheme.secondary
           ),
         ),
         SizedBox(width: 16),

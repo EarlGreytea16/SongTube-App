@@ -260,7 +260,7 @@ class _YoutubeChannelPageState extends State<YoutubeChannelPage> {
       );
     } else if (channel?.bannerUrl == null) {
       return Container(
-        color: Theme.of(context).accentColor
+        color: Theme.of(context).colorScheme.secondary
       );
     } else {
       return FadeInImage(
