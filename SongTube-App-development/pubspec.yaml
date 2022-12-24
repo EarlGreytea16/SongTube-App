@@ -27,12 +27,10 @@ dependencies:
     # sentry_flutter: ^4.0.6
 
     # Media Playback Packages
-    # flutter_audio_query null salfety by https://github.com/Mayb3Nots/flutter_audio_query
     flutter_audio_query: 
         git: 
-            url: https://github.com/harshmandan/flutter_audio_query
+            url: https://github.com/Mayb3Nots/flutter_audio_query
             ref: master
-
     video_player:
         git:
             url: https://github.com/SongTube/video_player
@@ -91,8 +89,7 @@ dependencies:
 
     # Tools
     flutter_share: ^2.0.0
-    audio_tagger:
-        git: https://github.com/SongTube/audio_tagger
+    audio_tagger: ^2.2.1
 
     share: ^2.0.4
     flutter_ffmpeg: ^0.4.2
@@ -137,7 +134,7 @@ dependencies:
         git:
             url: https://github.com/abdelrahmanelmarakby/md2_tab_indicator
             ref: patch-1
-  collection: ^1.15.0-nullsafety.4
+    collection: ^1.15.0-nullsafety.4
 
 dependency_overrides:
   platform: ^3.1.0
