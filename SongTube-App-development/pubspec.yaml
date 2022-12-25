@@ -74,7 +74,7 @@ dependencies:
             url: https://github.com/SongTube/flutter_html
 
     # Icons
-    material_design_icons_flutter: ^4.0.5955
+    material_design_icons_flutter: ^6.0.7096
     eva_icons_flutter: ^3.0.0
 
     # Animations
@@ -87,7 +87,7 @@ dependencies:
             ref: master
     image_fade: ^0.6.2
     animations: ^2.0.0
-    loading_indicator: ^2.1.1
+    loading_indicator: ^3.1.0
 
     # Tools
     flutter_share: ^2.0.0

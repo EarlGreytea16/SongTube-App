@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:songtube/internal/languages.dart';
 import 'package:songtube/provider/preferencesProvider.dart';
@@ -15,7 +14,7 @@ class JoinTelegramSheet extends StatelessWidget {
         right: 24, left: 24, bottom: 12
       ),
       addBottomPadding: true,
-      leading: Icon(MdiIcons.telegram, color: Colors.blue),
+      leading: Icon(Icons.telegram, color: Colors.blue),
       title: Languages.of(context).labelJoinTelegramChannel,
       content: Text(
         Languages.of(context).labelJoinTelegramJustification,

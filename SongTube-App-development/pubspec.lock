@@ -37,7 +37,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.1"
+    version: "2.10.0"
   audio_service:
     dependency: "direct main"
     description:
@@ -448,7 +448,7 @@ packages:
       name: loading_indicator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "3.1.0"
   markdown:
     dependency: transitive
     description:
@@ -476,7 +476,7 @@ packages:
       name: material_design_icons_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.5955"
+    version: "6.0.7096"
   md2_tab_indicator:
     dependency: "direct main"
     description:
@@ -940,5 +940,5 @@ packages:
     source: hosted
     version: "5.1.2"
 sdks:
-  dart: ">=2.17.5 <3.0.0"
+  dart: ">=2.18.0 <3.0.0"
   flutter: ">=3.0.0"

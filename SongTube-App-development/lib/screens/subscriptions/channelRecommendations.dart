@@ -196,7 +196,7 @@ class _ChannelRecommendationsSheetState extends State<ChannelRecommendationsShee
             height: 120, width: 120,
             child: LoadingIndicator(
               indicatorType: Indicator.orbit,
-              color: Theme.of(context).colorScheme.secondary),
+              colors: [Theme.of(context).colorScheme.secondary]),
           ),
           SizedBox(height: 8),
           Text(
