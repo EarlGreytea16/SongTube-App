@@ -85,7 +85,7 @@ dependencies:
         git:
             url: https://github.com/SongTube/autolist
             ref: master
-    image_fade: ^0.2.1
+    image_fade: ^0.6.2
     animations: ^2.0.0
     loading_indicator: ^2.1.1
 

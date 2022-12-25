@@ -68,7 +68,7 @@ class _MusicScreenTypeExpandableState extends State<MusicScreenTypeExpandable> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: ImageFade(
-                      fadeDuration: Duration(milliseconds: 300),
+                      duration: Duration(milliseconds: 300),
                       placeholder: !isPlaylist
                         ? Image.file(File(widget.lowResThumbnail))
                         : Image.memory(kTransparentImage),
