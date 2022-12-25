@@ -1,11 +1,10 @@
 // Flutter
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 // Packages
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:flutter_xlider/flutter_xlider.dart';
+import 'package:another_xlider/another_xlider.dart';
 import 'package:image_fade/image_fade.dart';
 import 'package:newpipeextractor_dart/newpipeextractor_dart.dart';
 import 'package:provider/provider.dart';

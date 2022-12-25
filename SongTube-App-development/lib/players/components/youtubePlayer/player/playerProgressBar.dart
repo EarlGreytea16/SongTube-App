@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:newpipeextractor_dart/models/streamSegment.dart';
-import 'package:flutter_xlider/flutter_xlider.dart';
+import 'package:another_xlider/another_xlider.dart';
 
 class PlayerProgressBar extends StatefulWidget {
   final Duration position;
