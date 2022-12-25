@@ -1,7 +1,5 @@
 // Dart
 import 'dart:io';
-import 'dart:typed_data';
-import 'dart:ui';
 
 // Packages
 import 'package:audio_tagger/audio_tagger.dart';

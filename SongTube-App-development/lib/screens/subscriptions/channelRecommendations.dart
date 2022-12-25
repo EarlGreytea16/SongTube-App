@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:newpipeextractor_dart/extractors/channels.dart';
 import 'package:newpipeextractor_dart/extractors/trending.dart';
 import 'package:newpipeextractor_dart/extractors/videos.dart';
-import 'package:newpipeextractor_dart/models/channel.dart';
 import 'package:newpipeextractor_dart/newpipeextractor_dart.dart';
 import 'package:provider/provider.dart';
 import 'package:songtube/internal/avatarHandler.dart';

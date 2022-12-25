@@ -1,7 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:md2_tab_indicator/md2_tab_indicator.dart';
-import 'package:newpipeextractor_dart/models/streamSegment.dart';
 import 'package:newpipeextractor_dart/newpipeextractor_dart.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:songtube/internal/languages.dart';

@@ -1,6 +1,5 @@
 // Dart
 import 'dart:io';
-import 'dart:ui';
 
 // Flutter
 import 'package:audio_service/audio_service.dart';
