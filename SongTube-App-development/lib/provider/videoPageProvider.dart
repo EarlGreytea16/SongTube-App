@@ -9,7 +9,6 @@ import 'package:newpipeextractor_dart/models/infoItems/playlist.dart';
 import 'package:newpipeextractor_dart/models/infoItems/video.dart';
 import 'package:newpipeextractor_dart/models/playlist.dart';
 import 'package:newpipeextractor_dart/models/video.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:songtube/internal/avatarHandler.dart';
 import 'package:songtube/internal/globals.dart';
 import 'package:songtube/internal/models/playlist.dart';

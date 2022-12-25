@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:songtube/internal/languages/languageAr.dart';
-import 'package:songtube/internal/languages/languageKMR.dart';
 import 'package:songtube/internal/languages/languageKu.dart';
 import 'package:songtube/internal/languages/languageRu.dart';
 import 'package:songtube/main.dart';

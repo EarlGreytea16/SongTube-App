@@ -12,7 +12,6 @@ import 'package:songtube/internal/models/videoFile.dart';
 import 'package:songtube/internal/systemUi.dart';
 import 'package:songtube/players/service/playerService.dart';
 import 'package:songtube/players/videoPlayer.dart';
-import 'package:songtube/provider/configurationProvider.dart';
 import 'package:songtube/provider/mediaProvider.dart';
 import 'package:songtube/provider/preferencesProvider.dart';
 import 'package:songtube/ui/animations/blurPageRoute.dart';

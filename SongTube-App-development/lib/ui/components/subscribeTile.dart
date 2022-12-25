@@ -1,5 +1,3 @@
-import 'package:animations/animations.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:newpipeextractor_dart/models/channel.dart';
@@ -8,7 +6,6 @@ import 'package:songtube/internal/languages.dart';
 import 'package:songtube/internal/models/subscription.dart';
 import 'package:songtube/provider/managerProvider.dart';
 import 'package:songtube/provider/preferencesProvider.dart';
-import 'package:songtube/ui/animations/fadeIn.dart';
 import 'package:songtube/ui/internal/snackbar.dart';
 
 class ChannelSubscribeComponent extends StatefulWidget {

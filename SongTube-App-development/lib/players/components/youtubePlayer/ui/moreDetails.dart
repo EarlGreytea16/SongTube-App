@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:md2_tab_indicator/md2_tab_indicator.dart';
 import 'package:newpipeextractor_dart/newpipeextractor_dart.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:songtube/internal/languages.dart';
 import 'package:transparent_image/transparent_image.dart';
-import 'package:html/dom.dart' as dom;
 import 'package:url_launcher/url_launcher.dart';
 
 class MoreDetailsSheet extends StatefulWidget {

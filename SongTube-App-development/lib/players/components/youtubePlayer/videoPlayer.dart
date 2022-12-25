@@ -12,7 +12,6 @@ import 'package:songtube/players/components/youtubePlayer/player/playPauseButton
 import 'package:songtube/players/components/youtubePlayer/player/playerAppBar.dart';
 import 'package:songtube/players/components/youtubePlayer/player/playerProgressBar.dart';
 import 'package:songtube/players/service/playerService.dart';
-import 'package:songtube/players/service/screenStateStream.dart';
 import 'package:songtube/provider/preferencesProvider.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:video_player/video_player.dart';

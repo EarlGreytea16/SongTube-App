@@ -9,7 +9,6 @@ import 'package:newpipeextractor_dart/models/channel.dart';
 import 'package:newpipeextractor_dart/models/infoItems/video.dart';
 import 'package:provider/provider.dart';
 import 'package:songtube/internal/avatarHandler.dart';
-import 'package:songtube/internal/languages.dart';
 import 'package:songtube/internal/systemUi.dart';
 import 'package:songtube/provider/videoPageProvider.dart';
 import 'package:songtube/ui/animations/fadeIn.dart';

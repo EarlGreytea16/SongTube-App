@@ -1,13 +1,8 @@
-import 'dart:io';
-
-import 'package:animations/animations.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
-import 'package:image_fade/image_fade.dart';
 import 'package:songtube/internal/ffmpeg/extractor.dart';
 import 'package:songtube/internal/models/mediaItemSorts.dart';
 import 'package:songtube/screens/musicScreen/components/music_type_expandable.dart';
-import 'package:songtube/screens/musicScreen/components/songsList.dart';
 
 class MusicScreenAlbumsTab extends StatefulWidget {
   final List<MediaItem> songs;

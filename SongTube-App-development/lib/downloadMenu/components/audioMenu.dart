@@ -1,7 +1,6 @@
 // Flutter
 import 'dart:io';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 // Packages
@@ -17,7 +16,6 @@ import 'package:songtube/internal/models/tagsControllers.dart';
 import 'package:songtube/internal/musicBrainzApi.dart';
 import 'package:songtube/provider/configurationProvider.dart';
 import 'package:songtube/provider/preferencesProvider.dart';
-import 'package:songtube/provider/videoPageProvider.dart';
 import 'package:songtube/ui/animations/blurPageRoute.dart';
 import 'package:songtube/ui/animations/fadeIn.dart';
 import 'package:songtube/pages/musicBrainzResults.dart';

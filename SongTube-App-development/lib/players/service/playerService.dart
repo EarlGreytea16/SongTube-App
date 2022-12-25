@@ -1,15 +1,11 @@
 // Dart
 import 'dart:async';
-import 'dart:io';
 import 'dart:math';
 
 // Packages
 import 'package:audio_service/audio_service.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:audio_session/audio_session.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:songtube/internal/globals.dart';
 
 MediaControl playControl = MediaControl(
   androidIcon: 'drawable/ic_play_arrow',

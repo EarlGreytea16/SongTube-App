@@ -9,9 +9,6 @@ import 'package:songtube/screens/musicScreen/components/mediaListBase.dart';
 import 'package:provider/provider.dart';
 import 'package:songtube/screens/musicScreen/components/songsList.dart';
 
-// UI
-import 'package:songtube/screens/musicScreen/tabs/songs.dart';
-
 class DownloadsTab extends StatefulWidget {
   @override
   _DownloadsTabState createState() => _DownloadsTabState();

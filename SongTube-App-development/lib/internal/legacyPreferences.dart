@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 
 // Packages
 import 'package:device_info/device_info.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:songtube/internal/globals.dart';
 
 // Key identifiers for variables saved in SharedPreferences.
