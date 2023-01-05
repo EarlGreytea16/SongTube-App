@@ -5,7 +5,7 @@ import 'dart:io';
 // Flutter
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screen/flutter_screen.dart';
+import 'package:keep_screen_on/keep_screen_on.dart';
 
 // Internal
 import 'package:songtube/internal/models/videoFile.dart';
@@ -63,7 +63,7 @@ class _AppVideoPlayerState extends State<AppVideoPlayer> {
           ]);
         }
         // Prevent the screen of beign turned off automatically
-        FlutterScreen.keepOn(true);
+        KeepScreenOn.turnOn();
         setState(() {
           _controller.play();
         });
@@ -141,7 +141,7 @@ class _AppVideoPlayerState extends State<AppVideoPlayer> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    FlutterScreen.keepOn(false);
+    KeepScreenOn.turnOn(false);
   }
 
   @override

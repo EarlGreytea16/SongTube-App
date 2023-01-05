@@ -21,7 +21,7 @@ import 'package:songtube/provider/videoPageProvider.dart';
 import 'package:songtube/ui/animations/blurPageRoute.dart';
 import 'package:songtube/ui/components/addToPlaylist.dart';
 import 'package:songtube/ui/components/measureSize.dart';
-import 'package:flutter_screen/flutter_screen.dart';
+import 'package:screen_brightness/screen_brightness.dart';
 import 'package:songtube/ui/components/subscribeTile.dart';
 import 'package:songtube/ui/layout/streamsListTile.dart';
 import 'package:string_validator/string_validator.dart';
@@ -230,7 +230,7 @@ class _YoutubePlayerVideoPageState extends State<YoutubePlayerVideoPage> with Ti
     VideoPageProvider pageProvider = Provider.of<VideoPageProvider>(context);
     pageProvider.playerKey?.currentState?.controller?.play();
     pageProvider.fwController.open();
-    FlutterScreen.resetBrightness();
+    ScreenBrightness().resetScreenBrightness();
     return AnimatedSwitcher(
       duration: Duration(milliseconds: 400),
       child: pageProvider.currentVideo != null 
@@ -263,7 +263,7 @@ class _YoutubePlayerVideoPageState extends State<YoutubePlayerVideoPage> with Ti
     ]);
     SystemChrome.setEnabledSystemUIMode
       (SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-    FlutterScreen.resetBrightness();
+    ScreenBrightness().resetScreenBrightness();
     return isPlaylist
       ? _portraitPlaylistPage()
       : _portraitVideoPage();
@@ -277,7 +277,7 @@ class _YoutubePlayerVideoPageState extends State<YoutubePlayerVideoPage> with Ti
     ]);
     SystemChrome.setEnabledSystemUIMode
       (SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-    FlutterScreen.resetBrightness();
+    ScreenBrightness().resetScreenBrightness();
     return MeasureSize(
       onChange: (Size size) {
         setState(() => mainBodyHeight = size.height);
@@ -406,7 +406,7 @@ class _YoutubePlayerVideoPageState extends State<YoutubePlayerVideoPage> with Ti
     ]);
     SystemChrome.setEnabledSystemUIMode
       (SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-    FlutterScreen.resetBrightness();
+    ScreenBrightness().resetScreenBrightness();
     return Column(
       children: [
         Expanded(
