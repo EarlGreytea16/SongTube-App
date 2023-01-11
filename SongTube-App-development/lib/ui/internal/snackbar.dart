@@ -22,7 +22,7 @@ class AppSnack {
     if (scaffoldKey == null)
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
     else
-      scaffoldKey.currentState.removeCurrentSnackBar();
+      scaffoldKey.removeCurrentSnackBar();
     final snack = SnackBar(
       content: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -93,6 +93,6 @@ class AppSnack {
     if (scaffoldKey == null)
       ScaffoldMessenger.of(context).showSnackBar(snack);
     else
-      scaffoldKey.currentState.showSnackBar(snack);
+      scaffoldKey.showSnackBar(snack);
   }
 }
