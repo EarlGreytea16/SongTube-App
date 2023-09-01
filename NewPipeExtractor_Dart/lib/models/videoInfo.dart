@@ -1,3 +1,6 @@
+import 'package:newpipeextractor_dart/models/infoItems/channel.dart';
+import 'package:newpipeextractor_dart/models/infoItems/video.dart';
+
 class VideoInfo {
   
   VideoInfo({
@@ -86,6 +89,26 @@ class VideoInfo {
       ageLimit: map.containsKey('ageLimit') ? int.parse(map['ageLimit']) : null,
       thumbnailUrl: map.containsKey('thumbnailUrl') ? map['thumbnailUrl'] : null,
     );
+  }
+
+  /// Generate a VideoInfo Item from StreamInfoItem
+  static VideoInfo fromStreamInfoItem(StreamInfoItem item) {
+    return VideoInfo(
+      id: item.id,
+      url: item.url,
+      name: item.name,
+      uploadDate: item.uploadDate,
+      uploaderUrl: item.uploaderUrl,
+      uploaderName: item.uploaderName,
+      length: Duration(seconds: item.duration!).inMilliseconds,
+      viewCount: item.viewCount,
+      thumbnailUrl: item.thumbnails?.hqdefault
+    );
+  }
+
+  /// Generate a ChannelInfoItem from this video details
+  ChannelInfoItem getChannel() {
+    return ChannelInfoItem(uploaderUrl, uploaderName, '', uploaderAvatarUrl, null, -1);
   }
 
 }
